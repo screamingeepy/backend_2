@@ -1,0 +1,430 @@
+/* meet the staff built after the old staff pages */
+.pageInner {
+  --leafDark: #355a10;
+  --parchment: #f3e6c0;
+  --ribbon: #a3132d;
+  --orange: #e8921d;
+}
+
+/* everyone */
+
+.meetGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.meetCard {
+  position: relative;
+  display: block;
+  height: 190px;
+  overflow: hidden;
+  border: 4px solid var(--leafDark);
+  border-radius: 16px;
+  /* --scene is the meadow picture chosen for their page, set from staff.js */
+  background-image:
+    var(--scene, none),
+    radial-gradient(ellipse at 75% 30%, rgba(255, 255, 255, 0.55), transparent 60%),
+    linear-gradient(160deg, color-mix(in srgb, var(--talent) 55%, #fff) 0%, color-mix(in srgb, var(--talent) 70%, #1a2a3a) 100%);
+  background-size: cover;
+  background-position: center 62%;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.meetCard:hover,
+.meetCard:focus-visible {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.55);
+  outline: none;
+}
+
+/* the bust sits in the corner, cropped by the card */
+.meetBust {
+  position: absolute;
+  right: -6px;
+  bottom: -4px;
+  height: 118%;
+  width: auto;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.meetBust.loaded { opacity: 1; }
+
+.meetTalent {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 42px;
+  height: 42px;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.5));
+}
+
+.meetLeaf {
+  position: absolute;
+  left: -4px;
+  bottom: 12px;
+  max-width: 78%;
+  padding: 8px 34px 8px 18px;
+  border-radius: 0 40px 40px 0;
+  background: linear-gradient(180deg, #4f8d1c, #356b0f);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+  color: #fff;
+  font: 700 19px/22px "PH Serif", Georgia, serif;
+}
+
+.meetRole {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  max-width: 60%;
+  padding: 2px 9px;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.45);
+  color: #fff;
+  font: 12px/17px "PH Rounded", Arial, sans-serif;
+}
+
+.staffEmpty { grid-column: 1 / -1; color: #fff; font: 15px/22px "PH Rounded", Arial, sans-serif; text-align: center; }
+
+/* one of them */
+
+.charStage {
+  position: relative;
+  height: 470px;
+  margin-top: 40px;
+  border: 4px solid var(--leafDark);
+  border-radius: 22px;
+  background:
+    radial-gradient(ellipse at 18% 14%, rgba(160, 205, 255, 0.55), transparent 42%),
+    radial-gradient(ellipse at 92% 6%, rgba(255, 244, 190, 0.5), transparent 38%),
+    linear-gradient(180deg, #7cb356 0%, #4f8a30 45%, #345f1f 100%);
+  box-shadow: inset 0 0 36px rgba(0, 40, 0, 0.5), 0 5px 14px rgba(0, 0, 0, 0.45);
+  /* the figure stands taller than the window */
+  overflow: visible;
+}
+
+/* the meadow art, cropped to the window; the gradient above shows until it has loaded */
+.charScene {
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  background-position: center 62%;
+  background-size: cover;
+  overflow: hidden;
+}
+
+/* a little shade along the top so the name reads against bright sky */
+.charScene::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 20, 0, 0.42) 0%, rgba(0, 20, 0, 0) 38%);
+}
+
+.charName {
+  position: absolute;
+  top: 6px;
+  left: 18px;
+  margin: 0;
+  color: #e6f0b4;
+  font: 62px/68px "PH Script", Georgia, serif;
+  text-shadow: 0 3px 6px rgba(0, 30, 0, 0.7);
+}
+
+.charRole {
+  position: absolute;
+  top: 72px;
+  left: 22px;
+  margin: 0;
+  color: #fff;
+  font: 700 13px/17px "PH Rounded", Arial, sans-serif;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+.charFigure {
+  position: absolute;
+  right: 6px;
+  bottom: -26px;
+  height: 112%;
+  max-height: 540px;
+  width: auto;
+  opacity: 0;
+  filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.45));
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+
+.charFigure.loaded { opacity: 1; }
+
+.charCard {
+  position: absolute;
+  left: 12px;
+  bottom: 14px;
+  width: 360px;
+  height: 290px;
+  border: 2px solid #b79a58;
+  border-radius: 10px;
+  background:
+    radial-gradient(ellipse at 20% 15%, rgba(255, 255, 255, 0.55), transparent 55%),
+    linear-gradient(180deg, #f6ebc9, #ead9a8);
+  box-shadow: 0 5px 14px rgba(0, 0, 0, 0.5);
+  color: #2c2417;
+  font: 14px/20px "PH Rounded", Arial, sans-serif;
+}
+
+.charTalent {
+  position: absolute;
+  top: -46px;
+  right: 8px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.charTalentLabel {
+  color: #fff;
+  font: italic 20px/22px "PH Script", Georgia, serif;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+.charTalentBadge {
+  width: 74px;
+  height: 74px;
+  filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.5));
+}
+
+/* the ribbon runs a little past each edge of the card, folded behind it */
+.charRibbon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 34px -12px 0;
+  padding: 8px 18px 8px 14px;
+  background: linear-gradient(180deg, #b8183a, var(--ribbon));
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
+  color: #fff;
+}
+
+.charRibbon::before,
+.charRibbon::after {
+  content: "";
+  position: absolute;
+  bottom: -9px;
+  border: 5px solid transparent;
+}
+
+.charRibbon::before { left: 0; border-top-color: #5c0a18; border-right-color: #5c0a18; }
+.charRibbon::after { right: 0; border-top-color: #5c0a18; border-left-color: #5c0a18; }
+
+.ribbonLead {
+  flex: none;
+  color: #f4cf7a;
+  font: italic 19px/18px "PH Script", Georgia, serif;
+  transform: rotate(-6deg);
+}
+
+.charRibbon p {
+  margin: 0;
+  font: 700 13px/17px "PH Rounded", Arial, sans-serif;
+}
+
+/* the facts and the longer bio scroll inside the card */
+.charScroll {
+  position: absolute;
+  left: 14px;
+  right: 10px;
+  bottom: 12px;
+  top: 100px;
+}
+
+.charBody {
+  position: absolute;
+  inset: 0 24px 0 0;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.charBody::-webkit-scrollbar { display: none; }
+
+.scrollRail {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 22px;
+  cursor: pointer;
+}
+
+.scrollRail::before {
+  content: "";
+  position: absolute;
+  top: 17px;
+  bottom: 17px;
+  left: 9px;
+  width: 4px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #6d4b1f, #a77a3a 50%, #6d4b1f);
+  box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.5);
+}
+
+.scrollKnob {
+  position: absolute;
+  left: -2px;
+  top: 0;
+  width: 25px;
+  height: 35px;
+  cursor: grab;
+  filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.4));
+  user-select: none;
+  touch-action: none;
+}
+
+.scrollKnob:active { cursor: grabbing; }
+
+.charRibbon[hidden] + .charScroll { top: 36px; }
+
+.charFacts {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 6px 6px;
+  margin: 0;
+}
+
+.charFacts dt { font-weight: 700; }
+.charFacts dd { margin: 0; }
+
+.charBio { margin-top: 10px; }
+.charBio p { margin: 0 0 8px; }
+
+.stageArrow {
+  position: absolute;
+  top: 50%;
+  width: 46px;
+  height: 41px;
+  margin-top: -20px;
+  background: url("/site/img/carousel/arrow.png") center / contain no-repeat;
+}
+
+.stageArrow:hover,
+.stageArrow:focus-visible { background-image: url("/site/img/carousel/arrowHover.png"); outline: none; }
+
+.stageArrow[hidden] { display: none; }
+
+/* the nav is wider than its art and sits over the left margin, so it would take clicks meant for the back arrow */
+.staffPage #mainNav.nav { pointer-events: none; }
+.staffPage #mainNav .row,
+.staffPage #mainNav .logo,
+.staffPage #mainNav .playbtn { pointer-events: auto; }
+
+.stagePrev { left: -52px; }
+.stageNext { right: -50px; transform: scaleX(-1); }
+
+/* the team along the bottom */
+
+.charCarousel {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 22px;
+  padding: 10px 6px;
+  border-radius: 14px;
+  background: linear-gradient(180deg, #56861f, #3d6a14);
+}
+
+/* the strip is what slides; the arrows move it a page at a time */
+.charStrip {
+  position: relative;
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  gap: 8px;
+  overflow: hidden;
+  scroll-behavior: smooth;
+}
+
+/* the home page carousel's arrow, which points left; the next one is it turned round */
+.carouselArrow {
+  flex: none;
+  width: 48px;
+  height: 42px;
+  padding: 0;
+  border: 0;
+  background: url("/site/img/carousel/arrow.png") center / contain no-repeat;
+  cursor: pointer;
+}
+
+.carouselArrow:hover,
+.carouselArrow:focus-visible { background-image: url("/site/img/carousel/arrowHover.png"); outline: none; }
+
+.carouselNext { transform: scaleX(-1); }
+
+/* nothing to page to: the arrows keep their room so the strip does not jump, and just fade out */
+.carouselArrow:disabled { opacity: 0.3; cursor: default; background-image: url("/site/img/carousel/arrow.png"); }
+.charCarousel.fits .carouselArrow { visibility: hidden; }
+
+@media (prefers-reduced-motion: reduce) {
+  .charStrip { scroll-behavior: auto; }
+}
+
+.stripThumb {
+  position: relative;
+  flex: none;
+  width: 112px;
+  height: 84px;
+  overflow: hidden;
+  border: 3px solid var(--orange);
+  border-radius: 10px;
+  background-image: var(--scene, none), linear-gradient(160deg, color-mix(in srgb, var(--talent) 50%, #fff), color-mix(in srgb, var(--talent) 75%, #1a2a3a));
+  background-size: cover;
+  background-position: center 62%;
+  opacity: 0.8;
+  transition: opacity 0.15s, transform 0.15s;
+}
+
+.stripThumb:hover,
+.stripThumb:focus-visible { opacity: 1; transform: translateY(-2px); outline: none; }
+
+.stripThumb.current { opacity: 1; border-color: #fff3b0; box-shadow: 0 0 10px rgba(255, 240, 160, 0.8); }
+
+.stripName {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 10px 4px 3px;
+  background: linear-gradient(180deg, transparent, rgba(0, 25, 0, 0.78));
+  color: #fff;
+  font: 700 12px/15px "PH Rounded", Arial, sans-serif;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.stripBust {
+  position: absolute;
+  left: 50%;
+  bottom: -3px;
+  height: 135%;
+  width: auto;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.stripBust.loaded { opacity: 1; }
+
+@media (max-width: 520px) {
+  .meetGrid { grid-template-columns: 1fr; }
+  .charStage { height: auto; padding-bottom: 20px; }
+  .charName, .charRole { position: static; margin: 8px 14px 0; }
+  .charName { font-size: 48px; line-height: 52px; }
+  .charFigure { position: static; display: block; height: 320px; margin: 0 auto; }
+  .charCard { position: relative; left: 0; bottom: 0; width: auto; height: 320px; margin: 52px 10px 0; }
+  .stagePrev { left: -6px; }
+  .stageNext { right: -6px; }
+}

@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!--
+  mxmlc config for avatarRenderer.swf.
+
+  Adobe Animate ships mxmlc and playerglobal.swc but no flex-config.xml, and
+  the compiler's built-in defaults pull in the Spark theme, which is not on
+  disk. Everything the build needs is therefore stated here and nothing else
+  is: the renderer is plain ActionScript that links no framework at all, and
+  resolves every client class by name at runtime instead.
+-->
+<flex-config>
+  <target-player>11.2</target-player>
+  <swf-version>15</swf-version>
+
+  <compiler>
+    <!-- Player APIs only, and external: the runtime already provides them. -->
+    <external-library-path>
+      <path-element>C:/Program Files/Adobe/Adobe Animate 2024/Common/Configuration/ActionScript 3.0/FP11.2/playerglobal.swc</path-element>
+    </external-library-path>
+
+    <!-- No Flex framework, so there is no theme to resolve. -->
+    <theme/>
+
+    <source-path>
+      <path-element>.</path-element>
+    </source-path>
+
+    <debug>false</debug>
+    <optimize>true</optimize>
+  </compiler>
+
+  <!-- The harness owns the stage; this only matters when the SWF is opened
+       directly for debugging. -->
+  <default-size>
+    <width>994</width>
+    <height>1000</height>
+  </default-size>
+
+  <default-frame-rate>31</default-frame-rate>
+</flex-config>

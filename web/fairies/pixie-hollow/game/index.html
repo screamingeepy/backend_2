@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<!--
+			environ.xml's liveURL points here, and the create-a-fairy panel navigates
+			to it when the fairy is saved. The real game page is /live.html (Ruffle
+			embed, socket bridge); this used to be a stale copy of the old page that
+			embedded container.swf with swfobject and never got a game connection.
+		-->
+		<title>Pixie Hollow</title>
+		<meta name="robots" content="noindex, follow" />
+		<script type="text/javascript">
+			window.location.replace('/live.html' + window.location.search + window.location.hash);
+		</script>
+		<noscript><meta http-equiv="refresh" content="0; url=/live.html" /></noscript>
+	</head>
+	<body></body>
+</html>

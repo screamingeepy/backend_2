@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fairy Tale - Uploads</title>
+  <meta name="description" content="Send us a story about your Fairy in Pixie Hollow. Make sure your story is one you've written yourself!" />
+  <link rel="icon" href="/wings.ico" type="image/x-icon" />
+  <link rel="preload" href="/site/nav.xml" as="fetch" />
+  <link rel="stylesheet" href="/site/nav/nav.css?v=20260926m" />
+  <link rel="stylesheet" href="/site/site.css?v=20261028a" />
+  <link rel="stylesheet" href="/site/account.css?v=20261028a" />
+  <link rel="stylesheet" href="/site/uploads.css?v=20260929d" />
+</head>
+<body class="interiorPage" data-kind="fairytale" data-nav-path="/uploads/fairytale.html">
+  <div class="siteWrap">
+    <nav id="mainNav" aria-label="Main"></nav>
+    <div class="memberBar" data-member-bar hidden></div>
+
+    <main class="pageFrame">
+      <div class="pageInner">
+        <div class="frameLogo"></div>
+        <p class="breadCrumbs"><a href="/events.html">Pixie Central</a> &gt; <a href="/uploads.html">Upload</a> &gt; <span>Fairy Tale</span></p>
+        <h1 class="pageTitle">Fairy Tale</h1>
+
+        <p class="pageLead uploadIntro">Send us a story about your Fairy in Pixie Hollow. Make sure your story is one you've written yourself!</p>
+
+        <section class="acctBoxes" id="uploadLogin" hidden>
+          <div class="acctBox">
+            <h3>Log In to Send Something In</h3>
+            <p>You need to be logged in so we know which Fairy it's from. <a href="#" data-login>Log in</a> or <a href="/register.html">create a Fairy</a>.</p>
+          </div>
+        </section>
+
+        <section class="acctBoxes uploadWide" id="uploadFormBox" hidden>
+          <div class="acctBox">
+            <h3>Fairy Tale</h3>
+            <form class="acctForm" id="uploadForm" novalidate>
+              <div aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden">
+                <label>Leave this empty <input id="uploadWebsite" tabindex="-1" autocomplete="off" /></label>
+              </div>
+
+              <div class="formRow">
+                <label for="uploadTitle">Title:</label>
+                <div>
+                  <input class="textInput" id="uploadTitle" maxlength="80" autocomplete="off" />
+                  <p class="fieldError" id="uploadTitleError"></p>
+                </div>
+              </div>
+
+              <div class="formRow">
+                <label for="uploadBody">Your Story:</label>
+                <div>
+                  <textarea class="textInput textArea" id="uploadBody" rows="16" maxlength="5000"></textarea>
+                  <p class="fieldTip"><span id="uploadCount"></span> At least 50 letters.</p>
+                  <p class="fieldError" id="uploadBodyError"></p>
+                </div>
+              </div>
+
+              <p class="fieldTip">A person reads everything before anyone else can see it. Please don't include your real name, e-mail, or anything private.</p>
+              <p class="formMessage" id="uploadMessage" role="alert"></p>
+              <p class="center"><button class="btnGray" type="submit" id="uploadSubmit">Send In My Story</button></p>
+            </form>
+          </div>
+        </section>
+
+        <section class="acctBoxes" id="uploadThanks" hidden>
+          <div class="acctBox">
+            <h3>Thank you!</h3>
+            <p>Your submission has been successfully uploaded! Keep checking the Pixie Postings and the Art Gallery to see if your entry was picked!</p>
+            <p class="center"><button class="btnGray" type="button" id="uploadAnother">Send Another</button></p>
+          </div>
+        </section>
+
+        <section class="acctBoxes" id="uploadMine" hidden>
+          <div class="acctBox">
+            <h3>What You've Sent In</h3>
+            <ul class="uploadList" id="uploadList"></ul>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script src="/site/site.js?v=20261028a"></script>
+  <script src="/site/nav.js?v=20260926m"></script>
+  <script src="/site/loginModal.js?v=20260926m"></script>
+  <script src="/site/uploads.js?v=20260929d"></script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Meet the Staff | Pixie Hollow Forever</title>
+  <meta name="description" content="Meet the fairies who look after Pixie Hollow." />
+  <link rel="icon" href="/wings.ico" type="image/x-icon" />
+  <link rel="preload" href="/site/nav.xml" as="fetch" />
+  <link rel="stylesheet" href="/site/nav/nav.css?v=20260926m" />
+  <link rel="stylesheet" href="/site/site.css?v=20261028a" />
+  <link rel="stylesheet" href="/site/staff.css?v=20261113b" />
+</head>
+<body class="staffPage">
+  <div class="siteWrap">
+    <nav id="mainNav" aria-label="Main"></nav>
+    <div class="memberBar" data-member-bar hidden></div>
+
+    <main class="pageFrame">
+      <div class="pageInner">
+        <div class="frameLogo"></div>
+        <p class="breadCrumbs" id="staffCrumbs"><a href="/">Pixie Hollow</a> &gt; <span>Meet the Staff</span></p>
+        <h1 class="pageTitle">Meet the Staff</h1>
+
+        <!-- everyone, as the "Meet" cards -->
+        <section id="staffIndex" hidden>
+          <p class="pageLead">The fairies who look after Pixie Hollow. Say hello if you see them in the Hollow!</p>
+          <div class="meetGrid" id="meetGrid"></div>
+        </section>
+
+        <!-- one of them -->
+        <section id="staffDetail" hidden>
+          <div class="charStage">
+            <!-- the meadow behind them, chosen for each page in the staff editor -->
+            <div class="charScene" id="charScene"></div>
+            <h2 class="charName" id="charName"></h2>
+            <p class="charRole" id="charRole"></p>
+
+            <img class="charFigure" id="charFigure" alt="" />
+
+            <div class="charCard">
+              <div class="charTalent" id="charTalent" hidden>
+                <span class="charTalentLabel">Talent &gt;</span>
+                <img class="charTalentBadge" id="charTalentBadge" alt="" />
+              </div>
+
+              <div class="charRibbon" id="charRibbon" hidden>
+                <span class="ribbonLead">Did you<br />know?</span>
+                <p id="charKnow"></p>
+              </div>
+
+              <div class="charScroll">
+                <div class="charBody" id="charBody">
+                  <dl class="charFacts" id="charFacts"></dl>
+                  <div class="charBio" id="charBio"></div>
+                </div>
+                <div class="scrollRail" id="scrollRail" hidden>
+                  <img class="scrollKnob" id="scrollKnob" src="/site/img/raspberry.png" alt="" draggable="false" />
+                </div>
+              </div>
+            </div>
+
+            <!-- the home page carousel's arrows, one fairy each way and round again at the ends -->
+            <a class="stageArrow stagePrev" id="charPrev" href="#" aria-label="Previous fairy"></a>
+            <a class="stageArrow stageNext" id="charNext" href="#" aria-label="Next fairy"></a>
+          </div>
+
+          <!-- the team, paged with the same arrows as the home page carousel -->
+          <div class="charCarousel" id="charCarousel">
+            <button type="button" class="carouselArrow carouselPrev" id="stripPrev" aria-label="Previous fairies"></button>
+            <div class="charStrip" id="charStrip" role="navigation" aria-label="The team"></div>
+            <button type="button" class="carouselArrow carouselNext" id="stripNext" aria-label="Next fairies"></button>
+          </div>
+        </section>
+
+        <section id="staffMissing" class="staffMissing" hidden>
+          <p class="pageLead">There's no one on the team page with that name. <a href="/staff.html">See everyone</a>.</p>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script src="/site/site.js?v=20260927a"></script>
+  <script src="/site/nav.js?v=20260927a"></script>
+  <script src="/site/loginModal.js?v=20260927a"></script>
+  <script src="/site/staff.js?v=20261113a"></script>
+</body>
+</html>

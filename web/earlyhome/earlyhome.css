@@ -1,0 +1,253 @@
+/* ---------------------------------------------------------------------------
+   Early home page.
+
+   A self-contained design: it deliberately does not pull in site/site.css, so
+   the shared nav, fonts and tokens cannot fight with this layout.
+
+   The artwork is one wide hero (mainimage.png, 1045x450) with the welcome sign,
+   firefly and Play button placed on top of it as a percentage of its own box --
+   so the whole arrangement scales together instead of drifting apart when the
+   window changes size.
+--------------------------------------------------------------------------- */
+
+@font-face {
+  font-family: "PHR Rounded";
+  src: url("/earlyhome/fonts/Helvetica Rounded LT Bold.otf") format("opentype");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+:root {
+  --text: rgba(255, 255, 255, 0.92);
+  --muted: rgba(255, 255, 255, 0.82);
+  --roundFont: "PHR Rounded", "Arial Rounded MT Bold", Arial, sans-serif;
+
+  /* The hero art is 1045px wide; everything on it is positioned against this
+     so one number rescales the whole composition. */
+  --hero-w: min(1045px, 94vw);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  color: var(--text);
+  font-family: var(--roundFont);
+  overflow-x: hidden;
+
+  /* The seasonal art is the page backdrop. As a fixed background attachment it
+     covers the viewport at any page length -- the original used an <img> pinned
+     to the viewport, which left bare navy below the fold on a tall window. */
+  background: #101d2e url("/earlyhome/seasons/spring.jpg") no-repeat center center fixed;
+  background-size: cover;
+}
+
+html.summer body { background-image: url("/earlyhome/seasons/summer.jpg"); }
+html.fall   body { background-image: url("/earlyhome/seasons/fall.jpg"); }
+html.winter body { background-image: url("/earlyhome/seasons/winter.jpg"); }
+
+.page {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+/* ================= HERO ================= */
+
+.hero {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  padding-top: 8px;
+}
+
+.hero__wrap {
+  position: relative;
+  width: var(--hero-w);
+}
+
+.hero__main {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* The logo overhangs the hero's top-left corner. Clamped rather than a flat
+   -80px, which pushed it off the left edge on a narrow window. */
+.logo {
+  position: absolute;
+  top: -6px;
+  left: clamp(-70px, -5vw, 0px);
+  z-index: 5;
+  display: inline-flex;
+  text-decoration: none;
+}
+
+.logo img {
+  display: block;
+  width: clamp(150px, 22vw, 250px);
+  height: auto;
+}
+
+/* ---- welcome sign + firefly ---- */
+
+.welcome {
+  position: absolute;
+  right: 12%;
+  top: 50%;
+  z-index: 4;
+  width: min(450px, 48vw);
+  transform: translateY(-50%);
+}
+
+.welcome__img {
+  display: block;
+  width: 90%;
+  height: auto;
+}
+
+.firefly {
+  position: absolute;
+  right: 4%;
+  top: -35%;
+  width: 120px;
+  height: auto;
+}
+
+/* ---- play button ---- */
+
+.play {
+  position: absolute;
+  right: 25%;
+  top: 80%;
+  z-index: 5;
+  display: inline-flex;
+  text-decoration: none;
+  transform: translateY(-50%);
+}
+
+.play img {
+  display: block;
+  width: min(200px, 22vw);
+  height: auto;
+  transition: transform 160ms ease;
+}
+
+.play:hover img { transform: translateY(-2px) scale(1.02); }
+.play:active img { transform: scale(0.99); }
+
+/* ================= SECTION BOXES ================= */
+
+.main {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  padding: 10px 16px 8px;
+}
+
+.sections {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(10px, 2vw, 20px);
+  width: min(650px, 92vw);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sections li { display: block; }
+
+/* Each box is nudged and scaled a little differently so the row sits like the
+   original mock-up rather than in a flat line. The offsets live in custom
+   properties so the shared hover rule can reuse them. */
+.section {
+  position: relative;
+  display: block;
+  text-decoration: none;
+  transform: translate(var(--x), var(--y)) scale(var(--scale));
+  transition: transform 160ms ease;
+}
+
+.section img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.section1 { --x: -10px; --y: 10px; --scale: 0.96; }
+.section2 { --x: 0px;   --y: 20px; --scale: 1.05; }
+.section3 { --x: 10px;  --y: 0px;  --scale: 0.96; }
+
+.section:hover,
+.section:focus-visible {
+  transform: translate(var(--x), calc(var(--y) - 3px)) scale(var(--scale));
+}
+
+/* ================= FOOTER ================= */
+
+.footer {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  margin-top: auto;
+  padding: 14px 16px 26px;
+}
+
+.disclaimer {
+  position: relative;
+  top: -20px;
+  width: min(620px, 88vw);
+  margin: 0;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+/* Petals sit either side of the disclaimer. They are placed relative to the
+   text column instead of a flat 300px inset, which used to slide over the
+   words as the window narrowed. */
+.petals {
+  position: absolute;
+  bottom: 30px;
+  width: min(190px, 16vw);
+  height: auto;
+  pointer-events: none;
+  opacity: 0.95;
+}
+
+.petals--left { right: calc(50% + min(310px, 44vw)); }
+.petals--right { left: calc(50% + min(310px, 44vw)); }
+
+/* ================= RESPONSIVE ================= */
+
+/* Below this the hero art is small enough that pixel-sized overlays swamp it,
+   so everything on the hero switches to a share of the hero's own width and
+   keeps its proportions all the way down. */
+@media (max-width: 900px) {
+  .welcome { right: 8%; top: 48%; width: 46%; }
+  .welcome__img { width: 100%; }
+
+  .firefly { right: 0; top: -30%; width: 22%; }
+
+  .play { right: 23%; top: 78%; display: block; width: 21%; }
+  .play img { width: 100%; }
+
+  .logo img { width: clamp(120px, 18vw, 180px); }
+
+  .sections { grid-template-columns: 1fr; width: min(420px, 82vw); }
+  .section1, .section2, .section3 { --x: 0px; --y: 0px; --scale: 1; }
+}
+
+/* Below this the petals have nowhere to go without landing on the text. */
+@media (max-width: 720px) {
+  .petals { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .play img, .section { transition: none; }
+}

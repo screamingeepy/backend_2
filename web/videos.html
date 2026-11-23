@@ -1,0 +1,49 @@
+<!-- this was a page i built for the nav that was supposed to be similar to the old "videos" page. it works, kind of. relies on YT to not suck -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Videos</title>
+  <meta name="description" content="The latest video from Pixie Hollow Rewritten." />
+  <link rel="icon" href="/wings.ico" type="image/x-icon" />
+  <link rel="preload" href="/site/nav.xml" as="fetch" />
+  <link rel="stylesheet" href="/site/nav/nav.css?v=20260926m" />
+  <link rel="stylesheet" href="/site/site.css?v=20261028a" />
+  <link rel="stylesheet" href="/site/account.css?v=20261028a" />
+</head>
+<body class="interiorPage">
+  <div class="siteWrap">
+    <nav id="mainNav" aria-label="Main"></nav>
+    <div class="memberBar" data-member-bar hidden></div>
+
+    <main class="pageFrame">
+      <div class="pageInner">
+        <div class="frameLogo"></div>
+        <p class="breadCrumbs"><a href="/">Pixie Hollow</a> &gt; <a href="/videos.html">Videos</a> </p>
+        <h1 class="pageTitle">Videos</h1>
+
+        <h2 class="pageHeading">Watch the Latest</h2>
+        <p class="pageLead">The newest video from the Pixie Hollow Rewritten channel.</p>
+
+        <iframe
+          class="videoFrame"
+          src="https://www.youtube-nocookie.com/embed/videoseries?list=UUrJbsI8pi084A5z1Mb7UjHg"
+          title="Pixie Hollow Rewritten on YouTube"
+          allow="encrypted-media; picture-in-picture; fullscreen"
+          referrerpolicy="strict-origin-when-cross-origin"
+          loading="lazy"
+          allowfullscreen></iframe>
+
+        <p class="center">
+          <a href="https://www.youtube.com/@pixiehollowrewritten" target="_blank" rel="noopener noreferrer">Watch more on YouTube</a>
+        </p>
+      </div>
+    </main>
+  </div>
+
+  <script src="/site/site.js?v=20261028a"></script>
+  <script src="/site/nav.js?v=20260926m"></script>
+  <script src="/site/loginModal.js?v=20260926m"></script>
+</body>
+</html>

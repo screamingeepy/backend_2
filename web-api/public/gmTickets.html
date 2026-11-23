@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GM Portal - Tickets</title>
+  <meta name="description" content="Player support tickets." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" href="/wings.ico" type="image/x-icon" />
+  <link rel="preload" href="/site/nav.xml" as="fetch" />
+  <link rel="stylesheet" href="/site/nav/nav.css?v=20260927a" />
+  <link rel="stylesheet" href="/site/site.css?v=20260927a" />
+  <link rel="stylesheet" href="/site/account.css?v=20261103d" />
+  <link rel="stylesheet" href="/site/gm.css?v=20260929a" />
+  <link rel="stylesheet" href="/site/gmTickets.css?v=20260927a" />
+</head>
+<body>
+  <div class="siteWrap">
+    <nav id="mainNav" aria-label="Main"></nav>
+    <div class="memberBar" data-member-bar hidden></div>
+
+    <main class="pageFrame">
+      <div class="pageInner">
+        <div class="frameLogo"></div>
+        <p class="breadCrumbs"><a href="/">Pixie Hollow</a> &gt; <a href="/account">Account Manager</a> &gt; <span>GM Portal - Tickets</span></p>
+        <h1 class="pageTitle">GM Portal - Tickets</h1>
+
+        <h2 class="pageHeading">Pixie Hollow Staff</h2>
+        <p class="pageLead" id="gmLead">Please Log In to the GM Portal.</p>
+
+        <section id="gmLogin" class="acctBoxes" hidden>
+          <div class="acctBox">
+            <h3>Staff Log In</h3>
+            <p>Log in with a Moderator or Administrator account.</p>
+            <form class="acctForm" id="gmLoginForm" novalidate>
+              <div class="formRow">
+                <label for="gmLoginName">Account ID:</label>
+                <input class="textInput" id="gmLoginName" autocomplete="username" />
+              </div>
+              <div class="formRow">
+                <label for="gmLoginPassword">Password:</label>
+                <input class="textInput" id="gmLoginPassword" type="password" autocomplete="current-password" />
+              </div>
+              <p class="formMessage" id="gmLoginMessage" role="alert"></p>
+              <p class="center"><button class="btnGray" type="submit" id="gmLoginButton">Log In</button></p>
+            </form>
+          </div>
+        </section>
+
+        <section id="gmDenied" class="acctBoxes" hidden>
+          <div class="acctBox">
+            <h3>Staff Only</h3>
+            <p>This account isn't a Moderator or Administrator. <a href="#" id="gmSwitchAccount">Log in with a different account</a>.</p>
+          </div>
+        </section>
+
+        <section id="gmTools" class="gmBoxes wideBoxes" hidden>
+          <div class="acctBox">
+            <h3>Support Tickets <span class="gmCount" id="openCount"></span></h3>
+            <div class="gmFilterRow">
+              <label class="modalLabel" for="ticketStatusPick">Show</label>
+              <select class="selectInput" id="ticketStatusPick">
+                <option value="open">Open</option>
+                <option value="pending">Waiting on Player</option>
+                <option value="resolved">Resolved</option>
+                <option value="closed">Closed</option>
+                <option value="">All</option>
+              </select>
+              <label class="modalLabel" for="ticketSearch">Search</label>
+              <input class="textInput" id="ticketSearch" type="search" placeholder="subject, player or e-mail" autocomplete="off" />
+            </div>
+            <ul class="ticketList" id="gmTicketList"></ul>
+            <div class="gmPager" id="ticketPager"></div>
+            <div class="ticketThread" id="gmTicketThread" hidden></div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script src="/site/site.js?v=20260927a"></script>
+  <script src="/site/nav.js?v=20260927a"></script>
+  <script src="/site/loginModal.js?v=20260927a"></script>
+  <script src="/site/tickets.js?v=20260927a"></script>
+  <script src="/site/gmPortal.js?v=20260927a"></script>
+  <script src="/site/gmTickets.js?v=20260927a"></script>
+</body>
+</html>

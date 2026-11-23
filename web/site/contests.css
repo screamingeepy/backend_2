@@ -1,0 +1,79 @@
+
+.contestState {
+  display: inline-block;
+  margin: 6px 10px 0 0;
+  padding: 2px 12px;
+  border-radius: 12px;
+  font: bold 13px/20px var(--roundFont);
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+}
+.contestState.open { background: rgba(155, 227, 106, 0.35); color: #e9ffd6; }
+.contestState.closed { background: rgba(255, 255, 255, 0.14); color: #c9d6e2; }
+
+.contestBox {
+  margin: 18px 0;
+  padding: 16px 20px;
+  border-radius: 25px;
+  background: #395988;
+  color: #fff;
+  font: 15px/22px var(--roundFont);
+  text-align: center;
+}
+.contestBox h3 { margin: 0 0 6px; color: #fff04c; font: bold 20px/26px var(--roundFont); }
+.contestBox p { margin: 6px 0; }
+.contestBox .btnGold { display: inline-block; margin-top: 8px; text-decoration: none; }
+
+.contestShowcase { margin: 18px 0; }
+.contestShowcase h3 { margin: 0 0 10px; color: #fff04c; font: bold 20px/26px var(--roundFont); text-align: center; }
+.contestCards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.contestCard {
+  padding: 12px 14px;
+  border-radius: 18px;
+  background: #395988;
+  color: #fff;
+  font: 14px/20px var(--roundFont);
+}
+.contestCard.winner { background: #5a7fb8; box-shadow: 0 0 0 3px #fff04c; }
+.contestCard h4 { margin: 0 0 2px; color: #fff04c; font: bold 16px/22px var(--roundFont); }
+.contestCard .by { margin: 0 0 8px; color: #c9d6e2; font-size: 13px; }
+.contestCard img { display: block; max-width: 100%; max-height: 260px; margin: 6px auto; border-radius: 10px; }
+.contestCard .text { margin: 6px 0 0; white-space: pre-wrap; word-wrap: break-word; }
+
+/* the entry page */
+.contestEntryIntro { text-align: center; }
+.contestWide .textArea { min-height: 140px; resize: vertical; }
+.contestWide.acctBoxes { width: 100%; }
+.contestWide .acctForm .formRow { grid-template-columns: 130px 1fr; }
+.contestWide .formRow > div { width: 100%; }
+.contestFiles { margin: 8px 0 0; padding: 0; list-style: none; }
+.contestFiles li { display: flex; align-items: center; gap: 10px; padding: 5px 0; }
+.contestFiles img { width: 48px; height: 48px; object-fit: cover; border-radius: 6px; }
+.fileIcon {
+  display: inline-block;
+  width: 48px;
+  height: 48px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.18);
+  font: bold 12px/48px var(--roundFont);
+  text-align: center;
+}
+.fileName { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+.fileRemove { background: none; border: 0; color: inherit; text-decoration: underline; cursor: pointer; font: inherit; }
+.contestList { margin: 0; padding: 0; list-style: none; }
+.contestList li { display: flex; justify-content: space-between; gap: 12px; padding: 6px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.15); }
+.contestList .status { white-space: nowrap; color: #c9d6e2; }
+.contestList .status.picked, .contestList .status.finalist { color: #fff04c; font-weight: bold; }
+
+/* A contest card's attachments: pictures first, then documents to download */
+.contestCard .cardImages { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
+.contestCard .cardImages img { max-width: 100%; max-height: 200px; margin: 0; }
+.contestCard .cardDocs { margin: 8px 0 0; padding: 0; list-style: none; }
+.contestCard .cardDocs a { color: #fff04c; overflow-wrap: anywhere; }

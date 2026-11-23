@@ -1,0 +1,179 @@
+html body.classicPage {
+  background: #05101b radial-gradient(ellipse at 50% 0, #1c3a4f 0%, #05101b 60%) no-repeat;
+}
+
+.classicWrap {
+  position: relative;
+  width: 994px;
+  margin: 0 auto;
+  padding-top: 6px;
+}
+
+.classicTop {
+  height: 34px;
+  text-align: right;
+}
+
+.classicTop .memberBar {
+  position: static;
+  display: inline-block;
+  margin-right: 50px;
+  border: 0;
+  background: none;
+  box-shadow: none;
+  font-size: 12px;
+}
+
+.classicTop .memberBar a { color: #fff; text-decoration: none; }
+.classicTop .memberBar a:hover { color: #fff04c; }
+
+.classicHero {
+  position: relative;
+  height: 377px;
+  background: url("/publish/images/prospect/spring_bg.jpg") 58px 0 no-repeat;
+}
+
+.classicPlay {
+  position: absolute;
+  top: 200px;
+  left: 410px;
+  width: 260px;
+  /* text-align: center; */
+}
+
+.classicPlayButton {
+  display: inline-block;
+  width: 185px;
+  height: 90px;
+  background: url("/publish/images/prospect/btn_play.png") no-repeat;
+  text-indent: -9999px;
+  overflow: hidden;
+}
+
+.classicPlayButton:hover,
+.classicPlayButton:focus-visible { background-image: url("/publish/images/prospect/btn_play_rollover.png"); }
+
+.classicNews {
+  position: absolute;
+  top: 70px;
+  right: 40px;
+  width: 250px;
+  padding: 10px 14px 12px;
+  border: 1px solid rgba(170, 225, 140, 0.45);
+  border-radius: 12px;
+  background: rgba(6, 26, 38, 0.82);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.6);
+}
+
+.classicNews h2 {
+  margin: 0 0 6px;
+  color: #fff;
+  font: italic bold 20px/24px var(--serifFont);
+  text-align: center;
+}
+
+.classicNews ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.classicNews li {
+  padding: 6px 0 6px 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  background: url("/site/img/sparkle.png") 0 6px / 22px 22px no-repeat;
+}
+
+.classicNews time {
+  display: block;
+  color: #aef364;
+  font: bold 11px/14px Arial, Helvetica, sans-serif;
+}
+
+.classicNews a {
+  color: #fff;
+  font: 12px/15px Arial, Helvetica, sans-serif;
+  text-decoration: none;
+}
+
+.classicNews a:hover { color: #fff04c; }
+
+.classicTiles {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.classicTile {
+  position: relative;
+  width: 198px;
+  height: 262px;
+  background-repeat: no-repeat;
+}
+
+.classicTile.news { width: 207px; background-image: url("/publish/images/prospect/section_news.png"); }
+.classicTile.members { width: 195px; background-image: url("/publish/images/prospect/section_members.png"); background-position: 0 26px; }
+.classicTile.about { width: 190px; background-image: url("/publish/images/prospect/section_about.png"); background-position: 0 20px; }
+.classicTile.help { width: 194px; }
+.classicTile.toys { background-image: url("/publish/images/prospect/section_toys.png"); background-position: 0 20px; }
+.classicTile.help { background-image: url("/publish/images/prospect/section_help.png"); background-position: 0 20px; }
+
+.classicTile h2 {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+.classicTile a {
+  position: absolute;
+  top: 190px;
+  left: 50%;
+  width: 92px;
+  height: 23px;
+  margin-left: -50px;
+  background: url("/publish/images/prospect/greenbutton.png") no-repeat;
+  color: #aef364;
+  font: bold 12px/23px Arial, Helvetica, sans-serif;
+  text-align: center;
+  text-decoration: none;
+}
+
+.classicTile.news a { margin-left: -52px; top: 196px; }
+
+.classicTile a:hover,
+.classicTile a:focus-visible { color: #fff04c; }
+
+.classicExtras {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  margin: 6px 0 0;
+}
+
+.classicExtras a {
+  display: block;
+  height: 45px;
+  background-repeat: no-repeat;
+  text-indent: -9999px;
+  overflow: hidden;
+}
+
+.classicExtras .codes { width: 170px; background-image: url("/publish/images/prospect/btn_codes_normal.png"); }
+.classicExtras .codes:hover { background-image: url("/publish/images/prospect/btn_codes_rollover.png"); }
+.classicExtras .clickables { width: 150px; background-image: url("/publish/images/prospect/btn_clickables_normal.png"); }
+.classicExtras .clickables:hover { background-image: url("/publish/images/prospect/btn_clickables_rollover.png"); }
+
+.classicPage .siteFooter { color: #8aa; }
+
+@media (max-width: 520px) {
+  .classicWrap { width: auto; padding: 6px 16px 0; }
+  .classicTop { height: auto; text-align: center; }
+  .classicTop .memberBar { margin: 0 0 8px; }
+  .classicHero { height: auto; min-height: 355px; padding: 150px 0 16px; background-position: center 0; background-size: auto 355px; }
+  .classicPlay, .classicNews { position: static; margin: 0 auto 16px; }
+  .classicTiles { flex-wrap: wrap; }
+}

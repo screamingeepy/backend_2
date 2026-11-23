@@ -1,0 +1,302 @@
+
+.calendarFrameInner { padding: 44px 24px 24px 110px; }
+
+.calKey {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin: 0 0 18px;
+  padding: 0;
+  list-style: none;
+  gap: 6px 18px;
+}
+
+.calKey li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--leafGreen);
+  font: bold 12px/19px var(--roundFont);
+}
+
+.calIcon {
+  display: inline-block;
+  width: 19px;
+  height: 19px;
+  background: url("/site/img/calendar/type-icons.png") no-repeat;
+  flex: none;
+}
+
+.calIcon-pixie { background-position: 0 0; }
+.calIcon-wings { background-position: 0 -57px; }
+.calIcon-gift { background-position: 0 -114px; }
+.calIcon-scroll { background-position: 0 -171px; }
+.calIcon-balloon { background-position: 0 -228px; }
+.calIcon-fashion { background-position: 0 -342px; }
+
+.calHeadRow {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 24px;
+  margin: 0 0 10px;
+  flex-wrap: wrap;
+}
+
+.calHeadMonth {
+  margin: 0;
+  color: var(--gold);
+  font: bold 26px/1.2 var(--serifFont);
+}
+
+.calClockBox {
+  margin: 0;
+  padding: 6px 14px;
+  border-radius: 6px;
+  background: #1c3746;
+  color: #b7d3e6;
+  font-size: 12px;
+}
+.calClockBox p { margin: 0; }
+.calClockBox span { color: var(--paleGold); font-weight: bold; }
+
+.calComingUp {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0 0 14px;
+}
+
+.calComingUp:empty { display: none; }
+
+.calComingRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px;
+  border-radius: 6px;
+  background: repeat-x 0 0 #2b546a;
+  background-image: url("/site/img/calendar/calendar-pixel-bg.png");
+}
+
+.calComingRow.contest { background-color: #eba812; background-image: url("/site/img/calendar/calendar-contest-bg.png"); }
+.calComingRow.hourly { background-color: #9e62b7; background-image: url("/site/img/calendar/calendar-hourly-bg.png"); }
+
+.calComingRow p { margin: 0; color: #fff; font-size: 12px; line-height: 1.4; }
+.calComingRow .calComingTitle { font-weight: bold; }
+.calComingRow .calComingWhen { color: var(--paleGold); }
+
+.calComingRow a.buttonOrange,
+.calComingRow a.buttonBlue { margin: 0 0 0 auto; flex: none; }
+
+.calBoard {
+  display: flex;
+  gap: 14px;
+  width: 100%;
+  max-width: 690px;
+  margin: 0 auto;
+  padding: 8px 7px 8px 8px;
+  border-radius: 10px;
+  background: center / cover no-repeat url("/site/img/calendar/calendar-bg.png"), #0b1520;
+}
+
+.calGridWrap { flex: 1 1 auto; min-width: 0; }
+
+.calColTitles {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 1px;
+  margin: 0 0 1px;
+}
+
+.calColTitles span {
+  padding: 8px 0;
+  background: #689421;
+  color: var(--gold);
+  font: 13px/1.2 var(--serifFont);
+  text-align: center;
+}
+
+.calDays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-auto-rows: minmax(64px, 1fr);
+  gap: 1px;
+}
+
+.calDay,
+.calDayEmpty {
+  position: relative;
+  padding: 3px;
+  background: repeat-x 0 0 #689421;
+  background-image: url("/site/img/calendar/calendar-pixel-bg.png");
+  overflow: hidden;
+  cursor: pointer;
+  border: 0;
+  text-align: left;
+  font: inherit;
+}
+
+.calDayEmpty { background-color: #1b2e38; cursor: default; }
+
+.calDay:hover { background-color: #6d9421; }
+
+.calDay.today { background-color: #72b6d6; }
+.calDay.today:hover { background-color: #72b6d6; }
+.calDay.selected { outline: 2px solid #fff; outline-offset: -2px; }
+
+.calDayNum { display: block; color: var(--gold); font-weight: bold; font-size: 12px; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8); }
+.calDay.today .calDayNum { color: #fff; }
+
+.calDayChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  margin-top: 2px;
+}
+
+.calDayChips button {
+  width: 19px;
+  height: 19px;
+  padding: 0;
+  border: 0;
+  background-image: url("/site/img/calendar/type-icons.png");
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+/* thisweek tints the whole cell instead of showing a chip. */
+.calDay.thisweek { background-image: none; }
+
+.calDay.contestStart,
+.calDay.contestEnd { background-repeat: no-repeat; background-position: center; background-size: 65px 65px; }
+.calDay.contestRunning { background: center/65px 65px no-repeat url("/site/img/calendar/calendar-contest.png"); }
+
+.calSide {
+  flex: none;
+  width: 179px;
+  padding: 18px 10px 10px;
+  background: 0 0 no-repeat url("/site/img/calendar/calendar-side-bg.png");
+  color: #2b3747;
+  text-align: center;
+}
+
+.calSide.today { background-position: -180px 0; color: #323a22; }
+
+.calSide h3 { margin: 0 0 10px; font: 22px/1.2 var(--serifFont); }
+
+.calSideEvents { display: flex; flex-direction: column; gap: 8px; }
+
+.calSideEvent {
+  padding: 8px 10px;
+  border-radius: 6px;
+  background: #faffe1;
+  text-align: left;
+}
+
+.calSideEvent p { margin: 0; color: #125e6c; font-size: 11px; line-height: 1.3; }
+
+.calSideEvent .calSideEventTitle {
+  color: #444;
+  font-size: 13px;
+  font-weight: bold;
+  line-height: 19px;
+}
+
+.calSideEvent .calSideEventTitle.hasIcon {
+  padding-left: 24px;
+  background-image: url("/site/img/calendar/type-icons.png");
+  background-repeat: no-repeat;
+}
+
+.calSideEvent ul { margin: 4px 0 0; padding-left: 18px; }
+.calSideEvent li { list-style: disc; }
+
+.calSideNone { margin: 20px 0 0; color: #42637c; font-weight: bold; font-size: 16px; }
+.calSide.today .calSideNone { color: #54682d; }
+
+/* pager -- calendar-player/#calendar-next/#calendar-previous in the original. */
+.calPager {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 45px;
+  margin: 12px 0 0;
+}
+
+.calPagerMonth {
+  margin: 0;
+  color: #fff;
+  font: bold 20px/1.2 var(--serifFont);
+  text-align: center;
+}
+
+.calPagerBtn {
+  position: absolute;
+  top: 3px;
+  width: 150px;
+  height: 36px;
+  border: 0;
+  background: 0 -36px no-repeat url("/site/img/calendar/arrows/yellow-gradient.png");
+  color: #452307;
+  font: bold 15px/35px var(--serifFont);
+  cursor: pointer;
+}
+
+.calPagerBtn[hidden] { visibility: hidden; }
+
+.calPagerNext { right: 0; background-position: top right; text-align: right; }
+.calPagerPrev { left: 0; text-align: left; }
+.calPagerNext span { margin-right: 24px; }
+.calPagerPrev span { margin-left: 20px; }
+
+.calMeetLink {
+  display: inline-block;
+  margin: 14px 0 4px;
+  color: var(--paleGold);
+  font: bold 13px/1.4 var(--roundFont);
+}
+
+.calDisclaimer { margin: 4px 0 0; color: #7fb3cf; font-size: 11px; text-align: center; }
+
+.calEventPopup {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  z-index: 50;
+  width: 219px;
+  min-height: 114px;
+  padding: 16px 20px 31px 22px;
+  transform: translate(-50%, -50%);
+  background: 0 0 no-repeat url("/site/img/calendar/tooltip.png");
+}
+
+.calEventPopup[hidden] { display: none; }
+
+.calEventPopupTitle { margin: 0 0 4px; color: #444; font: bold 14px/16px var(--roundFont); }
+.calEventPopupWhen,
+.calEventPopupWhere { margin: 0; color: #125e6c; font-size: 11px; line-height: 12px; }
+.calEventPopupLink { margin: 6px 0 0; }
+.calEventPopupLink:empty { display: none; }
+
+.calEventPopupClose {
+  position: absolute;
+  right: 12px;
+  top: 6px;
+  width: 20px;
+  height: 20px;
+  border: 0;
+  background: none;
+  color: #444;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+@media (max-width: 620px) {
+  .calBoard { flex-direction: column; background-image: none; background-color: #0b1520; }
+  .calSide { width: auto; }
+  .calHeadRow { flex-direction: column; align-items: flex-start; }
+  .calClockBox { text-align: left; }
+}

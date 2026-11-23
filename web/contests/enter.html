@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Enter a Contest</title>
+  <meta name="description" content="Send in your entry for a Pixie Hollow contest." />
+  <link rel="icon" href="/wings.ico" type="image/x-icon" />
+  <link rel="preload" href="/site/nav.xml" as="fetch" />
+  <link rel="stylesheet" href="/site/nav/nav.css?v=20260926m" />
+  <link rel="stylesheet" href="/site/site.css?v=20261028a" />
+  <link rel="stylesheet" href="/site/account.css?v=20261028a" />
+  <link rel="stylesheet" href="/site/contests.css?v=20261002b" />
+</head>
+<body class="interiorPage contestsPage" data-nav-path="/contests_home.html">
+  <div class="siteWrap">
+    <nav id="mainNav" aria-label="Main"></nav>
+    <div class="memberBar" data-member-bar hidden></div>
+
+    <main class="pageFrame">
+      <div class="pageInner">
+        <div class="frameLogo"></div>
+        <p class="breadCrumbs"><a href="/">Pixie Hollow</a> &gt; <a href="/events.html">Pixie Central</a> &gt; <a href="/contests_home.html">Contests</a> &gt; <span id="contestCrumb">Enter</span></p>
+        <h1 class="pageTitle" id="contestHeading">Enter a Contest</h1>
+
+        <p class="pageLead contestEntryIntro" id="contestIntro"></p>
+
+        <section class="acctBoxes" id="contestLogin" hidden>
+          <div class="acctBox">
+            <h3>Log In to Enter</h3>
+            <p>You need to be logged in so we know which Fairy it's from. <a href="#" data-login>Log in</a> or <a href="/register.html">create a Fairy</a>.</p>
+          </div>
+        </section>
+
+        <section class="acctBoxes" id="contestClosed" hidden>
+          <div class="acctBox">
+            <h3 id="contestClosedTitle">This contest is closed</h3>
+            <p id="contestClosedText">It is not taking any more entries. <a href="/contests_home.html">See the other contests</a>.</p>
+          </div>
+        </section>
+
+        <section class="acctBoxes contestWide" id="contestFormBox" hidden>
+          <div class="acctBox">
+            <h3>Your Entry</h3>
+            <form class="acctForm" id="contestForm" novalidate>
+              <div aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden">
+                <label>Leave this empty <input id="contestWebsite" tabindex="-1" autocomplete="off" /></label>
+              </div>
+
+              <div class="formRow">
+                <label for="contestTitle">Title:</label>
+                <div>
+                  <input class="textInput" id="contestTitle" maxlength="80" autocomplete="off" />
+                  <p class="fieldError" id="contestTitleError"></p>
+                </div>
+              </div>
+
+              <div class="formRow" id="contestFileRow" hidden>
+                <label for="contestFile" id="contestFileLabel">Your Files:</label>
+                <div>
+                  <input type="file" id="contestFile" multiple />
+                  <p class="fieldTip" id="contestFileTip"></p>
+                  <ul class="contestFiles" id="contestFiles"></ul>
+                  <p class="fieldError" id="contestFileError"></p>
+                </div>
+              </div>
+
+              <div class="formRow">
+                <label for="contestBody" id="contestBodyLabel">Your Entry:</label>
+                <div>
+                  <textarea class="textInput textArea" id="contestBody" rows="6"></textarea>
+                  <p class="fieldTip"><span id="contestCount"></span> <span id="contestBodyTip"></span></p>
+                  <p class="fieldError" id="contestBodyError"></p>
+                </div>
+              </div>
+
+              <p class="fieldTip">A person reads everything before anyone else can see it. Please don't include your real name, e-mail, or anything private.</p>
+              <p class="formMessage" id="contestMessage" role="alert"></p>
+              <p class="center"><button class="btnGray" type="submit" id="contestSubmit">Send In My Entry</button></p>
+            </form>
+          </div>
+        </section>
+
+        <section class="acctBoxes" id="contestThanks" hidden>
+          <div class="acctBox">
+            <h3>Thank you!</h3>
+            <p>Your entry has been sent in. Keep checking the contest's page to see if it was picked!</p>
+            <p class="center"><a class="btnGray" id="contestBack" href="/contests_home.html">Back to the contest</a></p>
+          </div>
+        </section>
+
+        <section class="acctBoxes" id="contestMine" hidden>
+          <div class="acctBox">
+            <h3>What You've Sent In</h3>
+            <ul class="contestList" id="contestList"></ul>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script src="/site/site.js?v=20261028a"></script>
+  <script src="/site/nav.js?v=20260926m"></script>
+  <script src="/site/loginModal.js?v=20260926m"></script>
+  <script src="/site/contestEntry.js?v=20261002b"></script>
+</body>
+</html>

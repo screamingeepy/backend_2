@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pixie Page</title>
+  <meta name="description" content="A fairy's own page in Pixie Hollow." />
+  <link rel="icon" href="/wings.ico" type="image/x-icon" />
+  <link rel="preload" href="/site/nav.xml" as="fetch" />
+  <link rel="stylesheet" href="/site/nav/nav.css?v=20260926m" />
+  <link rel="stylesheet" href="/site/site.css?v=20261028a" />
+  <link rel="stylesheet" href="/site/pixiePage.css?v=20261109c" />
+  <link rel="stylesheet" href="/site/printSheet.css?v=20261109c" />
+</head>
+<body class="pixiePageBody">
+  <div class="siteWrap">
+    <nav id="mainNav" aria-label="Main"></nav>
+    <div class="memberBar" data-member-bar hidden></div>
+
+    <main class="pixieStage">
+      <div id="pageMissing" class="pixieMissing" hidden>
+        <h1>No one lives here</h1>
+        <p>There's no fairy at that address. Check the link and try again.</p>
+      </div>
+
+      <div id="pageBody" hidden>
+        <!-- the home viewer, her house with her standing in it -->
+        <section class="homeViewer">
+          <img class="viewerHome" id="pixieHome" alt="" />
+          <p class="viewerName">
+            <span class="viewerFairy" id="pixieName"></span>
+            <span class="viewerAddress" id="pixieAddress"></span>
+          </p>
+          <img class="viewerFigure" id="pixieFairy" alt="" />
+        </section>
+
+        <div class="pixieColumns">
+          <div class="pixieMain">
+            <div class="panelWrap">
+            <span class="leafTab">My<br />Profile</span>
+            <section class="leafPanel">
+              <h2 class="panelFacts">
+                Arrival Day: <span id="pixieArrived"></span>
+                Talent: <span id="pixieTalent"></span>
+              </h2>
+              <div class="panelInset">
+                <dl class="pixieBio" id="pixieBio"></dl>
+              </div>
+              <div class="badgeRow">
+                <span class="badgeLabel">My Badges</span>
+                <span class="badgeStat">
+                  <span class="badgeStatTitle">Total Badges</span>
+                  <span class="badgeStatValue" id="pixieBadges">0</span>
+                </span>
+                <span class="badgeStat">
+                  <span class="badgeStatTitle">My Favorite</span>
+                  <span class="badgeSlot" id="pixieFavoriteBadge"></span>
+                </span>
+                <span class="badgeStat">
+                  <span class="badgeStatTitle">My Latest</span>
+                  <span class="badgeSlot" id="pixieLatestBadge"></span>
+                </span>
+              </div>
+              <p class="panelSub">My Games</p>
+              <ul class="pixieGames" id="pixieGames"></ul>
+            </section>
+            </div>
+
+            <div class="panelWrap">
+            <span class="leafTab">My<br />Messages</span>
+            <section class="leafPanel messages">
+
+              <!-- visitors choose a sentence from a list. built like this to avoid harassment -->
+              <form class="signForm" id="signForm" hidden>
+                <label class="signLead" for="signPhrase">Leave a message</label>
+                <div class="signRow">
+                  <select id="signPhrase"></select>
+                  <select id="signWord"></select>
+                  <button class="pixieButton" type="submit">Sign</button>
+                </div>
+                <p class="signPreview" id="signPreview"></p>
+              </form>
+
+              <p class="panelNote" id="signNote" hidden></p>
+
+              <ul class="messageList" id="guestbook"></ul>
+            </section>
+            </div>
+          </div>
+
+          <aside class="pixieSide">
+            <p class="sidebarTop"><button class="pixieButton" type="button" id="savePng">Save PNG</button> <button class="pixieButton" type="button" id="editPage" hidden>Edit Page</button></p>
+            <p class="panelNote sidebarNote" id="printStatus" hidden></p>
+
+            <div class="panelWrap">
+            <!-- bust loader for print card -->
+            <img class="printBust" id="printBust" alt="" />
+            <section class="violetPanel">
+              <p class="violetLead">Click here to print out this Fairy!</p>
+              <p class="center">
+                <button class="pixieButton withPrinter" type="button" id="printFairy">Print This Fairy</button>
+              </p>
+            </section>
+            </div>
+
+            <div class="panelWrap">
+            <span class="leafTab violet">My<br />Poll</span>
+            <section class="violetPanel" id="pollPanel">
+              <p class="violetQuestion" id="pollQuestion">No poll yet.</p>
+              <form id="pollForm" hidden>
+                <ul class="pollOptions" id="pollOptions"></ul>
+                <p class="center"><button class="pixieButton" type="submit">Vote</button></p>
+              </form>
+              <ul class="pollResults" id="pollResults" hidden></ul>
+              <form class="pagePicker" id="pollPicker" hidden>
+                <label for="pollChoice">Put a poll on my page</label>
+                <select id="pollChoice"></select>
+                <button class="pixieButton" type="submit">Save</button>
+              </form>
+            </section>
+            </div>
+
+            <div class="panelWrap">
+            <span class="leafTab violet">My<br />Quiz</span>
+            <section class="violetPanel" id="quizPanel">
+              <p class="violetQuestion" id="quizIntro">No quiz yet.</p>
+              <p class="center" id="quizStartRow" hidden>
+                <button class="pixieButton" type="button" id="quizStart">Start</button>
+              </p>
+              <div id="quizBody" hidden></div>
+              <form class="pagePicker" id="quizPicker" hidden>
+                <label for="quizChoice">Put a quiz on my page</label>
+                <select id="quizChoice"></select>
+                <button class="pixieButton" type="submit">Save</button>
+              </form>
+            </section>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="/site/site.js?v=20261028a"></script>
+  <script src="/site/nav.js?v=20260926m"></script>
+  <script src="/site/loginModal.js?v=20260926m"></script>
+  <script src="/site/printSheet.js?v=20261109c"></script>
+  <script src="/site/pixiePage.js?v=20261109c"></script>
+</body>
+</html>

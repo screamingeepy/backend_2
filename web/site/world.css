@@ -1,0 +1,154 @@
+.worldPage .siteWrap {
+  width: 1070px;
+  min-height: 760px;
+}
+
+.worldPage .memberBar { top: 14px; right: 18px; }
+
+.worldTitle {
+  position: absolute;
+  top: 0;
+  left: 290px;
+  z-index: 5;
+  margin: 0;
+  padding-left: 70px;
+  color: #f8e27c;
+  font: 44px/56px var(--scriptFont);
+  text-shadow: 0 2px 3px rgba(0, 0, 0, 0.85), 0 0 12px rgba(0, 0, 0, 0.5);
+}
+
+.worldTitle::before {
+  content: "";
+  position: absolute;
+  left: -40px;
+  top: -18px;
+  width: 176px;
+  height: 103px;
+  background: url("/site/img/titleCurl.png") no-repeat;
+  transform: scale(0.6);
+  transform-origin: left top;
+}
+
+.stageFrame {
+  position: absolute;
+  top: 44px;
+  left: 222px;
+  width: 835px;
+  height: 482px;
+}
+
+.stageScene {
+  position: absolute;
+  top: 18px;
+  left: 20px;
+  width: 793px;
+  height: 443px;
+  background: url("/franchise/fairies/img/pixiehollowworld/pixiehollowworld.dark.bg.png") no-repeat;
+}
+
+.stageFrame .frameTop,
+.stageFrame .frameBottom,
+.stageFrame .frameLeft,
+.stageFrame .frameRight {
+  position: absolute;
+  pointer-events: none;
+}
+
+.stageFrame .frameTop { top: 0; left: 0; width: 835px; height: 114px; background: url("/site/img/frameTop.png") no-repeat; }
+.stageFrame .frameBottom { bottom: 0; left: 0; width: 835px; height: 107px; background: url("/site/img/frameBottom.png") no-repeat; }
+.stageFrame .frameLeft { top: 114px; bottom: 107px; left: 0; width: 27px; background: url("/site/img/frameLeft.png") repeat-y; }
+.stageFrame .frameRight { top: 114px; bottom: 107px; right: 0; width: 43px; background: url("/site/img/frameRight.png") repeat-y; }
+
+.stageLogo {
+  position: absolute;
+  top: 14px;
+  right: 34px;
+  width: 224px;
+  transform: scale(0.88);
+  transform-origin: right top;
+  height: 129px;
+  background: url("/franchise/fairies/img/pixiehollow_logo.png") no-repeat;
+}
+
+.stagePlay {
+  position: absolute;
+  left: 50%;
+  bottom: 40px;
+  z-index: 4;
+  margin-left: -80px;
+}
+
+.stageFlowerLeft,
+.stageFlowerRight {
+  position: absolute;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.stageFlowerLeft { left: -14px; bottom: -40px; width: 120px; height: 266px; background: url("/franchise/fairies/img/pixiehollowworld/pixiehollow.flowers.bottomleft.png") no-repeat; }
+.stageFlowerRight { right: -24px; bottom: -48px; width: 155px; height: 292px; background: url("/franchise/fairies/img/pixiehollowworld/pixiehollow.flowers.bottomright.png") no-repeat; }
+
+.promoRow {
+  position: absolute;
+  top: 540px;
+  left: 262px;
+  display: flex;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.promoTile a {
+  position: relative;
+  display: block;
+  width: 152px;
+  height: 113px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.promoTile img {
+  position: absolute;
+  top: 7px;
+  left: 12px;
+  width: 128px;
+  height: 100px;
+  border-radius: 6px;
+}
+
+.promoTile a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("/site/img/promoVine.png") no-repeat;
+}
+
+.promoTile span {
+  position: absolute;
+  left: 18px;
+  bottom: 10px;
+  z-index: 2;
+  font: 14px/16px var(--roundFont);
+  text-shadow: 0 1px 2px #000, 0 0 4px #000;
+}
+
+.promoTile a:hover img,
+.promoTile a:focus-visible img { filter: brightness(1.15); }
+.promoTile a:hover span,
+.promoTile a:focus-visible span { color: var(--gold); }
+
+.worldPage .siteFooter { position: absolute; top: 680px; left: 262px; right: 0; }
+
+@media (max-width: 520px) {
+  .worldPage .siteWrap { width: auto; min-height: 0; }
+  .worldTitle { position: static; margin: 10px 0; padding: 0; text-align: center; font-size: 36px; }
+  .worldTitle::before { display: none; }
+  .stageFrame { position: relative; top: 0; left: 0; width: 100%; height: auto; aspect-ratio: 793 / 443; margin: 0 auto; border-radius: 30px; overflow: hidden; background: #0b1a22; }
+  .stageScene { inset: 0; width: auto; height: auto; background-size: 100% 100%; }
+  .stageFrame .frameTop, .stageFrame .frameBottom, .stageFrame .frameLeft, .stageFrame .frameRight, .stageFlowerLeft, .stageFlowerRight { display: none; }
+  .stageLogo { transform: scale(0.6); transform-origin: right top; right: 10px; top: 10px; }
+  .stagePlay { bottom: 12px; }
+  .promoRow { position: static; flex-wrap: wrap; justify-content: center; margin: 16px 0; }
+  .worldPage .siteFooter { position: static; }
+}

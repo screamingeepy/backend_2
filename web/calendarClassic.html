@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Events Calendar</title>
+  <meta name="description" content="What's happening in Pixie Hollow this month and next." />
+  <link rel="icon" href="/wings.ico" type="image/x-icon" />
+  <link rel="preload" href="/site/nav.xml" as="fetch" />
+  <link rel="preload" href="/site/img/calendar/calendarPanel.png" as="image" />
+  <link rel="stylesheet" href="/site/nav/nav.css?v=20260926m" />
+  <link rel="stylesheet" href="/site/site.css?v=20261028a" />
+  <link rel="stylesheet" href="/site/calendar.css?v=20261028a" />
+</head>
+<body class="calendarBody">
+  <div class="siteWrap">
+    <nav id="mainNav" aria-label="Main"></nav>
+    <div class="memberBar" data-member-bar hidden></div>
+
+    <main class="calendarStage">
+      <h1 class="visuallyHidden">Events Calendar</h1>
+      <div class="calendarFit" id="calFit">
+        <div class="calendarPanel">
+          <h2 class="calMonthTitle" id="calMonthTitle"></h2>
+          <p class="calClock" id="calClock" aria-label="Pixie Standard Time"></p>
+
+          <div id="calGrid"></div>
+
+          <a class="calLink calMeet" id="calMeet"><span></span></a>
+          <button class="calLink calMonthSwitch" id="calMonthSwitch" type="button"></button>
+
+          <div class="calPopup" id="calPopup" role="dialog" aria-labelledby="calPopupTitle" hidden>
+            <h3 class="calPopupTitle" id="calPopupTitle"></h3>
+            <img class="calPopupImage" id="calPopupImage" alt="" hidden />
+            <p class="calPopupWhen" id="calPopupWhen"></p>
+            <p class="calPopupWhere" id="calPopupWhere"></p>
+            <button class="calPopupClose" id="calPopupClose" type="button" aria-label="Close"></button>
+            <button class="calPopupX" id="calPopupX" type="button" aria-label="Close"></button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="/site/site.js?v=20261028a"></script>
+  <script src="/site/nav.js?v=20260926m"></script>
+  <script src="/site/loginModal.js?v=20260926m"></script>
+  <script src="/site/calendar.js?v=20260926a"></script>
+</body>
+</html>

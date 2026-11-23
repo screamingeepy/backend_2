@@ -1,0 +1,39 @@
+# systemd unit for the avatar render worker. Untested on a real server: run
+#
+#   sudo cp render/deploy/ph-render.service /etc/systemd/system/
+#   sudo systemctl daemon-reload
+#   sudo systemctl enable --now ph-render
+#   journalctl -u ph-render -f
+#
+# Edit User, WorkingDirectory and the node path for your install.
+
+[Unit]
+Description=Pixie Hollow avatar render worker
+After=network.target caddy.service ph-web-api.service
+Wants=ph-web-api.service
+
+[Service]
+Type=simple
+User=pixiehollow
+WorkingDirectory=/srv/pixiehollow/backend_2
+ExecStart=/usr/bin/node render/worker-watch.js
+Restart=always
+RestartSec=5
+
+# Renders at once. Each is a Flash player process; start at 2 and watch memory.
+Environment=RENDER_CONCURRENCY=2
+# The worker starts its own Xvfb. Set RENDER_XVFB=0 and RENDER_DISPLAY if a
+# display is already provided.
+Environment=RENDER_DISPLAY=:99
+# Where the web server (Caddy) answers on this machine.
+Environment=RENDER_SITE=http://127.0.0.1
+# Uncomment to use Ruffle instead of the Flash projector (needs no GTK2).
+#Environment=RENDER_HOST=ruffle
+#Environment=RENDER_RUFFLE=/usr/local/bin/ruffle
+
+# A hung player must never take the box with it.
+MemoryMax=4G
+KillMode=control-group
+
+[Install]
+WantedBy=multi-user.target

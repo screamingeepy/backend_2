@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GM Portal - Admin Controls</title>
+  <meta name="description" content="Manage live holiday events, chat permissions, and site maintenance lockdowns." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" href="/wings.ico" type="image/x-icon" />
+  <link rel="preload" href="/site/nav.xml" as="fetch" />
+  <link rel="stylesheet" href="/site/nav/nav.css?v=20260927a" />
+  <link rel="stylesheet" href="/site/site.css?v=20260927a" />
+  <link rel="stylesheet" href="/site/account.css?v=20260927a" />
+  <link rel="stylesheet" href="/site/gm.css?v=20260929a" />
+  <link rel="stylesheet" href="/site/gmCommands.css?v=20260927a" />
+  <link rel="stylesheet" href="/site/gmAdmin.css?v=20261016a" />
+</head>
+
+<body>
+  <div class="siteWrap">
+    <nav id="mainNav" aria-label="Main"></nav>
+    <div class="memberBar" data-member-bar hidden></div>
+
+    <main class="pageFrame">
+      <div class="pageInner">
+        <div class="frameLogo"></div>
+        <p class="breadCrumbs">
+          <a href="/">Pixie Hollow</a> &gt; <a href="/account">Account Manager</a> &gt; <span>GM Portal - Admin
+            Controls</span>
+        </p>
+        <h1 class="pageTitle">GM Portal - Admin Controls</h1>
+
+        <h2 class="pageHeading">Pixie Hollow Staff</h2>
+        <p class="pageLead" id="gmLead">Please Log In to the GM Portal.</p>
+
+        <section id="gmLogin" class="acctBoxes" hidden>
+          <div class="acctBox">
+            <h3>Staff Log In</h3>
+            <p>Log in with an Administrator account.</p>
+            <form class="acctForm" id="gmLoginForm" novalidate>
+              <div class="formRow">
+                <label for="gmLoginName">Account ID:</label>
+                <input class="textInput" id="gmLoginName" autocomplete="username" />
+              </div>
+              <div class="formRow">
+                <label for="gmLoginPassword">Password:</label>
+                <input class="textInput" id="gmLoginPassword" type="password" autocomplete="current-password" />
+              </div>
+              <p class="formMessage" id="gmLoginMessage" role="alert"></p>
+              <p class="center"><button class="btnGray" type="submit" id="gmLoginButton">Log In</button></p>
+            </form>
+          </div>
+        </section>
+
+        <section id="gmDenied" class="acctBoxes" hidden>
+          <div class="acctBox">
+            <h3>Staff Only</h3>
+            <p>This account isn't authorized for the GM Portal. <a href="#" id="gmSwitchAccount">Log in with a different
+                account</a>.</p>
+          </div>
+        </section>
+
+        <section id="gmTools" class="gmBoxes" hidden>
+          <div id="adminDenied" class="acctBox adminWarning" hidden>
+            <h3>Administrator Access Required</h3>
+            <p>Admin Controls are reserved strictly for Administrators. Your account does not have permission to view or
+              modify these settings.</p>
+          </div>
+
+          <div id="adminControlsContainer" hidden>
+            <!-- Global Chat Controls -->
+            <div class="acctBox adminBox">
+              <h3 class="quill">Global Chat Controls</h3>
+              <p class="gmHint">
+                Control game-wide communication policies. Administrators and Moderators always retain unrestricted chat
+                filter bypass.
+              </p>
+
+              <div class="gmSwitchRow">
+                <div class="gmSwitchText">
+                  <p class="gmSwitchLabel">
+                    Global SpeedChat Only <span class="gmSwitchState" id="globalSpeedChatState">…</span>
+                  </p>
+                  <p class="gmHint">
+                    When enabled, restricts all regular players across Pixie Hollow to canned SpeedChat phrases only
+                    (disabling open typing and SpeedChat Plus). Staff accounts continue to bypass all filters.
+                  </p>
+                </div>
+                <button class="gmSwitch" id="globalSpeedChatSwitch" type="button" role="switch" aria-checked="false"
+                  aria-labelledby="globalSpeedChatState">
+                  <span class="gmSwitchKnob"></span>
+                </button>
+              </div>
+              <p class="formMessage" id="globalSpeedChatStatus" role="status"></p>
+            </div>
+
+            <!-- Fairy Slots -->
+            <div class="acctBox adminBox">
+              <h3 class="quill">Fairies Per Account</h3>
+              <div class="gmSwitchRow">
+                <div class="gmSwitchText">
+                  <p class="gmSwitchLabel">
+                    Multiple Fairies <span class="gmSwitchState" id="multiFairyState">…</span>
+                  </p>
+                  <p class="gmHint">
+                    When enabled, accounts can hold up to 3 fairies. When disabled, accounts with one fairy (or none)
+                    cannot add another. Accounts that already have several keep them.
+                  </p>
+                </div>
+                <button class="gmSwitch" id="multiFairySwitch" type="button" role="switch" aria-checked="false"
+                  aria-labelledby="multiFairyState">
+                  <span class="gmSwitchKnob"></span>
+                </button>
+              </div>
+              <p class="formMessage" id="multiFairyStatus" role="status"></p>
+            </div>
+
+            <!-- In-Game System Announcement -->
+            <div class="acctBox adminBox">
+              <h3 class="quill">In-Game System Announcement</h3>
+              <p class="gmHint">
+                Broadcast an in-game pop-up alert dialog to all connected players across every meadow in Pixie Hollow in
+                real time. You can also save it as the welcome announcement players see upon logging in.
+              </p>
+
+              <form id="announcementForm" class="acctForm" novalidate>
+                <div class="adminNotice" style="margin-bottom: 12px;">
+                  <strong>Current Welcome Announcement:</strong>
+                  <p id="currentLoginAnnouncement" style="margin: 4px 0 0; color: #fff; font-style: italic;">
+                    Loading...
+                  </p>
+                </div>
+
+                <div class="formRow">
+                  <label for="announcementInput">Announcement Message:</label>
+                  <textarea class="textInput" id="announcementInput" rows="3"
+                    placeholder="Enter system alert message..."
+                    style="width: 100%; box-sizing: border-box; resize: vertical;"></textarea>
+                </div>
+
+                <div class="formRow checkboxRow" style="margin: 10px 0;">
+                  <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; color: #fff;">
+                    <input type="checkbox" id="saveAsLoginAnnouncement" style="cursor: pointer;" />
+                    <span>Also save as welcome announcement for logging-in players</span>
+                  </label>
+                </div>
+
+                <p class="center">
+                  <button class="btnGold" type="submit" id="broadcastAnnouncementButton">Broadcast System Alert</button>
+                </p>
+                <p class="formMessage center" id="announcementStatus" role="status"></p>
+              </form>
+            </div>
+
+            <!-- Moderators -->
+            <div class="acctBox adminBox">
+              <h3 class="quill">Moderators</h3>
+              <p class="gmHint">
+                Give a player Moderator access, or take it away. Administrators can't be changed here. A new Moderator
+                can use the GM Portal straight away, and needs to log out and back in for the in-game commands.
+              </p>
+
+              <ul class="staffList" id="staffList"></ul>
+
+              <form class="acctForm" id="staffForm" novalidate>
+                <div class="formRow">
+                  <label for="staffName">Account ID:</label>
+                  <input class="textInput" id="staffName" maxlength="20" autocomplete="off" placeholder="The player's Account ID" />
+                </div>
+                <p class="center"><button class="btnGold" type="submit" id="staffAddButton">Make Moderator</button></p>
+                <p class="formMessage center" id="staffStatus" role="status"></p>
+              </form>
+            </div>
+
+            <!-- Holidays -->
+            <!-- <div class="acctBox adminBox">
+              <h3 class="quill">Holidays</h3>
+              <p class="gmHint">
+                Turn a holiday's meadow decorations, speedchat, emotes and gateways on or off. Players already in the
+                game see the change when they next enter a meadow. The season's own look changes by itself.
+              </p>
+
+              <ul class="staffList" id="holidayList"></ul>
+
+              <h4 class="gmSwitchLabel">Single tags</h4>
+              <p class="gmHint">For anything the list doesn't group. Turn it off again from here.</p>
+              <ul class="staffList" id="holidayExtra"></ul>
+
+              <form class="acctForm" id="holidayTagForm" novalidate>
+                <div class="formRow">
+                  <label for="holidayTag">Tag:</label>
+                  <input class="textInput" id="holidayTag" maxlength="64" autocomplete="off" placeholder="Meadow_Example" />
+                </div>
+                <p class="center"><button class="btnGold" type="submit" id="holidayTagButton">Turn Tag On</button></p>
+              </form>
+              <p class="formMessage center" id="holidayStatus" role="status"></p>
+            </div> -->
+
+            <!-- Site Maintenance & Player Lockdowns -->
+            <div class="acctBox adminBox">
+              <h3 class="quill">Maintenance &amp; Player Lockdowns</h3>
+              <p class="gmHint">
+                Block specific website and game actions for regular players when performing maintenance, updates, or
+                testing. Staff accounts (Moderators and Administrators) can always bypass these lockdowns to test and
+                moderate.
+              </p>
+
+              <!-- Lock Player Logins -->
+              <div class="gmSwitchRow">
+                <div class="gmSwitchText">
+                  <p class="gmSwitchLabel">
+                    Lock Player Logins <span class="gmSwitchState" id="lockLoginsState">…</span>
+                  </p>
+                  <p class="gmHint">
+                    Temporarily blocks regular player logins to both the Flash game client and the website with a
+                    maintenance notice. Staff can still log in normally.
+                  </p>
+                </div>
+                <button class="gmSwitch" id="lockLoginsSwitch" type="button" role="switch" aria-checked="false">
+                  <span class="gmSwitchKnob"></span>
+                </button>
+              </div>
+
+              <!-- Lock Registrations -->
+              <div class="gmSwitchRow">
+                <div class="gmSwitchText">
+                  <p class="gmSwitchLabel">
+                    Lock Account Registrations <span class="gmSwitchState" id="lockRegistrationsState">…</span>
+                  </p>
+                  <p class="gmHint">
+                    Temporarily closes new account sign-ups on the website and Flash create-an-account screens.
+                  </p>
+                </div>
+                <button class="gmSwitch" id="lockRegistrationsSwitch" type="button" role="switch" aria-checked="false">
+                  <span class="gmSwitchKnob"></span>
+                </button>
+              </div>
+
+              <!-- Lock Contact Tickets -->
+              <div class="gmSwitchRow">
+                <div class="gmSwitchText">
+                  <p class="gmSwitchLabel">
+                    Lock Contact Tickets <span class="gmSwitchState" id="lockTicketsState">…</span>
+                  </p>
+                  <p class="gmHint">
+                    Temporarily disables player contact inquiries and help desk ticket submissions.
+                  </p>
+                </div>
+                <button class="gmSwitch" id="lockTicketsSwitch" type="button" role="switch" aria-checked="false">
+                  <span class="gmSwitchKnob"></span>
+                </button>
+              </div>
+
+              <!-- Lock Team Applications -->
+              <div class="gmSwitchRow">
+                <div class="gmSwitchText">
+                  <p class="gmSwitchLabel">
+                    Lock Team Applications <span class="gmSwitchState" id="lockApplicationsState">…</span>
+                  </p>
+                  <p class="gmHint">
+                    Closes the Mod Team and Code Team application page. Turn it back on when you open applications.
+                  </p>
+                </div>
+                <button class="gmSwitch" id="lockApplicationsSwitch" type="button" role="switch" aria-checked="false">
+                  <span class="gmSwitchKnob"></span>
+                </button>
+              </div>
+
+              <!-- Lock Community Submissions -->
+              <div class="gmSwitchRow">
+                <div class="gmSwitchText">
+                  <p class="gmSwitchLabel">
+                    Lock Community Submissions <span class="gmSwitchState" id="lockSubmissionsState">…</span>
+                  </p>
+                  <p class="gmHint">
+                    Temporarily pauses fairy tales, poems, questions for Tabby, and art submissions on Pixie Postings.
+                  </p>
+                </div>
+                <button class="gmSwitch" id="lockSubmissionsSwitch" type="button" role="switch" aria-checked="false">
+                  <span class="gmSwitchKnob"></span>
+                </button>
+              </div>
+
+              <!-- Lock Contests -->
+              <div class="gmSwitchRow">
+                <div class="gmSwitchText">
+                  <p class="gmSwitchLabel">
+                    Lock Contest Entries <span class="gmSwitchState" id="lockContestsState">…</span>
+                  </p>
+                  <p class="gmHint">
+                    Temporarily pauses all player entries across all active contests.
+                  </p>
+                </div>
+                <button class="gmSwitch" id="lockContestsSwitch" type="button" role="switch" aria-checked="false">
+                  <span class="gmSwitchKnob"></span>
+                </button>
+              </div>
+
+              <p class="formMessage" id="lockdownStatus" role="status"></p>
+
+            </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script src="/site/site.js?v=20260927a"></script>
+  <script src="/site/nav.js?v=20260927a"></script>
+  <script src="/site/loginModal.js?v=20260927a"></script>
+  <script src="/site/tickets.js?v=20260927a"></script>
+  <script src="/site/gmPortal.js?v=20260927a"></script>
+  <script src="/site/gmAdmin.js?v=20261016a"></script>
+</body>
+
+</html>

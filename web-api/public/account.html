@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Account Manager</title>
+  <meta name="description" content="Manage your Pixie Hollow account." />
+  <link rel="icon" href="/wings.ico" type="image/x-icon" />
+  <link rel="preload" href="/site/nav.xml" as="fetch" />
+  <link rel="stylesheet" href="/site/nav/nav.css?v=20260925x" />
+  <link rel="stylesheet" href="/site/site.css?v=20260925x" />
+  <link rel="stylesheet" href="/site/account.css?v=20260925x" />
+</head>
+<body class="interiorPage">
+  <div class="siteWrap">
+    <nav id="mainNav" aria-label="Main"></nav>
+    <div class="memberBar" data-member-bar hidden></div>
+
+    <main class="pageFrame">
+      <div class="pageInner">
+        <div class="frameLogo"></div>
+        <p class="breadCrumbs"><a href="/">Pixie Hollow</a> &gt; <a href="/membershiphub.html">Membership</a> &gt; <span>Account Manager</span></p>
+        <h1 class="pageTitle">Account Manager</h1>
+
+        <h2 class="pageHeading">Manage Your Account</h2>
+
+        <section id="loggedOut" hidden>
+          <p class="pageLead">Please Log In to the Account Manager.</p>
+          <div class="acctBoxes">
+            <div class="acctBox">
+              <h3>Already have an Account ID?</h3>
+              <p>Log in below with your existing Account ID and Password.</p>
+              <form class="acctForm" id="loginForm" novalidate>
+                <div class="formRow">
+                  <label for="loginName">Account ID:</label>
+                  <input class="textInput" id="loginName" autocomplete="username" />
+                </div>
+                <div class="formRow">
+                  <label for="loginPassword">Password:</label>
+                  <input class="textInput" id="loginPassword" type="password" autocomplete="current-password" />
+                </div>
+                <p class="formMessage" id="loginMessage" role="alert"></p>
+                <p class="center"><button class="btnGray" type="submit" id="loginButton">Log In</button></p>
+              </form>
+            </div>
+
+            <div class="acctBox">
+              <h3>Need an Account ID?</h3>
+              <p>Click the Sign Up button to get one now.</p>
+              <p class="center"><a class="btnGold" href="/register.html">Sign Up</a></p>
+            </div>
+          </div>
+        </section>
+
+        <section id="loggedIn" hidden>
+          <p class="pageLead">Welcome, <span id="welcomeName"></span>!</p>
+          <div class="acctBoxes">
+            <div class="acctBox">
+              <h3>Account Details</h3>
+              <dl class="acctDetails">
+                <dt>Account ID:</dt><dd id="detailUsername"></dd>
+                <dt>First Name:</dt><dd id="detailFirstName"></dd>
+                <dt>E-mail:</dt><dd id="detailEmail"></dd>
+                <dt>E-mail status:</dt><dd><span id="detailEmailStatus"></span> <button type="button" class="linkButton" id="resendConfirmButton" hidden>Send it again</button></dd>
+                <dt>Age:</dt><dd id="detailAge"></dd>
+                <dt>My Fairy:</dt><dd id="detailFairy"></dd>
+              </dl>
+            </div>
+
+            <div class="acctBox" id="ageBox" hidden>
+              <h3>Tell Us Your Age</h3>
+              <p>This account doesn't have an age yet. Under 13? A parent or guardian's e-mail address is needed, and SpeedChat Plus stays off until they approve it.</p>
+              <form class="acctForm" id="ageForm" novalidate>
+                <div class="formRow">
+                  <label for="ageInput">How old are you?</label>
+                  <select class="selectInput" id="ageInput"><option value="">Age</option></select>
+                </div>
+                <div class="formRow" id="parentEmailRow" hidden>
+                  <label for="parentEmail">Parent/Guardian's E-mail:</label>
+                  <input class="textInput" id="parentEmail" type="email" autocomplete="off" />
+                </div>
+                <p class="center"><button class="btnGold" type="submit" id="ageButton">Save</button></p>
+                <p class="formMessage" id="ageMessage" role="status"></p>
+              </form>
+            </div>
+
+            <div class="acctBox" id="parentLoginNote" hidden>
+              <h3>Account ID and E-mail</h3>
+              <p>Because this account belongs to a player under 13, a parent or guardian looks after the Account ID and the e-mail address. They can change them, or ask us to delete the account, from <a href="/parentalcontrols.html">Parental Controls</a>.</p>
+            </div>
+
+            <div class="acctBox" id="ownEmailNote" hidden>
+              <h3>Add Your Own E-mail</h3>
+              <p>You're 13 or older now, so this account is yours to look after. The e-mail address on it is still your parent or guardian's, which means password resets would go to them. Add your own address below.</p>
+            </div>
+
+            <div class="acctBox" id="loginChangeBox">
+              <h3 class="quill">Change Account ID or E-mail</h3>
+              <p>Fill in only what you want to change. Log out of the game first. A new Account ID is used the next time you log in.</p>
+              <form class="acctForm" id="loginChangeForm" novalidate>
+                <div class="formRow">
+                  <label for="newUsername">New Account ID:</label>
+                  <input class="textInput" id="newUsername" autocomplete="off" maxlength="20" />
+                </div>
+                <div class="formRow">
+                  <label for="newEmail">New E-mail:</label>
+                  <input class="textInput" id="newEmail" type="email" autocomplete="email" />
+                </div>
+                <div class="formRow">
+                  <label for="loginChangePassword">Password:</label>
+                  <input class="textInput" id="loginChangePassword" type="password" autocomplete="current-password" />
+                </div>
+                <p class="center"><button class="btnGold" type="submit" id="loginChangeButton">Save</button></p>
+                <p class="formMessage" id="loginChangeMessage" role="status"></p>
+              </form>
+            </div>
+
+            <div class="acctBox">
+              <h3 class="coin">Membership</h3>
+              <p class="balanceLine"><span id="diamondBalance">0</span> Diamonds</p>
+              <p>Higher tiers earn more diamonds each month.</p>
+              <form id="membershipForm">
+                <fieldset class="tierList" id="tierList">
+                  <legend class="rowLabel" hidden>Membership tier</legend>
+                </fieldset>
+                <p class="center"><button class="btnGold" type="submit" id="membershipButton">Save</button></p>
+                <p class="formMessage" id="membershipMessage" role="status"></p>
+              </form>
+            </div>
+
+            <div class="acctBox">
+              <h3>Change Password</h3>
+              <form class="acctForm" id="passwordForm" novalidate>
+                <div class="formRow">
+                  <label for="oldPassword">Old Password:</label>
+                  <input class="textInput" id="oldPassword" type="password" autocomplete="current-password" />
+                </div>
+                <div class="formRow">
+                  <label for="newPassword">New Password:</label>
+                  <input class="textInput" id="newPassword" type="password" autocomplete="new-password" />
+                </div>
+                <div class="formRow">
+                  <label for="confirmPassword">Confirm Password:</label>
+                  <input class="textInput" id="confirmPassword" type="password" autocomplete="new-password" />
+                </div>
+                <p class="center"><button class="btnGold" type="submit" id="passwordButton">Continue</button></p>
+                <p class="formMessage" id="passwordMessage" role="status"></p>
+              </form>
+            </div>
+
+            <div class="acctBox" id="deleteBox">
+              <h3>Delete Account</h3>
+              <p>This locks your account and hides all of your fairies. We keep everything for 30 days in case you change your mind (contact us to get it back), and then it is removed for good.</p>
+              <form class="acctForm" id="deleteForm" novalidate>
+                <div class="formRow">
+                  <label for="deleteConfirm" id="deleteConfirmLabel">Your e-mail address:</label>
+                  <input class="textInput" id="deleteConfirm" autocomplete="off" />
+                </div>
+                <div class="formRow">
+                  <label for="deletePassword">Password:</label>
+                  <input class="textInput" id="deletePassword" type="password" autocomplete="current-password" />
+                </div>
+                <p class="center"><button class="btnGray" type="submit" id="deleteAccountButton">Delete My Account</button></p>
+                <p class="formMessage" id="deleteAccountMessage" role="status"></p>
+              </form>
+            </div>
+
+            <p class="acctLinks">
+              <a href="#" data-login>Play</a>
+              <a href="/gm" class="staffLink" hidden>GM Portal</a>
+              <a href="#" id="logOutLink">Log Out</a>
+            </p>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script src="/site/site.js?v=20260925x"></script>
+  <script src="/site/nav.js?v=20260925x"></script>
+  <script src="/site/loginModal.js?v=20260925x"></script>
+  <script src="/site/accountManager.js?v=20260925x"></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "title": "Example comedy show",
+  "kind": "comedy",
+  "zone": 501,
+  "steps": [
+    {"at": 0, "do": "summon", "who": "Periwinkle"},
+    {"at": 6, "do": "say", "who": "Periwinkle", "text": "Welcome, everyone, to the show!"},
+    {"at": 12, "do": "emote", "who": "Periwinkle", "emote": 27},
+    {"at": 20, "do": "say", "who": "Periwinkle", "text": "Thank you for coming. Goodnight!"},
+    {"at": 26, "do": "end"}
+  ]
+}

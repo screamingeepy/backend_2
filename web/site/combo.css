@@ -1,0 +1,156 @@
+.comboPage .siteWrap {
+  width: 1070px;
+  min-height: 860px;
+}
+
+
+/* the leaf of the logo lines up with the top of the stage frame. */
+.comboPage #mainNav { top: 22px; }
+
+.comboPage .memberBar { top: 14px; right: 18px; }
+
+.comboStage { height: 580px; }
+
+.comboInner {
+  position: absolute;
+  top: 18px;
+  left: 20px;
+  width: 793px;
+  height: 544px;
+  overflow: hidden;
+  border-radius: 34px;
+  background: #05101b radial-gradient(ellipse at 50% 30%, #173347 0%, #05101b 70%);
+}
+
+.comboHero {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 878px;
+  height: 355px;
+  transform: scale(0.932);
+  transform-origin: 0 0;
+}
+
+.comboHeroWindow {
+  position: absolute;
+  inset: 0;
+  background: url("/site/img/home/mapleTreeHill_bg.png") center top / cover no-repeat;
+  -webkit-mask: url("/site/img/pixiepage/homeFrame.svg") center / cover no-repeat;
+  mask: url("/site/img/pixiepage/homeFrame.svg") center / cover no-repeat;
+}
+
+/* the play area, matched to 'webpage combo reference.png' */
+.comboHero .classicPlay {
+  inset: 0;
+  width: auto;
+  pointer-events: none;
+}
+
+.comboHero .classicPlay::before {
+  content: "";
+  position: absolute;
+  top: 175px;
+  left: 92px;
+  width: 638px;
+  height: 173px;
+  box-sizing: border-box;
+  border: 2px solid #87ceeb;
+  border-radius: 24px;
+  background: rgba(18, 26, 32, 0.45);
+}
+
+.comboHero .classicPlayButton {
+  position: absolute;
+  top: 191px;
+  left: 337px;
+  pointer-events: auto;
+}
+
+.comboFairyStage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 878px;
+  height: 355px;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.comboHeroFairy {
+  position: absolute;
+  top: -6px;
+  left: 31px;
+  width: 340px;
+  height: auto;
+  animation: comboFairyFloat 3.4s ease-in-out infinite;
+}
+
+@keyframes comboFairyFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-9px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .comboHeroFairy { animation: none; }
+}
+
+.comboFairyArrow {
+  position: absolute;
+  top: 270px;
+  width: 62px;
+  height: 55px;
+  padding: 0;
+  border: 0;
+  background: url("/site/img/carousel/arrow.png") center / contain no-repeat;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.comboFairyArrow:hover,
+.comboFairyArrow:focus-visible { background-image: url("/site/img/carousel/arrowHover.png"); }
+
+.comboFairyPrev { left: 14px; }
+.comboFairyNext { left: 330px; transform: scaleX(-1); }
+
+.comboHero .classicNews { top: 58px; right: 18px; }
+
+.comboTiles {
+  position: absolute;
+  top: 318px;
+  left: 9px;
+  width: 984px;
+  transform: scale(0.8);
+  transform-origin: 0 0;
+}
+
+.comboPage .classicExtras {
+  position: absolute;
+  top: 636px;
+  left: 262px;
+  right: 0;
+  margin: 0;
+}
+
+.comboPage .siteFooter {
+  position: absolute;
+  top: 668px;
+  left: 262px;
+  right: 0;
+  color: #8aa;
+}
+
+@media (max-width: 520px) {
+  .comboPage .siteWrap { width: auto; min-height: 0; }
+  .comboStage { position: relative; top: 0; left: 0; width: 100%; height: auto; }
+  .comboStage .frameTop, .comboStage .frameBottom, .comboStage .frameLeft, .comboStage .frameRight { display: none; }
+  .comboInner { position: static; width: auto; height: auto; padding: 0 0 16px; border-radius: 24px; }
+  .comboHero { position: relative; width: auto; min-height: 355px; padding: 150px 0 16px; background-position: center 0; background-size: auto 355px; transform: none; }
+  .comboHero .classicPlay { position: relative; inset: auto; height: 200px; margin: 0 auto 16px; }
+  .comboHero .classicPlay::before { display: none; }
+  .comboHero .classicPlayButton { top: 50px; left: 50%; margin-left: -92px; }
+  .comboFairyStage, .comboFairyArrow { display: none; }
+  .comboHero .classicNews { position: static; margin: 0 auto 16px; }
+  .comboTiles { position: static; width: auto; transform: none; flex-wrap: wrap; }
+  .comboPage .classicExtras, .comboPage .siteFooter { position: static; }
+}

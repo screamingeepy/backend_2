@@ -1,0 +1,30 @@
+### Python template
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Game-specific stuff
+assets
+physics
+config/local.prc
+
+# AI logs
+logs/aidistrict_*
+
+# OTP
+logs/*.log
+config/config.lua
+otpd/otpgo.exe
+
+# Python Path
+PYTHON_PATH

@@ -1,0 +1,42 @@
+{
+  "name": "web-api",
+  "version": "1.0.0",
+  "description": "Web API for Pixie Hollow.",
+  "main": "app.js",
+  "scripts": {
+    "lint": "eslint ./ --fix",
+    "start": "pm2 startOrReload ecosystem.config.js --update-env",
+    "restart": "pm2 startOrReload ecosystem.config.js --update-env",
+    "status": "pm2 status",
+    "stop": "pm2 stop ecosystem.config.js",
+    "reset": "pm2 delete all && pm2 start ecosystem.config.js && pm2 save"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@eslint/eslintrc": "^3.3.5",
+    "@eslint/js": "^10.0.1",
+    "axios": "^1.15.0",
+    "bcrypt": "^6.0.0",
+    "connect-mongo": "^6.0.0",
+    "cors": "^2.8.6",
+    "crypto-js": "^4.2.0",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "express-session": "^1.19.0",
+    "express-xml-bodyparser": "^0.4.1",
+    "fast-xml-parser": "^5.6.0",
+    "globals": "^17.5.0",
+    "imapflow": "^2.0.6",
+    "mailparser": "^3.9.28",
+    "mongoose": "^9.4.1",
+    "nodemailer": "^10.0.10",
+    "pm2": "^7.0.4",
+    "ws": "^8.22.0",
+    "xmlbuilder2": "^4.0.3"
+  },
+  "devDependencies": {
+    "eslint": "^10.2.0"
+  },
+  "packageManager": "yarn@4.16.0+sha256.ba05224324578801b9cc98170d64aa50b9a36733b440fb0942306da3fbbdc7d1"
+}

@@ -1,0 +1,181 @@
+/* the fairy manager, rows follow swf/panel_content/manager.swf */
+
+.managerPanel {
+  position: relative;
+  width: 655px;
+  max-width: 100%;
+  aspect-ratio: 871 / 764;
+  margin: 4px auto 0;
+  padding: 11% 11.5% 0 14%;
+  background: url("/site/img/manager/panel.png") center top / 100% 100% no-repeat;
+}
+
+.managerTitle {
+  margin: 0 0 14px;
+  color: #fff;
+  font: bold 18px/22px Helvetica, Arial, sans-serif;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+.managerOptions {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.managerOption {
+  position: relative;
+  width: 100%;
+  height: 102px;
+  margin-bottom: 14px;
+  border: 1px solid #4a5a86;
+  border-radius: 12px;
+  /* two-tone: a lighter upper half for the name, a darker band for buttons. */
+  background: linear-gradient(#6474a9 0%, #4f5e90 16%, #3f4d7b 55%, #232d4b 55%, #1a2138 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 2px 4px rgba(10, 15, 40, 0.35);
+}
+
+.optionBust {
+  position: absolute;
+  left: 8px;
+  top: 5px;
+  width: 92px;
+  height: 92px;
+  overflow: hidden;
+}
+
+/* only a slot with no render shows the ring; a real bust brings its own. */
+/* A Sparrow Man's stand-in is his own silhouette (from login_content.swf). */
+.optionBust.noBust.maleOption {
+  background: url("/site/img/manager/sparrowManIcon.png") center bottom / auto 84px no-repeat;
+}
+
+.optionBust.noBust,
+.emptyOption .optionBust {
+  background: url("/site/img/manager/bustRing.png") center bottom / 92px auto no-repeat;
+}
+
+.optionBust img {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  display: block;
+  width: 98px;
+  height: auto;
+  max-width: none;
+  transform: translateX(-50%);
+}
+
+/* no render yet, or an empty slot: the ring alone, as the SWF showed it. */
+.optionBust.noBust img { display: none; }
+
+.optionText {
+  position: absolute;
+  left: 112px;
+  top: 4px;
+  right: 96px;
+}
+
+.optionName {
+  display: block;
+  color: #fff;
+  font: 29px/30px var(--scriptFont);
+  overflow-wrap: anywhere;
+}
+
+.optionAddress {
+  display: block;
+  margin-top: 2px;
+  color: var(--gold);
+  font: 20px/20px var(--scriptFont);
+}
+
+/* remove is the small button, tucked into the row's top right corner. */
+.optionRemove {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  min-width: 0;
+  padding: 3px 12px;
+  border: 1px solid #55608c;
+  border-radius: 6px;
+  background: linear-gradient(#5a6488, #3a4468);
+  color: #fff;
+  font: bold 12px/16px Helvetica, Arial, sans-serif;
+}
+
+.optionButtons {
+  position: absolute;
+  left: 112px;
+  bottom: 9px;
+  display: flex;
+  gap: 12px;
+}
+
+/* play! is pink, as it was; Pixie Page is the dark blue beside it. */
+.optionPlay {
+  min-width: 116px;
+  padding: 4px 16px;
+  border: 1px solid #a82760;
+  border-radius: 18px;
+  background: linear-gradient(#f0609b, #cf2f6d);
+  color: #fff;
+  font: bold 15px/20px Helvetica, Arial, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
+  cursor: pointer;
+}
+
+.optionPage {
+  min-width: 116px;
+  padding: 4px 16px;
+  border: 1px solid #38436d;
+  border-radius: 8px;
+  background: linear-gradient(#4d5985, #2b3455);
+  color: #fff;
+  font: bold 16px/20px Helvetica, Arial, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
+  cursor: pointer;
+}
+
+/* export and import are the quiet buttons: the same blue as Pixie Page, smaller */
+.optionSmall {
+  min-width: 76px;
+  padding: 4px 12px;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.optionRemove { cursor: pointer; }
+
+.optionPlay:hover,
+.optionRemove:hover,
+.optionPage:hover,
+.optionPlay:focus-visible,
+.optionRemove:focus-visible,
+.optionPage:focus-visible { filter: brightness(1.12); }
+
+.optionPlay:disabled,
+.optionRemove:disabled { opacity: 0.6; cursor: default; }
+
+.emptyOption .optionName { font-style: italic; }
+
+.emptyOption .optionBust {
+  background: url("/site/img/manager/fairyIcon.png") center 14px no-repeat;
+  background-size: auto 84px;
+}
+
+.managerNote {
+  margin: 2px 0 0;
+  color: #fff;
+  font: 13px/18px Helvetica, Arial, sans-serif;
+  text-align: center;
+}
+
+@media (max-width: 720px) {
+  .managerPanel { aspect-ratio: auto; min-height: 560px; padding: 70px 14px 40px 56px; background-size: cover; }
+}

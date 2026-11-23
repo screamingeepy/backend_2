@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<primarycarousel>
+	<page id="mainnav" template="com.disney.fairies.mainnav.MainNav" src="mainnav.swf">
+
+		<nav id="pixie-hollow-world" target="_self" href="/">
+			<title>Pixie Hollow World</title>
+			<nav id="pixie-hollow-world/news" href="/nevernews.html" target="_self">News</nav>
+			<nav id="pixie-hollow-world/membership" href="/account" target="_self">Membership</nav>
+			<nav id="pixie-hollow-world/help" href="/faqs.html" target="_self">Help</nav>
+			<nav id="pixie-hollow-world/secret-codes" href="/secretcodes.html" target="_self">Secret Codes</nav>
+		</nav>
+
+		<nav id="pixie-central" target="_self" href="/events.html">
+			<title>Pixie Central</title>
+			<nav id="pixie-central/events" href="/events.html" target="_self">Events</nav>
+			<nav id="pixie-central/calendar" href="/calendar.html" target="_self">Calendar</nav>
+			<nav id="pixie-central/contests" href="/contests_home.html" target="_self">Contests</nav>
+			<nav id="pixie-central/polls" href="/pixiePolls.html" target="_self">Pixie Polls</nav>
+		</nav>
+
+		<nav id="staff" target="_self" href="/staff.html">Meet the Staff</nav>
+
+		<nav id="my-fairy" target="_self" href="/pixiepages/me">My Fairy</nav>
+
+		<nav id="my-account" target="_self" href="/account">
+			<title>My Account</title>
+			<nav id="my-account/manager" href="/account" target="_self">Account Manager</nav>
+			<nav id="my-account/fairies" href="/fairymanager.html" target="_self">My Fairies</nav>
+			<nav id="my-account/sign-up" href="/register.html" target="_self">Sign Up</nav>
+			<nav id="my-account/parental-controls" href="/parentalcontrols.html" target="_self">Parental Controls</nav>
+		</nav>
+
+		<nav id="uploads" target="_self" href="/uploads.html">
+			<title>Uploads</title>
+			<nav id="uploads/fairytale" href="/uploads/fairytale.html" target="_self">Fairy Tale</nav>
+			<nav id="uploads/poem" href="/uploads/poem.html" target="_self">Poem</nav>
+			<nav id="uploads/question" href="/uploads/question.html" target="_self">Questions for Tabby</nav>
+			<nav id="uploads/art" href="/uploads/art.html" target="_self">Art</nav>
+		</nav>
+
+		<nav id="social-media" target="_self" href="/socialmedia.html">Social Media</nav>
+
+		<nav id="toys" target="_self" href="/abouttoys.html">
+			<title>Toys &amp; Games</title>
+			<nav id="toys/clickables" href="/clickables.html" target="_self">Clickables</nav>
+			<nav id="toys/video-games" href="/videogames_LostTreasure.html" target="_self">Video Games</nav>
+		</nav>
+
+		<nav id="help" target="_self" href="/faqs.html">
+			<title>Help</title>
+			<nav id="help/faqs" href="/faqs.html" target="_self">FAQs</nav>
+			<nav id="help/about-game" href="/aboutgame.html" target="_self">About The Game</nav>
+			<nav id="help/known-issues" href="/knownissues.html" target="_self">Known Issues</nav>
+			<nav id="help/contact-us" href="/contactUs.html" target="_self">Contact Us</nav>
+			<nav id="help/join-the-team" href="/apply.html" target="_self">Join the Team</nav>
+		</nav>
+
+		<nav id="game-policies" target="_self" href="/gamepolicies.html">Game Policies</nav>
+
+		<nav id="gm-portal" target="_self" href="/gm/commands" staff="true">
+			<title>GM Portal</title>
+			<nav id="gm-portal/commands" href="/gm/commands" target="_self">Commands</nav>
+			<nav id="gm-portal/content" href="/gm/content" target="_self">News &amp; Calendar</nav>
+			<nav id="gm-portal/staff" href="/gm/staff" target="_self">Meet the Staff</nav>
+			<nav id="gm-portal/tickets" href="/gm/tickets" target="_self">Tickets</nav>
+			<nav id="gm-portal/accounts" href="/gm/accounts" target="_self">Accounts</nav>
+			<nav id="gm-portal/codes" href="/gm/codes" target="_self">Secret Codes</nav>
+			<nav id="gm-portal/submissions" href="/gm/submissions" target="_self">Submissions</nav>
+			<nav id="gm-portal/contestEntries" href="/gm/contestEntries" target="_self">Contest Entries</nav>
+			<nav id="gm-portal/admin" href="/gm/admin" target="_self" admin="true">Admin</nav>
+		</nav>
+
+		<promo id="playbtn" href="login" target="_self"><tiptext><![CDATA[Play Pixie Hollow!]]></tiptext></promo>
+
+		<promo id="mainnav_logo" target="_self" href="/" src="" position='{"x":"35","y":"-10"}' />
+	</page>
+	<strings>
+		<str id="coming_soon">Coming Soon</str>
+	</strings>
+</primarycarousel>

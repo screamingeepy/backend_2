@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pixie Hollow | Account Settings</title>
+  <meta name="description" content="Manage your Pixie Hollow account: membership tier, password, and more." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Reset & base ──────────────────────────────────────────────────── */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg-1: #0b0d17;
+      --bg-2: #111420;
+      --surface: rgba(255, 255, 255, 0.04);
+      --surface-hv: rgba(255, 255, 255, 0.07);
+      --border: rgba(255, 255, 255, 0.08);
+      --border-glow: rgba(196, 160, 255, 0.25);
+      --gold: #f0c060;
+      --gold-dim: #8a6d30;
+      --violet: #c4a0ff;
+      --violet-dim: #6b50a0;
+      --teal: #60d4c4;
+      --rose: #ff8cb0;
+      --text: #e8e0f8;
+      --text-muted: #7a7290;
+      --danger: #ff6070;
+      --success: #60d490;
+      --radius: 16px;
+      --radius-sm: 10px;
+    }
+
+    html {
+      font-size: 16px;
+    }
+
+    body {
+      font-family: 'Outfit', system-ui, sans-serif;
+      background: var(--bg-1);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── Animated gradient bg ──────────────────────────────────────────── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 50% at 20% 10%, rgba(100, 60, 180, 0.18) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 40% at 80% 80%, rgba(30, 120, 90, 0.14) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 60% at 60% 30%, rgba(196, 160, 255, 0.06) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── Pixie dust particles ──────────────────────────────────────────── */
+    .particle {
+      position: fixed;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+      animation: drift linear infinite;
+      opacity: 0;
+    }
+
+    @keyframes drift {
+      0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+      }
+
+      5% {
+        opacity: 1;
+      }
+
+      95% {
+        opacity: 0.6;
+      }
+
+      100% {
+        transform: translateY(-10vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* ── Layout ────────────────────────────────────────────────────────── */
+    .page {
+      position: relative;
+      z-index: 1;
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 4rem;
+    }
+
+    /* ── Header ────────────────────────────────────────────────────────── */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.25rem;
+      margin-bottom: 2.75rem;
+    }
+
+    .header-logo {
+      font-size: 2rem;
+      filter: drop-shadow(0 0 12px var(--violet));
+      animation: pulse-logo 4s ease-in-out infinite;
+    }
+
+    @keyframes pulse-logo {
+
+      0%,
+      100% {
+        filter: drop-shadow(0 0 10px var(--violet));
+      }
+
+      50% {
+        filter: drop-shadow(0 0 22px var(--gold));
+      }
+    }
+
+    .header-text h1 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--gold) 0%, var(--violet) 60%, var(--teal) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.2;
+    }
+
+    .header-text p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 0.25rem;
+    }
+
+    .header-text .fairy-name {
+      color: var(--violet);
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    /* ── Divider ───────────────────────────────────────────────────────── */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold-dim), var(--violet-dim), transparent);
+      margin-bottom: 2.5rem;
+      border: none;
+    }
+
+    /* ── Card grid ─────────────────────────────────────────────────────── */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    /* ── Card ──────────────────────────────────────────────────────────── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: border-color 0.3s, box-shadow 0.3s, transform 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, rgba(196, 160, 255, 0.05) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .card:hover {
+      border-color: var(--border-glow);
+      box-shadow: 0 8px 40px rgba(196, 160, 255, 0.12);
+      transform: translateY(-2px);
+    }
+
+    .card.coming-soon {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .card.coming-soon:hover {
+      transform: none;
+      box-shadow: none;
+      border-color: var(--border);
+    }
+
+    .card-icon {
+      font-size: 1.75rem;
+      margin-bottom: 0.75rem;
+      display: block;
+      filter: drop-shadow(0 0 6px currentColor);
+    }
+
+    .card-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+      color: var(--text);
+    }
+
+    .card-subtitle {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      line-height: 1.5;
+    }
+
+    /* ── Membership tier selector ──────────────────────────────────────── */
+    .tier-options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .tier-option {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.65rem 0.9rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+      position: relative;
+    }
+
+    .tier-option:hover {
+      background: var(--surface-hv);
+      border-color: rgba(196, 160, 255, 0.3);
+    }
+
+    .tier-option input[type="radio"] {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 16px;
+      height: 16px;
+      border: 2px solid var(--text-muted);
+      border-radius: 50%;
+      flex-shrink: 0;
+      transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+    }
+
+    .tier-option input[type="radio"]:checked {
+      border-color: var(--violet);
+      background: var(--violet);
+      box-shadow: 0 0 8px var(--violet);
+    }
+
+    .tier-option.selected {
+      background: rgba(196, 160, 255, 0.08);
+      border-color: rgba(196, 160, 255, 0.35);
+    }
+
+    .tier-label {
+      flex: 1;
+      font-size: 0.88rem;
+      font-weight: 500;
+    }
+
+    .tier-diamonds {
+      font-size: 0.78rem;
+      color: var(--gold);
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .tier-diamonds.zero {
+      color: var(--text-muted);
+    }
+
+    /* Gold balance badge */
+    .gold-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(240, 192, 96, 0.1);
+      border: 1px solid rgba(240, 192, 96, 0.25);
+      border-radius: 999px;
+      padding: 0.3rem 0.75rem;
+      font-size: 0.82rem;
+      color: var(--gold);
+      margin-bottom: 1.25rem;
+    }
+
+    /* ── Form fields ───────────────────────────────────────────────────── */
+    .field {
+      margin-bottom: 1rem;
+    }
+
+    .field label {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      margin-bottom: 0.4rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .field input {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 0.65rem 0.9rem;
+      color: var(--text);
+      font-family: inherit;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .field input:focus {
+      border-color: rgba(196, 160, 255, 0.5);
+      box-shadow: 0 0 0 3px rgba(196, 160, 255, 0.12);
+    }
+
+    .field input::placeholder {
+      color: var(--text-muted);
+    }
+
+    /* ── Buttons ───────────────────────────────────────────────────────── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.65rem 1.4rem;
+      border-radius: var(--radius-sm);
+      font-family: inherit;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s;
+      letter-spacing: 0.02em;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--violet-dim), #4a30a0);
+      color: #fff;
+      width: 100%;
+      margin-top: 0.5rem;
+      box-shadow: 0 4px 20px rgba(100, 60, 180, 0.3);
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      background: linear-gradient(135deg, var(--violet), #6040c0);
+      box-shadow: 0 6px 28px rgba(196, 160, 255, 0.35);
+      transform: translateY(-1px);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0);
+    }
+
+    .btn-primary:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .btn-primary.loading::after {
+      content: '';
+      width: 14px;
+      height: 14px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      margin-left: 0.5rem;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* ── Toast notifications ───────────────────────────────────────────── */
+    #toast-container {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      z-index: 9999;
+    }
+
+    .toast {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.75rem 1.2rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      font-weight: 500;
+      backdrop-filter: blur(12px);
+      animation: toast-in 0.3s ease, toast-out 0.3s ease 3.7s forwards;
+      pointer-events: none;
+    }
+
+    .toast.success {
+      background: rgba(96, 212, 144, 0.15);
+      border: 1px solid rgba(96, 212, 144, 0.3);
+      color: var(--success);
+    }
+
+    .toast.error {
+      background: rgba(255, 96, 112, 0.15);
+      border: 1px solid rgba(255, 96, 112, 0.3);
+      color: var(--danger);
+    }
+
+    @keyframes toast-in {
+      from {
+        opacity: 0;
+        transform: translateX(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    @keyframes toast-out {
+      to {
+        opacity: 0;
+        transform: translateX(20px);
+      }
+    }
+
+    /* ── Coming soon badge ─────────────────────────────────────────────── */
+    .coming-soon-badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.15rem 0.55rem;
+      color: var(--text-muted);
+      margin-left: 0.5rem;
+      vertical-align: middle;
+    }
+
+    /* ── Responsive ────────────────────────────────────────────────────── */
+    @media (max-width: 640px) {
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .page {
+        padding: 1.5rem 1rem 3rem;
+      }
+
+      .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Pixie dust particles -->
+  <div id="particles"></div>
+
+  <div class="page">
+    <!-- Header -->
+    <header class="header" id="page-header">
+      <div style="display: flex; align-items: center; gap: 1.25rem;">
+        <span class="header-logo">⋆✴︎˚｡⋆</span>
+        <div class="header-text">
+          <h1>Account Settings</h1>
+          <p>Pixie Hollow - <span class="fairy-name" id="header-fairy-name">Not Signed In</span></p>
+        </div>
+      </div>
+      <button id="btn-logout" class="btn" onclick="performLogout()"
+        style="display:none; background: rgba(255,255,255,0.06); border: 1px solid var(--border); color: var(--text-muted); padding: 0.4rem 0.9rem; font-size: 0.8rem;">
+        🚪 Sign Out
+      </button>
+    </header>
+
+    <hr class="divider" />
+
+    <!-- Not logged in container (Sign In form) -->
+    <div id="not-logged-in" style="display:block; max-width: 420px; margin: 0 auto;">
+      <div class="card">
+        <span class="card-icon" style="color:var(--violet)">🔒</span>
+        <div class="card-title" style="font-size: 1.2rem;">Sign In to Account Manager</div>
+        <div class="card-subtitle">Log in with your Pixie Hollow account credentials to manage your membership tier and
+          password.</div>
+
+        <div class="field">
+          <label for="login-user">Username</label>
+          <input type="text" id="login-user" placeholder="Enter username" autocomplete="username" />
+        </div>
+        <div class="field">
+          <label for="login-pw">Password</label>
+          <input type="password" id="login-pw" placeholder="Enter password" autocomplete="current-password"
+            onkeydown="if(event.key==='Enter') performLogin()" />
+        </div>
+
+        <button class="btn btn-primary" id="btn-login" onclick="performLogin()">
+          ✨ Sign In
+        </button>
+      </div>
+    </div>
+
+    <!-- Main Cards Container -->
+    <div class="cards" id="cards-container" style="display:none">
+
+      <!-- ── Membership card ── -->
+      <div class="card" id="card-membership">
+        <span class="card-icon" style="color:var(--gold)">👑</span>
+        <div class="card-title">Membership</div>
+        <div class="card-subtitle">Choose the membership tier that suits you. Higher tiers earn more diamonds each month
+          automatically.</div>
+
+        <div class="gold-badge" id="gold-badge">
+          <span>💎</span>
+          <span id="gold-amount">-</span>
+          <span style="color:var(--text-muted)">diamonds balance</span>
+        </div>
+
+        <div class="tier-options" id="tier-options">
+          <!-- injected by JS -->
+        </div>
+
+        <button class="btn btn-primary" id="btn-save-membership" onclick="saveMembership()">
+          ✨ Save Membership
+        </button>
+      </div>
+
+      <!-- ── Security card ── -->
+      <div class="card" id="card-security">
+        <span class="card-icon" style="color:var(--teal)">🔐</span>
+        <div class="card-title">Security</div>
+        <div class="card-subtitle">Update your account password. You'll need your current password to make changes.
+        </div>
+
+        <div class="field">
+          <label for="pw-current">Current Password</label>
+          <input type="password" id="pw-current" placeholder="Enter current password" autocomplete="current-password" />
+        </div>
+        <div class="field">
+          <label for="pw-new">New Password</label>
+          <input type="password" id="pw-new" placeholder="At least 6 characters" autocomplete="new-password" />
+        </div>
+        <div class="field">
+          <label for="pw-confirm">Confirm New Password</label>
+          <input type="password" id="pw-confirm" placeholder="Repeat new password" autocomplete="new-password" />
+        </div>
+
+        <button class="btn btn-primary" id="btn-save-password" onclick="savePassword()">
+          🔑 Update Password
+        </button>
+      </div>
+
+      <!-- ── Coming soon card ── -->
+      <div class="card coming-soon">
+        <span class="card-icon" style="color:var(--rose)">🌸</span>
+        <div class="card-title">More Coming Soon <span class="coming-soon-badge">Soon</span></div>
+        <div class="card-subtitle">
+          Support tickets, fairy name changes, fairy management, and more are planned for this portal.
+        </div>
+        <div style="display:flex;flex-direction:column;gap:0.6rem;margin-top:0.5rem;">
+          <div style="display:flex;align-items:center;gap:0.6rem;color:var(--text-muted);font-size:0.85rem;">🎫 Support
+            Tickets</div>
+          <div style="display:flex;align-items:center;gap:0.6rem;color:var(--text-muted);font-size:0.85rem;">✏️ Fairy
+            Name Change</div>
+          <div style="display:flex;align-items:center;gap:0.6rem;color:var(--text-muted);font-size:0.85rem;">🧚 Manage
+            Fairies</div>
+          <div style="display:flex;align-items:center;gap:0.6rem;color:var(--text-muted);font-size:0.85rem;">👨‍👩‍👧
+            Multiple Fairies per Account</div>
+        </div>
+      </div>
+
+    </div><!-- /cards-container -->
+  </div><!-- /page -->
+
+  <!-- Toast container -->
+  <div id="toast-container"></div>
+
+  <script>
+    // ── Tier definitions ────────────────────────────────────────────────────────
+    const TIERS = [
+      { value: 0, label: 'Free', emoji: '⚪', diamonds: 0 },
+      { value: 1, label: 'Weekly', emoji: '💫', diamonds: 30 },
+      { value: 2, label: 'Monthly', emoji: '✨', diamonds: 60 },
+      { value: 3, label: 'Semiannual', emoji: '🌟', diamonds: 120 },
+      { value: 4, label: 'Annual', emoji: '👑', diamonds: 240 },
+      { value: 5, label: 'Member (No Diamonds)', emoji: '🎀', diamonds: 0 },
+    ]
+
+    let currentTier = 4
+
+    // ── Toast ──────────────────────────────────────────────────────────────────
+    function toast(msg, type = 'success') {
+      const el = document.createElement('div')
+      el.className = `toast ${type}`
+      el.textContent = (type === 'success' ? '✓  ' : '✕  ') + msg
+      document.getElementById('toast-container').appendChild(el)
+      setTimeout(() => el.remove(), 4100)
+    }
+
+    // ── Pixie dust particles ────────────────────────────────────────────────────
+    function spawnParticles() {
+      const container = document.getElementById('particles')
+      const colors = ['#f0c060', '#c4a0ff', '#60d4c4', '#ff8cb0', '#ffffff']
+      for (let i = 0; i < 28; i++) {
+        const p = document.createElement('div')
+        p.className = 'particle'
+        const size = Math.random() * 3 + 1
+        p.style.cssText = `
+      width:${size}px; height:${size}px;
+      left:${Math.random() * 100}%;
+      background:${colors[Math.floor(Math.random() * colors.length)]};
+      animation-duration:${Math.random() * 18 + 10}s;
+      animation-delay:${Math.random() * -20}s;
+    `
+        container.appendChild(p)
+      }
+    }
+    spawnParticles()
+
+    // ── Render tier options ─────────────────────────────────────────────────────
+    function renderTiers(selectedTier) {
+      const container = document.getElementById('tier-options')
+      container.innerHTML = ''
+      for (const tier of TIERS) {
+        const checked = tier.value === selectedTier
+        const div = document.createElement('label')
+        div.className = 'tier-option' + (checked ? ' selected' : '')
+        div.innerHTML = `
+      <input type="radio" name="tier" value="${tier.value}" ${checked ? 'checked' : ''} />
+      <span class="tier-label">${tier.emoji} ${tier.label}</span>
+      <span class="tier-diamonds ${tier.diamonds === 0 ? 'zero' : ''}">
+        ${tier.diamonds === 0 ? '-' : `💎 ${tier.diamonds}/mo`}
+      </span>
+    `
+        div.querySelector('input').addEventListener('change', () => {
+          document.querySelectorAll('.tier-option').forEach(o => o.classList.remove('selected'))
+          div.classList.add('selected')
+        })
+        container.appendChild(div)
+      }
+    }
+
+    // ── Load account data ───────────────────────────────────────────────────────
+    function showLoginForm(msg) {
+      document.getElementById('header-fairy-name').textContent = msg || 'Not Signed In'
+      document.getElementById('not-logged-in').style.display = 'block'
+      document.getElementById('cards-container').style.display = 'none'
+      document.getElementById('btn-logout').style.display = 'none'
+    }
+
+    async function loadAccountData() {
+      // Timeout after 3 seconds if session check hangs
+      const controller = new AbortController()
+      const timer = setTimeout(() => controller.abort(), 3000)
+
+      let res, data
+      try {
+        res = await fetch('/account/me', { credentials: 'include', signal: controller.signal })
+      } catch (e) {
+        clearTimeout(timer)
+        showLoginForm('Not Signed In')
+        return
+      }
+      clearTimeout(timer)
+
+      if (res.status === 401 || !res.ok) { showLoginForm('Not Signed In'); return }
+
+      try {
+        data = await res.json()
+      } catch (e) {
+        showLoginForm('Not Signed In')
+        return
+      }
+
+      if (!data.success) { showLoginForm('Not Signed In'); return }
+
+      // ── Active Session Found: Show Dashboard ────────────────────────────────
+      document.getElementById('header-fairy-name').textContent = data.fairyName || data.username
+      document.getElementById('not-logged-in').style.display = 'none'
+      document.getElementById('btn-logout').style.display = 'inline-flex'
+
+      currentTier = data.membershipTier ?? 4
+      document.getElementById('gold-amount').textContent = (data.gold || 0).toLocaleString()
+      renderTiers(currentTier)
+
+      document.getElementById('cards-container').style.display = 'grid'
+    }
+
+    // ── Perform Login ───────────────────────────────────────────────────────────
+    async function performLogin() {
+      const user = document.getElementById('login-user').value.trim()
+      const pw = document.getElementById('login-pw').value.trim()
+
+      if (!user || !pw) {
+        toast('Please enter both username and password.', 'error')
+        return
+      }
+
+      const btn = document.getElementById('btn-login')
+      btn.disabled = true
+      btn.classList.add('loading')
+
+      try {
+        const res = await fetch('/account/login', {
+          method: 'POST',
+          credentials: 'include',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username: user, password: pw })
+        })
+        const data = await res.json()
+        if (data.success) {
+          toast('Signed in successfully!')
+          loadAccountData()
+        } else {
+          toast(errorMessage(data.error), 'error')
+        }
+      } catch {
+        toast('Network error. Please try again.', 'error')
+      } finally {
+        btn.disabled = false
+        btn.classList.remove('loading')
+      }
+    }
+
+    // ── Perform Logout ──────────────────────────────────────────────────────────
+    async function performLogout() {
+      await fetch('/account/logout', { method: 'POST', credentials: 'include' })
+      toast('Signed out.')
+      loadAccountData()
+    }
+
+    // ── Save membership ─────────────────────────────────────────────────────────
+    async function saveMembership() {
+      const selected = document.querySelector('input[name="tier"]:checked')
+      if (!selected) return
+
+      const btn = document.getElementById('btn-save-membership')
+      btn.disabled = true
+      btn.classList.add('loading')
+
+      try {
+        const res = await fetch('/account/membership', {
+          method: 'POST',
+          credentials: 'include',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ tier: parseInt(selected.value, 10) })
+        })
+        const data = await res.json()
+        if (data.success) {
+          currentTier = data.membershipTier
+          toast(`Membership set to ${data.tierLabel} - ${data.diamondsPerMonth} 💎/month`)
+        } else {
+          toast(errorMessage(data.error), 'error')
+        }
+      } catch {
+        toast('Network error. Please try again.', 'error')
+      } finally {
+        btn.disabled = false
+        btn.classList.remove('loading')
+      }
+    }
+
+    // ── Save password ───────────────────────────────────────────────────────────
+    async function savePassword() {
+      const current = document.getElementById('pw-current').value
+      const newPw = document.getElementById('pw-new').value
+      const confirm = document.getElementById('pw-confirm').value
+
+      if (!current || !newPw || !confirm) {
+        toast('Please fill in all password fields.', 'error'); return
+      }
+      if (newPw !== confirm) {
+        toast('New passwords don\'t match.', 'error'); return
+      }
+      if (newPw.length < 6) {
+        toast('Password must be at least 6 characters.', 'error'); return
+      }
+
+      const btn = document.getElementById('btn-save-password')
+      btn.disabled = true
+      btn.classList.add('loading')
+
+      try {
+        const res = await fetch('/account/change-password', {
+          method: 'POST',
+          credentials: 'include',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ currentPassword: current, newPassword: newPw })
+        })
+        const data = await res.json()
+        if (data.success) {
+          document.getElementById('pw-current').value = ''
+          document.getElementById('pw-new').value = ''
+          document.getElementById('pw-confirm').value = ''
+          toast('Password updated successfully!')
+        } else {
+          toast(errorMessage(data.error), 'error')
+        }
+      } catch {
+        toast('Network error. Please try again.', 'error')
+      } finally {
+        btn.disabled = false
+        btn.classList.remove('loading')
+      }
+    }
+
+    // ── Error message helpers ───────────────────────────────────────────────────
+    function errorMessage(code) {
+      const map = {
+        WRONG_PASSWORD: 'Current password is incorrect.',
+        PASSWORD_TOO_SHORT: 'Password must be at least 6 characters.',
+        MISSING_FIELDS: 'Please fill in all fields.',
+        INVALID_TIER: 'Invalid membership tier selected.',
+        NOT_LOGGED_IN: 'Your session has expired. Please log in again.',
+        ACCOUNT_NOT_FOUND: 'Account not found.',
+        INVALID_CREDENTIALS: 'Invalid username or password.',
+      }
+      return map[code] || `Error: ${code}`
+    }
+
+    // ── Bootstrap ───────────────────────────────────────────────────────────────
+    loadAccountData()
+  </script>
+</body>
+
+</html>

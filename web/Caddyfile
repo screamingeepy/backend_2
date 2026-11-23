@@ -1,0 +1,56 @@
+:80
+
+reverse_proxy /fairies/api/* 127.0.0.1:8013
+reverse_proxy /fairies-render/* 127.0.0.1:8013
+reverse_proxy /dxd/* 127.0.0.1:8013
+reverse_proxy /commerce/* 127.0.0.1:8013
+reverse_proxy /account* 127.0.0.1:8013
+reverse_proxy /bot* 127.0.0.1:8013
+reverse_proxy /gamesocket 127.0.0.1:9014
+
+rewrite / /home.html
+
+# The game's own copy links to pixiepages/<address> -- every coach in
+# publish/xml/panels/calendarmeetlist.xml is one of these -- so the original
+# URL shape is kept and handed to the page, which reads the address off the
+# path. See web/site/pixiePage.js.
+@pixiepage path_regexp pixiepage ^/pixiepages/([A-Za-z0-9]+)/?$
+rewrite @pixiepage /pixiepage.html?at={re.pixiepage.1}
+
+@gamexml path /xml/* /prefetch.json
+header @gamexml Cache-Control "no-cache"
+
+@gameart path /swf/* /meadows/*
+header @gameart Cache-Control "public, max-age=300"
+
+# the original outfit and item art, never edited, and a shop opens dozens of these at once
+@itemart path /swf/ms*.swf /swf/avatar0*.swf /swf/avatar_*.swf /swf/winterOutfit*.swf /swf/somatone*.swf /swf/postCardAssets.swf
+header @itemart Cache-Control "public, max-age=604800"
+
+encode zstd gzip
+
+# specific files below win over the general rules above
+# The site's own pages and scripts must revalidate rather than be guessed at.
+# With no Cache-Control, browsers fall back to heuristic freshness and serve a
+# stale .js without asking -- which looks like a page that half works, because
+# new code runs against an old helper file. ETag keeps revalidation cheap (304).
+# Deliberately not applied to publish/ XML or swf: the client reads megabytes of
+# those and they should stay cached hard.
+#
+# swf/avatarRenderer.swf is in here for the same reason, even though the rest
+# of swf/ is deliberately left cached hard: it is ours, it is rebuilt whenever
+# the renderer changes, and the Flash projector happily runs a stale one --
+# which looks like a renderer ignoring its own flashvars. It cost an afternoon
+# once; it is four kilobytes, fetched once per render.
+@sitechrome path /ruffle/ruffle.js /site/*.js /site/*.css /site/nav/*.js /site/nav/*.css *.html /phPlayer.js /swf/avatarRenderer.swf /swf/mmo.swf /swf/panel_code/printPanel.swf /swf/panel_code/profileEdit.swf /swf/panel_code/inventory.swf /swf/panel_code/shopPanel.swf /swf/libshop.swf /swf/panel_code/profile.swf /swf/panel_code/limitedProfile.swf /swf/panel_code/caf3.swf /swf/panel_code/caf3x.swf /swf/panel_content/caf.swf /swf/panel_content/cafWardrobeArt.swf
+header @sitechrome Cache-Control "no-cache"
+
+@gm path /gm /gm/ /gm.html /gm/*
+reverse_proxy @gm 127.0.0.1:8013
+
+redir /franchise/fairies/pixie-hollow/create/ /create.html permanent
+redir /franchise/fairies/pixie-hollow/game/ /live.html permanent
+redir /fairies/pixie-hollow/game/* /live.html permanent
+redir /fairies/pixie-hollow/game /live.html permanent
+
+file_server

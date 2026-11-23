@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GM Portal - News &amp; Calendar</title>
+  <meta name="description" content="Write Never News / Known Issues posts, moderate comments, and author calendar events." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" href="/wings.ico" type="image/x-icon" />
+  <link rel="preload" href="/site/nav.xml" as="fetch" />
+  <link rel="stylesheet" href="/site/nav/nav.css?v=20260927a" />
+  <link rel="stylesheet" href="/site/site.css?v=20260927a" />
+  <link rel="stylesheet" href="/site/account.css?v=20260927a" />
+  <link rel="stylesheet" href="/site/gm.css?v=20260929a" />
+  <link rel="stylesheet" href="/site/gmContent.css?v=20261003c" />
+</head>
+<body>
+  <div class="siteWrap">
+    <nav id="mainNav" aria-label="Main"></nav>
+    <div class="memberBar" data-member-bar hidden></div>
+
+    <main class="pageFrame">
+      <div class="pageInner">
+        <div class="frameLogo"></div>
+        <p class="breadCrumbs"><a href="/">Pixie Hollow</a> &gt; <a href="/account">Account Manager</a> &gt; <span>GM Portal - News &amp; Calendar</span></p>
+        <h1 class="pageTitle">GM Portal - News &amp; Calendar</h1>
+
+        <h2 class="pageHeading">Pixie Hollow Staff</h2>
+        <p class="pageLead" id="gmLead">Please Log In to the GM Portal.</p>
+
+        <section id="gmLogin" class="acctBoxes" hidden>
+          <div class="acctBox">
+            <h3>Staff Log In</h3>
+            <p>Log in with a Moderator or Administrator account.</p>
+            <form class="acctForm" id="gmLoginForm" novalidate>
+              <div class="formRow">
+                <label for="gmLoginName">Account ID:</label>
+                <input class="textInput" id="gmLoginName" autocomplete="username" />
+              </div>
+              <div class="formRow">
+                <label for="gmLoginPassword">Password:</label>
+                <input class="textInput" id="gmLoginPassword" type="password" autocomplete="current-password" />
+              </div>
+              <p class="formMessage" id="gmLoginMessage" role="alert"></p>
+              <p class="center"><button class="btnGray" type="submit" id="gmLoginButton">Log In</button></p>
+            </form>
+          </div>
+        </section>
+
+        <section id="gmDenied" class="acctBoxes" hidden>
+          <div class="acctBox">
+            <h3>Staff Only</h3>
+            <p>This account isn't a Moderator or Administrator. <a href="#" id="gmSwitchAccount">Log in with a different account</a>.</p>
+          </div>
+        </section>
+
+        <section id="gmTools" class="gmBoxes" hidden>
+          <div class="acctBox">
+            <h3 class="quill">Never News &amp; Known Issues</h3>
+            <div class="gmTabs" role="tablist" aria-label="Feeds" id="newsFeedTabs"></div>
+
+            <div class="gmFilterRow">
+              <label class="modalLabel" for="newsStatusPick">Show</label>
+              <select class="selectInput" id="newsStatusPick">
+                <option value="">All</option>
+                <option value="published">Published</option>
+                <option value="draft">Drafts</option>
+              </select>
+              <button class="btnGray" type="button" id="newsNewButton">Write a Post</button>
+            </div>
+
+            <ul class="newsAdminList" id="newsAdminList"></ul>
+
+            <form class="acctForm newsEditor" id="newsEditor" novalidate hidden>
+              <h4 class="newsEditorTitle" id="newsEditorTitle">Write a Post</h4>
+
+              <div class="formRow">
+                <label for="newsEditorFeed">Page:</label>
+                <select class="selectInput wideSelect" id="newsEditorFeed"></select>
+              </div>
+
+              <div class="formRow">
+                <label for="newsEditorHeadline">Title:</label>
+                <input class="textInput" id="newsEditorHeadline" maxlength="200" autocomplete="off" />
+              </div>
+
+              <div class="formRow">
+                <label for="newsEditorAuthor">Posted by:</label>
+                <input class="textInput" id="newsEditorAuthor" maxlength="60" placeholder="Sweet Pea" autocomplete="off" />
+              </div>
+
+              <div class="formRow">
+                <span class="rowLabel">Top image:</span>
+                <div class="newsPicker">
+                  <select class="selectInput wideSelect" id="newsHeroPick"></select>
+                  <div class="newsPickerUpload">
+                    <input type="file" id="newsHeroUpload" accept="image/png,image/jpeg,image/gif" />
+                    <span class="gmHint" id="newsHeroUploadNote">Or upload a new one (PNG, JPEG or GIF, up to 4MB).</span>
+                  </div>
+                  <img class="newsPickerPreview" id="newsHeroPreview" alt="" hidden />
+                </div>
+              </div>
+
+              <div class="formRow" id="newsThumbRow">
+                <span class="rowLabel">Thumbnail:</span>
+                <div class="newsPicker">
+                  <select class="selectInput wideSelect" id="newsThumbPick"></select>
+                  <span class="gmHint">Shown in the list of posts. Left on "Same as top image" it reuses the artwork above.</span>
+                  <img class="newsPickerPreview small" id="newsThumbPreview" alt="" hidden />
+                </div>
+              </div>
+
+              <div class="formRow">
+                <label for="newsEditorBody">Post:</label>
+                <div class="newsPicker">
+                  <div class="newsToolbar" id="newsToolbar"></div>
+                  <textarea class="textInput textArea newsBodyInput" id="newsEditorBody" rows="12"></textarea>
+                  <span class="gmHint">Plain text becomes paragraphs. &lt;b&gt;, &lt;i&gt;, &lt;a href&gt;, &lt;ul&gt;, &lt;li&gt; and &lt;img&gt; are kept; anything else is stripped when it saves.</span>
+                </div>
+              </div>
+
+              <div class="formRow">
+                <span class="rowLabel">Signature:</span>
+                <div class="newsPicker">
+                  <select class="selectInput wideSelect" id="newsSigPick"></select>
+                  <div class="newsPickerUpload">
+                    <input type="file" id="newsSigUpload" accept="image/png,image/jpeg,image/gif" />
+                    <span class="gmHint" id="newsSigUploadNote">Or upload a new signature.</span>
+                  </div>
+                  <img class="newsPickerPreview small" id="newsSigPreview" alt="" hidden />
+                </div>
+              </div>
+
+              <div class="formRow">
+                <label for="newsEditorDate">Date:</label>
+                <input class="textInput" id="newsEditorDate" type="datetime-local" />
+              </div>
+
+              <div class="formRow" id="newsCalRow" hidden>
+                <span class="rowLabel">Calendar:</span>
+                <div class="newsPicker">
+                  <label class="newsCheck"><input type="checkbox" id="newsCalEnabled" /> Also put this on the calendar</label>
+                </div>
+              </div>
+
+              <div id="newsCalFields" hidden>
+                <div class="formRow">
+                  <label for="newsCalTimeType">Kind:</label>
+                  <select class="selectInput wideSelect" id="newsCalTimeType">
+                    <option value="once">Once - a single timed happening</option>
+                    <option value="hourly">Hourly - repeats on the hour, all day</option>
+                    <option value="thisweek">This Week - a banner across several days</option>
+                    <option value="contest">Contest - a span with start/running/end art</option>
+                  </select>
+                </div>
+
+                <div class="formRow">
+                  <label for="newsCalDate">Calendar date:</label>
+                  <input class="textInput" id="newsCalDate" type="date" />
+                </div>
+
+                <div class="formRow" id="newsCalEndDateRow">
+                  <label for="newsCalEndDate">End date:</label>
+                  <input class="textInput" id="newsCalEndDate" type="date" />
+                </div>
+
+                <div class="formRow">
+                  <label for="newsCalIcon">Icon:</label>
+                  <select class="selectInput wideSelect" id="newsCalIcon"></select>
+                </div>
+
+                <div class="formRow">
+                  <label for="newsCalShortTitle">Short title:</label>
+                  <input class="textInput" id="newsCalShortTitle" maxlength="40" autocomplete="off" />
+                </div>
+
+                <div class="formRow">
+                  <label for="newsCalWhen">When:</label>
+                  <input class="textInput" id="newsCalWhen" maxlength="200" autocomplete="off" placeholder="3:00pm - 4:00pm PST" />
+                </div>
+
+                <div class="formRow">
+                  <label for="newsCalWhere">Where:</label>
+                  <input class="textInput" id="newsCalWhere" maxlength="200" autocomplete="off" placeholder="The Ballroom, Top 10 Servers" />
+                </div>
+              </div>
+
+              <div id="newsContestFields" hidden>
+                <div class="formRow">
+                  <span class="rowLabel">Contest:</span>
+                  <div class="newsPicker">
+                    <label class="newsCheck"><input type="checkbox" id="newsContestOpen" /> Open for entries (uncheck to close it)</label>
+                    <span class="gmHint">A contest only takes entries while it is published and open. Entries are read on the Contest Entries page.</span>
+                  </div>
+                </div>
+
+                <div class="formRow">
+                  <label for="newsContestAccepts">Entries can be:</label>
+                  <select class="selectInput wideSelect" id="newsContestAccepts">
+                    <option value="either">Writing, a picture, or both</option>
+                    <option value="writing">Writing only</option>
+                    <option value="art">A picture only</option>
+                  </select>
+                </div>
+
+                <div class="formRow">
+                  <label for="newsContestPerPlayer">Entries per player:</label>
+                  <input class="textInput" id="newsContestPerPlayer" type="number" min="1" max="20" value="1" />
+                </div>
+              </div>
+
+              <div id="newsPollFields" hidden>
+                <div class="formRow">
+                  <span class="rowLabel">Poll:</span>
+                  <div class="newsPicker">
+                    <label class="newsCheck"><input type="checkbox" id="newsPollOpen" /> Open for votes (uncheck to close it and move it to Past Polls)</label>
+                    <label class="newsCheck"><input type="checkbox" id="newsPollShowResults" /> Show results to a fairy as soon as she has voted</label>
+                    <span class="gmHint">The headline is the poll's title (and the question, if it only asks one). Results stay hidden while a poll is open unless you tick the second box.</span>
+                  </div>
+                </div>
+
+                <div class="formRow">
+                  <span class="rowLabel">Questions:</span>
+                  <div class="newsPicker">
+                    <div id="newsPollQuestions"></div>
+                    <button class="btnGray" type="button" id="newsPollAddQuestion">Add a question</button>
+                    <span class="gmHint">Up to 10 questions, each with two to ten answers (use Add an answer for more than four). With just one question you can leave its box empty and the headline is the question. Once anyone has voted, existing questions and answers are locked, but you can still add more answers to a question and more questions at the end (fairies who already voted are asked only the new questions).</span>
+                  </div>
+                </div>
+
+                <div class="formRow" id="newsPollResultsRow" hidden>
+                  <span class="rowLabel">Votes so far:</span>
+                  <div class="newsPicker"><div id="newsPollResults"></div></div>
+                </div>
+              </div>
+
+              <div class="formRow">
+                <span class="rowLabel">Options:</span>
+                <div class="newsPicker">
+                  <label class="newsCheck"><input type="checkbox" id="newsEditorComments" /> Let fairies comment on this post</label>
+                  <label class="newsCheck"><input type="checkbox" id="newsEditorPublished" /> Published (uncheck to keep it a draft)</label>
+                </div>
+              </div>
+
+              <p class="formMessage" id="newsEditorMessage" role="alert"></p>
+
+              <p class="center newsEditorActions">
+                <button class="btnGold" type="submit" id="newsSaveButton">Save</button>
+                <button class="btnGray" type="button" id="newsPreviewButton">Preview</button>
+                <button class="btnGray" type="button" id="newsCancelButton">Close</button>
+                <button class="btnGray newsDelete" type="button" id="newsDeleteButton" hidden>Delete</button>
+              </p>
+
+              <div class="newsLivePreview newsPage" id="newsLivePreview" hidden></div>
+            </form>
+          </div>
+
+          <div class="acctBox">
+            <h3>Comments Waiting <span class="gmCount" id="newsCommentCount"></span></h3>
+            <div class="gmFilterRow">
+              <label class="modalLabel" for="newsCommentStatusPick">Show</label>
+              <select class="selectInput" id="newsCommentStatusPick">
+                <option value="pending">Waiting</option>
+                <option value="approved">Approved</option>
+                <option value="rejected">Rejected</option>
+              </select>
+            </div>
+            <ul class="newsModList" id="newsModList"></ul>
+          </div>
+
+          <div class="acctBox">
+            <h3 class="quill">Calendar</h3>
+            <p>Feeds both the public Calendar page and the in-game calendar panel.</p>
+
+            <div class="gmFilterRow">
+              <label class="modalLabel" for="calStatusPick">Show</label>
+              <select class="selectInput" id="calStatusPick">
+                <option value="">All</option>
+                <option value="true">Published</option>
+                <option value="false">Drafts</option>
+              </select>
+              <button class="btnGray" type="button" id="calNewButton">Add an Event</button>
+            </div>
+
+            <ul class="newsAdminList" id="calAdminList"></ul>
+
+            <form class="acctForm newsEditor" id="calEditor" novalidate hidden>
+              <h4 class="newsEditorTitle" id="calEditorTitle">Add an Event</h4>
+
+              <div class="formRow">
+                <label for="calEditorTimeType">Kind:</label>
+                <select class="selectInput wideSelect" id="calEditorTimeType">
+                  <option value="once">Once - a single timed happening</option>
+                  <option value="hourly">Hourly - repeats on the hour, all day</option>
+                  <option value="thisweek">This Week - a banner across several days</option>
+                  <option value="contest">Contest - a span with start/running/end art</option>
+                </select>
+              </div>
+
+              <div class="formRow">
+                <label for="calEditorDate">Date:</label>
+                <input class="textInput" id="calEditorDate" type="date" />
+              </div>
+
+              <div class="formRow" id="calEditorEndDateRow">
+                <label for="calEditorEndDate">End date:</label>
+                <input class="textInput" id="calEditorEndDate" type="date" />
+              </div>
+
+              <div class="formRow">
+                <label for="calEditorIcon">Icon:</label>
+                <select class="selectInput wideSelect" id="calEditorIcon"></select>
+              </div>
+
+              <div class="formRow">
+                <label for="calEditorTitleInput">Title:</label>
+                <input class="textInput" id="calEditorTitleInput" maxlength="200" autocomplete="off" />
+              </div>
+
+              <div class="formRow">
+                <label for="calEditorShortTitle">Short title:</label>
+                <input class="textInput" id="calEditorShortTitle" maxlength="40" autocomplete="off" />
+                <span class="gmHint">Shown on the in-game panel's day chip. Keep it to a few words.</span>
+              </div>
+
+              <div class="formRow">
+                <label for="calEditorWhen">When:</label>
+                <input class="textInput" id="calEditorWhen" maxlength="200" autocomplete="off" placeholder="3:00pm - 4:00pm PST" />
+              </div>
+
+              <div class="formRow">
+                <label for="calEditorWhere">Where:</label>
+                <input class="textInput" id="calEditorWhere" maxlength="200" autocomplete="off" placeholder="The Ballroom, Top 10 Servers" />
+                <span class="gmHint">Fashion events: a comma-separated shop list instead.</span>
+              </div>
+
+              <div class="formRow">
+                <label for="calEditorColor">Color:</label>
+                <input class="textInput" id="calEditorColor" maxlength="20" autocomplete="off" placeholder="#F86800" />
+                <span class="gmHint">Hex tint for a This Week banner or Hourly row. Leave blank otherwise.</span>
+              </div>
+
+              <div class="formRow">
+                <label for="calEditorLink">Read more link:</label>
+                <input class="textInput" id="calEditorLink" autocomplete="off" placeholder="https://" />
+              </div>
+
+              <div class="formRow">
+                <label for="calEditorImage">Popup image:</label>
+                <input class="textInput" id="calEditorImage" autocomplete="off" placeholder="/site/img/calendar/…" />
+                <span class="gmHint">Shown by the in-game panel's own popup only.</span>
+              </div>
+
+              <div class="formRow">
+                <span class="rowLabel">Options:</span>
+                <label class="newsCheck"><input type="checkbox" id="calEditorPublished" /> Published (uncheck to keep it a draft)</label>
+              </div>
+
+              <p class="formMessage" id="calEditorMessage" role="alert"></p>
+
+              <p class="center newsEditorActions">
+                <button class="btnGold" type="submit" id="calSaveButton">Save</button>
+                <button class="btnGray" type="button" id="calCancelButton">Close</button>
+                <button class="btnGray newsDelete" type="button" id="calDeleteButton" hidden>Delete</button>
+              </p>
+            </form>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script src="/site/site.js?v=20260927a"></script>
+  <script src="/site/nav.js?v=20260927a"></script>
+  <script src="/site/loginModal.js?v=20260927a"></script>
+  <script src="/site/tickets.js?v=20260927a"></script>
+  <script src="/site/gmPortal.js?v=20260927a"></script>
+  <script src="/site/gmNews.js?v=20261003b"></script>
+  <script src="/site/gmCalendar.js?v=20260927a"></script>
+</body>
+</html>

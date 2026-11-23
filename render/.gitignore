@@ -1,0 +1,3 @@
+# Empty file the mxmlc builds create only to satisfy the compiler's default
+# font-snapshot lookup. Not input to anything.
+localFonts.ser

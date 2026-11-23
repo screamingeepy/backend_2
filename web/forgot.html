@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Forgot Your Password</title>
+  <meta name="description" content="Reset your Pixie Hollow password." />
+  <link rel="icon" href="/wings.ico" type="image/x-icon" />
+  <link rel="preload" href="/site/nav.xml" as="fetch" />
+  <link rel="stylesheet" href="/site/nav/nav.css?v=20260926m" />
+  <link rel="stylesheet" href="/site/site.css?v=20261028a" />
+  <link rel="stylesheet" href="/site/account.css?v=20261028a" />
+</head>
+<body class="interiorPage">
+  <div class="siteWrap">
+    <nav id="mainNav" aria-label="Main"></nav>
+    <div class="memberBar" data-member-bar hidden></div>
+
+    <main class="pageFrame">
+      <div class="pageInner">
+        <div class="frameLogo"></div>
+        <p class="breadCrumbs"><a href="/">Pixie Hollow</a> &gt; <span>Reset Your Password</span></p>
+        <h1 class="pageTitle">Reset Your Password</h1>
+
+        <div class="acctBoxes">
+          <div class="acctBox" id="inputBox">
+            <h2 class="quill">Reset Your Password</h2>
+            <p>Enter your Account ID and the e-mail address on the account. If they match, we will send a password reset link to that address.</p>
+
+            <form id="forgotForm" novalidate>
+              <div class="formRow">
+                <label for="username">Account ID:</label>
+                <div>
+                  <input class="textInput" id="username" autocomplete="username" maxlength="20" />
+                  <p class="fieldError" id="usernameError"></p>
+                </div>
+              </div>
+              <div class="formRow">
+                <label for="email">E-mail Address:</label>
+                <div>
+                  <input class="textInput" id="email" type="email" autocomplete="email" />
+                  <p class="fieldError" id="emailError"></p>
+                </div>
+              </div>
+              <p class="center"><button class="btnGold" type="submit" id="sendButton">Send Reset Link</button></p>
+              <p class="formMessage" id="message" role="alert"></p>
+            </form>
+
+            <p class="fieldTip">Don't remember your Account ID? <a href="/forgotusername.html">Get it by e-mail</a>.</p>
+            <p class="fieldTip">Stuck? <a href="/contactUs.html?issue=forgotCredentials">Contact Us for help</a>.</p>
+          </div>
+
+          <div class="acctBox" id="sentBox" hidden>
+            <h2 class="quill">Check Your E-mail</h2>
+            <p>We've sent a password reset link to the e-mail address on that account. It works for 30 minutes.</p>
+            <p class="center"><a href="/" class="btnGold"><span>Back to Home</span></a></p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="/site/site.js?v=20261028a"></script>
+  <script src="/site/nav.js?v=20260926m"></script>
+  <script src="/site/loginModal.js?v=20260926m"></script>
+  <script src="/site/forgot.js?v=20260928a"></script>
+</body>
+</html>

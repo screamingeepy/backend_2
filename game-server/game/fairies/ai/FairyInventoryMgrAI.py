@@ -1,0 +1,251 @@
+from direct.distributed.DistributedObjectGlobalAI import DistributedObjectGlobalAI
+
+from game.fairies.badges import badge_events
+
+class FairyInventoryMgrAI(DistributedObjectGlobalAI):
+    def __init__(self, air) -> None:
+        super().__init__(air)
+
+    def getPouch(self, avId: int) -> list:
+        pouchData = self.air.mongoInterface.retrieveDocs(
+            "fairies", avId, "_id", {"pouch": 1}
+        )[0]["pouch"]
+        pouch = []
+
+        for index, item in enumerate(pouchData):
+            slot = item["slot"]
+            if slot < 0:
+                slot = index
+
+            pouch.append([item["item_id"], slot, item["amount"]])
+
+        return pouch
+
+    def avatarOnline(self, avId: int) -> None:
+        avatar = self.air.doId2do.get(avId)
+
+        if not avatar:
+            self.notify.warning(f"No avatar present on AI for avatarOnline: {avId}")
+            return
+
+        avatar.d_setPouch(self.getPouch(avId))
+
+    # Gold charged to make a temporary item permanent, keyed by the item's
+    # type. These mirror priceData.xml conversionPrices categories -- a type's
+    # index in FairiesConstants.ITEM_TYPES is the category id the client prices
+    # from. Wardrobe items are the clothing types; storage items are Furniture,
+    # Lamp and Decoration.
+    CONV_COSTS = {
+        "Shirt": 6,
+        "Belt": 4,
+        "Skirt": 7,
+        "WristItem": 3,
+        "HeadItem": 5,
+        "Necklace": 3,
+        "AnkleItem": 3,
+        "Shoes": 5,
+        "Furniture": 6,
+        "Lamp": 4,
+        "Decoration": 5,
+    }
+
+    def wardrobeConversion(self, inv_id):
+        self._convertItem(inv_id)
+
+    def storageConversion(self, inv_id):
+        self._convertItem(inv_id)
+
+    def _convertItem(self, inv_id):
+        # Storage and wardrobe items both live in avatar.items and convert
+        # identically -- flip howAcquired to 0 (permanent) and charge gold for
+        # the item's type. The client sends the matching conversion for the
+        # entry it holds; we look the item up by inv_id either way.
+        avId = self.air.getAvatarIdFromSender()
+        avatar = self.air.doId2do.get(avId)
+
+        if not avatar:
+            self.notify.warning(f"convertItem: no avatar on AI for avId={avId}")
+            return
+
+        result = self.air.mongoInterface.mongodb.fairies.find_one(
+            {"_id": avId, "avatar.items.inv_id": inv_id},
+            {"avatar.items.$": 1}
+        )
+        if result:
+            item_type = result["avatar"]["items"][0]["type"]
+        else:
+            self.notify.warning(f"convertItem: no item inv_id={inv_id} for avId={avId}")
+            return
+
+        self.air.mongoInterface.mongodb.fairies.update_one(
+            {"_id": avId},
+            {
+                "$set": {
+                    "avatar.items.$[item].howAcquired": 0
+                }
+            },
+            array_filters=[{"item.inv_id": inv_id}]
+        )
+
+        avatar.takeGold(self.CONV_COSTS[item_type])
+
+    def addIngredientsToPouch(self, avId: int, itemID: int, itemCount: int, slot: int) -> bool:
+        if not self._addIngredientsToPouch(avId, itemID, itemCount, slot):
+            return False
+
+        # Every way of gaining an ingredient lands here -- meadow pickups, game
+        # rewards, shop purchases -- so the collection badges hang off this
+        # rather than off each of those paths.
+        eventId = badge_events.INGREDIENT_TO_EVENT.get(itemID)
+
+        if eventId is not None:
+            self.air.badgeManager.d_accumulate(avId, eventId, itemCount)
+
+        return True
+
+    def _addIngredientsToPouch(self, avId: int, itemID: int, itemCount: int, slot: int) -> bool:
+        result = self.air.mongoInterface.mongodb.fairies.update_one(
+            {"_id": avId, "pouch.item_id": itemID},
+            {"$inc": {"pouch.$.amount": itemCount}}
+        )
+
+        if result.modified_count > 0:
+            return True
+
+        if slot < 0:
+            slot = self._nextPouchSlot(avId)
+
+        result = self.air.mongoInterface.mongodb.fairies.update_one(
+            {"_id": avId},
+            {
+                "$push": {
+                    "pouch": {
+                        "item_id": itemID,
+                        "slot": slot,
+                        "amount": itemCount
+                    }
+                }
+            }
+        )
+
+        return result.modified_count > 0
+
+    def removeIngredientsFromPouch(self, avId: int, itemID: int, itemCount: int) -> bool:
+        if itemCount < 0:
+            return False
+
+        # First, read the current pouch entry
+        fairy = self.air.mongoInterface.mongodb.fairies.find_one(
+            {"_id": avId, "pouch.item_id": itemID},
+            {"pouch.$": 1}  # Only return the matching pouch element
+        )
+
+        if not fairy or not fairy.get("pouch"):
+            return False  # Item doesn't exist in pouch
+
+        currentAmount = fairy["pouch"][0]["amount"]
+
+        if currentAmount < itemCount:
+            return False  # Not enough
+
+        result = self.air.mongoInterface.mongodb.fairies.update_one(
+            {"_id": avId, "pouch.item_id": itemID},
+            {"$inc": {"pouch.$.amount": -itemCount}}
+        )
+
+        if result.modified_count == 0:
+            return False
+
+        # Clean up if amount hit 0
+        self.air.mongoInterface.mongodb.fairies.update_one(
+            {"_id": avId},
+            {"$pull": {"pouch": {"item_id": itemID, "amount": {"$lte": 0}}}}
+        )
+
+        return True
+
+    def _nextPouchSlot(self, avId: int) -> int:
+        usedSlots = {slot for _itemId, slot, _amount in self.getPouch(avId) if slot >= 0}
+        slot = 0
+
+        while slot in usedSlots:
+            slot += 1
+
+        return slot
+
+    def _getPouchSlotForItem(self, avId: int, itemID: int) -> int:
+        for itemId, slot, _amount in self.getPouch(avId):
+            if itemId == itemID:
+                return max(0, slot)
+
+        return 0
+
+    def addIngredientsToPouchWithPickupFeedback(self, avId: int, itemID: int, itemCount: int, slot: int = -1) -> bool:
+        if not self.addIngredientsToPouch(avId, itemID, itemCount, slot):
+            return False
+
+        avatar = self.air.doId2do.get(avId)
+
+        if not avatar:
+            return True
+
+        pouchSlot = self._getPouchSlotForItem(avId, itemID)
+        avatar.sendUpdate("setItemEvent", [itemID, itemCount, 0, 0])
+        avatar.d_syncPouchAfterChanges()
+        return True
+
+    # FairiesConstants.MTX_ITEM_ID - pixie diamonds. Stored as the fairy's
+    # `gold` field; the client builds its own diamond pouch entry from gold.
+    MTX_ITEM_ID = 8499
+
+    def migratePouchDiamonds(self, avId: int) -> None:
+        # Level-up gifts used to drop diamonds into the pouch as a real 8499
+        # stack (a second diamond slot the client mistrades against). Fold any
+        # such stack into gold. Must run before fillInFairyPlayer reads gold,
+        # since that read is async and would otherwise load the old value.
+        fairy = self.air.mongoInterface.mongodb.fairies.find_one_and_update(
+            {"_id": avId, "pouch.item_id": self.MTX_ITEM_ID},
+            {"$pull": {"pouch": {"item_id": self.MTX_ITEM_ID}}},
+            projection={"pouch": 1},
+        )
+        if not fairy:
+            return
+
+        amount = sum(
+            int(entry.get("amount", 0) or 0)
+            for entry in fairy.get("pouch", [])
+            if entry.get("item_id") == self.MTX_ITEM_ID
+        )
+        if amount > 0:
+            self.air.mongoInterface.mongodb.fairies.update_one(
+                {"_id": avId}, {"$inc": {"gold": amount}})
+
+        self.notify.info(f"Moved {amount} pouch diamonds into gold for avId={avId}")
+
+    def grantItem(self, avId: int, itemId: int, amount: int = 1, color1: int = -1, color2: int = -1) -> bool:
+        # Used by FairyExperienceManagerAI for level-up gifts. Every gift
+        # lands in the ingredient pouch for now regardless of its real item
+        # type - LEVEL_UPS in XPConfig has ids in several ranges (8xxx, 14xxx,
+        # 22xxx, 89xxx) and we haven't sorted out which are actually wardrobe/
+        # badge items rather than pouch stackables. Refine this once that's
+        # figured out.
+        itemId = int(itemId or 0)
+        amount = max(1, int(amount or 1))
+
+        if itemId <= 0:
+            return False
+
+        # 8499 is FairiesConstants.MTX_ITEM_ID, pixie diamonds. Those are the
+        # `gold` field, not a pouch stackable - the client fakes its own
+        # diamond pouch entry from gold, so a real 8499 stack shows up as a
+        # second diamond slot and confuses the trade panel.
+        if itemId == self.MTX_ITEM_ID:
+            avatar = self.air.doId2do.get(avId)
+            if not avatar:
+                return False
+
+            avatar.addGold(amount)
+            avatar.sendUpdate("setItemEvent", [itemId, amount, 0, 0])
+            return True
+
+        return self.addIngredientsToPouchWithPickupFeedback(avId, itemId, amount, -1)

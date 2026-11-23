@@ -1,0 +1,203 @@
+/* rebuilt from swf/panel_content/calendar.swf */
+
+.calendarBody .siteWrap { width: min(1100px, calc(100vw - 24px)); }
+
+.calendarStage {
+  width: 100%;
+  margin: 0 auto;
+  padding: 60px 0 60px 250px;
+}
+
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.calendarFit {
+  width: 813px;
+  margin: 0 auto;
+}
+
+.calendarPanel {
+  position: relative;
+  width: 813px;
+  height: 959px;
+  background: url("/site/img/calendar/calendarPanel.png") no-repeat 0 0 / 813px 959px;
+  font-family: var(--roundFont);
+}
+
+.calMonthTitle {
+  position: absolute;
+  left: 262px;
+  top: 138px;
+  width: 285px;
+  margin: 0;
+  font-family: var(--scriptFont);
+  font-size: 42px;
+  font-weight: normal;
+  line-height: 1.2;
+  color: #2b1404;
+  text-align: center;
+}
+
+.calClock {
+  position: absolute;
+  left: 597px;
+  top: 92px;
+  width: 154px;
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.2;
+  color: #fff;
+  text-align: center;
+}
+
+.calDay,
+.calEvent {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  font-family: var(--roundFont);
+  color: #f00;
+}
+
+.calDay {
+  font-size: 12px;
+  line-height: 1.2;
+}
+
+.calDay.grayOut { opacity: 0.3; }
+
+.calEvent {
+  width: 96px;
+  font-size: 10px;
+  line-height: 1.15;
+  text-align: left;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.calEvent:hover,
+.calEvent:focus-visible { color: #b00; }
+
+.calLink {
+  position: absolute;
+  margin: 0;
+  padding: 0 0 3px;
+  border: 0;
+  border-bottom: 2px solid #452307;
+  background: none;
+  font-family: var(--roundFont);
+  color: #452307;
+  cursor: pointer;
+  text-decoration: none;
+  line-height: 1.2;
+}
+
+.calLink:hover { color: #6e3a0c; }
+
+.calMonthSwitch {
+  left: 352px;
+  top: 902px;
+  font-size: 18px;
+}
+
+.calMeet {
+  left: 60px;
+  top: 891px;
+  padding-left: 27px;
+  border-bottom: 0;
+  font-size: 13px;
+  min-height: 35px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.calMeet span {
+  border-bottom: 2px solid #452307;
+  padding-bottom: 1px;
+  margin-bottom: 1px;
+}
+
+.calPopup {
+  position: absolute;
+  left: 152px;
+  top: 322px;
+  width: 444px;
+  height: 266px;
+  background: url("/site/img/calendar/eventPopup.png") no-repeat 0 0 / 444px 266px;
+  z-index: 5;
+}
+
+.calPopup[hidden] { display: none; }
+
+.calPopupTitle {
+  position: absolute;
+  left: 26px;
+  top: 24px;
+  width: 378px;
+  margin: 0;
+  font-family: var(--scriptFont);
+  font-size: 22px;
+  font-weight: normal;
+  line-height: 1.2;
+  color: #000;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.calPopupImage {
+  position: absolute;
+  left: 35px;
+  top: 71px;
+  width: 145px;
+  height: 99px;
+  object-fit: cover;
+}
+
+.calPopupImage[hidden] { display: none; }
+
+.calPopupWhen,
+.calPopupWhere {
+  position: absolute;
+  width: 200px;
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.25;
+  color: #fff;
+}
+
+.calPopupWhen { left: 194px; top: 84px; }
+.calPopupWhere { left: 195px; top: 142px; }
+
+.calPopupClose,
+.calPopupX {
+  position: absolute;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.calPopupClose { left: 148px; top: 188px; width: 133px; height: 38px; }
+.calPopupX { left: 404px; top: 5px; width: 28px; height: 29px; }
+
+.calPopupClose:hover,
+.calPopupX:hover { background: rgba(255, 255, 255, 0.15); border-radius: 10px; }
+
+.calPopupClose:focus-visible,
+.calPopupX:focus-visible,
+.calEvent:focus-visible,
+.calLink:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+
+@media (max-width: 520px) {
+  .calendarStage { padding-left: 0; padding-top: 20px; }
+}

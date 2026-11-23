@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pixie Hollow Rewritten</title>
+  <meta name="description" content="Welcome to Pixie Hollow." />
+  <link rel="icon" href="/wings.ico" type="image/x-icon" />
+  <link rel="preload" href="/earlyhome/images/mainimage.png" as="image" />
+  <link rel="stylesheet" href="/earlyhome/earlyhome.css" />
+</head>
+<body>
+  <!-- picks the seasonal backdrop before first paint so the page never shows one season -->
+  <script>
+    document.documentElement.className =
+      ['winter', 'winter', 'spring', 'spring', 'spring', 'summer',
+       'summer', 'summer', 'fall', 'fall', 'fall', 'winter'][new Date().getMonth()]
+  </script>
+
+  <div class="page">
+    <header class="hero">
+      <div class="hero__wrap">
+        <a class="logo" href="/earlyhome.html" aria-label="Pixie Hollow Rewritten home">
+          <img src="/earlyhome/images/logo.png" width="231" height="187" alt="Pixie Hollow Rewritten" />
+        </a>
+
+        <img class="hero__main" src="/earlyhome/images/mainimage.png" width="1045" height="450" alt="" />
+
+        <div class="welcome">
+          <img class="welcome__img" src="/earlyhome/images/welcome.png" width="1078" height="536" alt="Welcome to Pixie Hollow!" />
+          <img class="firefly" src="/earlyhome/images/firefly.png" width="460" height="533" alt="" />
+        </div>
+
+        <a class="play" href="/" aria-label="Play Pixie Hollow">
+          <img src="/earlyhome/images/play.png" width="689" height="343" alt="Play" />
+        </a>
+      </div>
+    </header>
+
+    <main class="main">
+      <ul class="sections">
+        <li><a class="section section1" href="#"><img src="/earlyhome/images/section1.png" width="586" height="760" alt="About Us" /></a></li>
+        <li><a class="section section2" href="#"><img src="/earlyhome/images/section2.png" width="630" height="764" alt="Links" /></a></li>
+        <li><a class="section section3" href="/faqs.html"><img src="/earlyhome/images/section3.png" width="598" height="759" alt="FAQ" /></a></li>
+      </ul>
+    </main>
+
+    <footer class="footer">
+      <img class="petals petals--left" src="/earlyhome/images/petals.png" width="163" height="86" alt="" />
+      <img class="petals petals--right" src="/earlyhome/images/petals2.png" width="210" height="93" alt="" />
+
+      <p class="disclaimer">
+        Pixie Hollow Rewritten is a fan-made project with no affiliation to The Walt Disney Company or Disney
+        Interactive. It is being developed as a completely free experience, funded solely by its team. There are no
+        subscriptions, advertisements, donations, or any form of monetization.
+      </p>
+    </footer>
+  </div>
+</body>
+</html>

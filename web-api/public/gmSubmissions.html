@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GM Portal - Submissions</title>
+  <meta name="description" content="Read and approve what players send in for the Pixie Postings." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" href="/wings.ico" type="image/x-icon" />
+  <link rel="preload" href="/site/nav.xml" as="fetch" />
+  <link rel="stylesheet" href="/site/nav/nav.css?v=20260927a" />
+  <link rel="stylesheet" href="/site/site.css?v=20260927a" />
+  <link rel="stylesheet" href="/site/account.css?v=20260927a" />
+  <link rel="stylesheet" href="/site/gm.css?v=20260929a" />
+  <link rel="stylesheet" href="/site/gmSubmissions.css?v=20261003d" />
+</head>
+<body>
+  <div class="siteWrap">
+    <nav id="mainNav" aria-label="Main"></nav>
+    <div class="memberBar" data-member-bar hidden></div>
+
+    <main class="pageFrame">
+      <div class="pageInner">
+        <div class="frameLogo"></div>
+        <p class="breadCrumbs"><a href="/">Pixie Hollow</a> &gt; <a href="/account">Account Manager</a> &gt; <span>GM Portal - Submissions</span></p>
+        <h1 class="pageTitle">GM Portal - Submissions</h1>
+
+        <h2 class="pageHeading">Pixie Hollow Staff</h2>
+        <p class="pageLead" id="gmLead">Please Log In to the GM Portal.</p>
+
+        <section id="gmLogin" class="acctBoxes" hidden>
+          <div class="acctBox">
+            <h3>Staff Log In</h3>
+            <p>Log in with a Moderator or Administrator account.</p>
+            <form class="acctForm" id="gmLoginForm" novalidate>
+              <div class="formRow">
+                <label for="gmLoginName">Account ID:</label>
+                <input class="textInput" id="gmLoginName" autocomplete="username" />
+              </div>
+              <div class="formRow">
+                <label for="gmLoginPassword">Password:</label>
+                <input class="textInput" id="gmLoginPassword" type="password" autocomplete="current-password" />
+              </div>
+              <p class="formMessage" id="gmLoginMessage" role="alert"></p>
+              <p class="center"><button class="btnGray" type="submit" id="gmLoginButton">Log In</button></p>
+            </form>
+          </div>
+        </section>
+
+        <section id="gmDenied" class="acctBoxes" hidden>
+          <div class="acctBox">
+            <h3>Staff Only</h3>
+            <p>This account isn't a Moderator or Administrator. <a href="#" id="gmSwitchAccount">Log in with a different account</a>.</p>
+          </div>
+        </section>
+
+        <section id="gmTools" class="gmBoxes" hidden>
+          <div class="acctBox">
+            <h3>Player Submissions <span class="gmCount" id="pendingCount"></span></h3>
+            <p class="gmHint">Nothing here is public until you pick it. Fairy names only; the account is shown so a problem can be traced.</p>
+            <div class="gmFilterRow">
+              <label class="modalLabel" for="subStatusPick">Show</label>
+              <select class="selectInput" id="subStatusPick">
+                <option value="pending">Waiting to be read</option>
+                <option value="approved">Picked</option>
+                <option value="rejected">Not picked</option>
+                <option value="">All</option>
+              </select>
+              <label class="modalLabel" for="subTypePick">Kind</label>
+              <select class="selectInput" id="subTypePick">
+                <option value="">All kinds</option>
+                <option value="fairytale">Fairy Tales</option>
+                <option value="poem">Poems</option>
+                <option value="question">Questions for Tabby</option>
+                <option value="art">Art</option>
+              </select>
+            </div>
+            <p class="formMessage" id="subMessage" role="alert"></p>
+            <div id="subList"></div>
+            <div class="gmPager" id="subPager"></div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script src="/site/site.js?v=20260927a"></script>
+  <script src="/site/nav.js?v=20260927a"></script>
+  <script src="/site/loginModal.js?v=20260927a"></script>
+  <script src="/site/gmPortal.js?v=20260927a"></script>
+  <script src="/site/gmSubmissions.js?v=20261003d"></script>
+</body>
+</html>

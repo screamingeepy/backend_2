@@ -1,0 +1,17 @@
+COMMUNITY_ALERTS_ALL = 3
+
+OTP_DO_ID_FAIRIES_BADGE_MANAGER = 4690
+OTP_DO_ID_REALM_GUARDIAN = 4755
+OTP_DO_ID_FAIRIES_INVENTORY_MANAGER = 4677
+OTP_DO_ID_FAIRIES_PET_MANAGER = 4691
+# Must match the doId the client registers LeaderBoardMgr on -- see
+# DCWorldManager.createLocalObject("LeaderBoardMgr", 4692) in mmo.swf. (Note the
+# stale OTP_DO_ID_LEADERBOARD_MANAGER = 4502 in OtpDoGlobals is unused.)
+OTP_DO_ID_LEADERBOARD_MANAGER = 4692
+
+# Everything from this zone up to the top of the available range is
+# reserved for the dynamic zone pool.  Note that our effective maximum
+# zone may be less than DynamicZonesEnd, depending on the assignment
+# of available doIds--we must be careful not to overlap.
+DynamicZonesBegin =    61000
+DynamicZonesEnd =      (1 << 20)

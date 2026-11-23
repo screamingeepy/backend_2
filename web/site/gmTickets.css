@@ -1,0 +1,64 @@
+
+.gmTicketMeta {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 3px 10px;
+  margin: 0 0 12px;
+  font: 13px/18px Helvetica, Arial, sans-serif;
+}
+
+.gmTicketMeta dt { color: #7fb3cf; }
+.gmTicketMeta dd { margin: 0; color: #fff; overflow-wrap: anywhere; }
+
+/* the Issue row's picker, so a ticket can be re-filed while triaging it. */
+.gmCategoryRow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.gmCategoryPick {
+  max-width: 220px;
+  padding: 2px 6px;
+  font: 13px/18px Helvetica, Arial, sans-serif;
+}
+
+.gmCategoryNote {
+  color: #7fb3cf;
+  font: 12px/16px Helvetica, Arial, sans-serif;
+}
+
+.gmReplyRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.gmTicketActions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid #2c4453;
+}
+
+.gmActionNote {
+  flex: 1 1 100%;
+  color: #ffc2cb;
+  font: 12px/16px Helvetica, Arial, sans-serif;
+}
+
+.gmActionNote:empty { display: none; }
+
+.gmMergePick {
+  min-width: 0;
+  max-width: min(260px, 100%);
+  padding: 2px 6px;
+  font: 13px/18px Helvetica, Arial, sans-serif;
+}

@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact Us</title>
+  <meta name="description" content="Send a message to the Pixie Hollow team." />
+  <link rel="icon" href="/wings.ico" type="image/x-icon" />
+  <link rel="preload" href="/site/nav.xml" as="fetch" />
+  <link rel="stylesheet" href="/site/nav/nav.css?v=20260926m" />
+  <link rel="stylesheet" href="/site/site.css?v=20261028a" />
+  <link rel="stylesheet" href="/site/account.css?v=20261103d" />
+</head>
+<body class="interiorPage">
+  <div class="siteWrap">
+    <nav id="mainNav" aria-label="Main"></nav>
+    <div class="memberBar" data-member-bar hidden></div>
+
+    <main class="pageFrame">
+      <div class="pageInner">
+        <div class="frameLogo"></div>
+        <p class="breadCrumbs"><a href="/">Pixie Hollow</a> &gt; <a href="/faqs.html">Help</a> &gt; <span>Contact Us</span></p>
+        <h1 class="pageTitle">Contact Us</h1>
+
+        <h2 class="pageHeading">How Can We Help?</h2>
+        <p class="pageLead">Tell us what's happening and we'll reply by e-mail.</p>
+
+        <div class="acctBoxes wideBoxes">
+          <div class="acctBox" id="ticketBox">
+            <h3 class="quill">Send Us a Message</h3>
+            <form class="acctForm" id="ticketForm" novalidate>
+              <div aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden">
+                <label>Leave this empty <input id="website" name="website" tabindex="-1" autocomplete="off" /></label>
+              </div>
+              <div class="formRow">
+                <label for="playerName">Account ID or Fairy Name:</label>
+                <div>
+                  <input class="textInput" id="playerName" maxlength="40" autocomplete="username" />
+                  <p class="fieldError" id="playerNameError"></p>
+                </div>
+              </div>
+
+              <div class="formRow" id="emailRow">
+                <label for="ticketEmail">E-mail:</label>
+                <div>
+                  <input class="textInput" id="ticketEmail" type="email" autocomplete="email" />
+                  <p class="fieldError" id="ticketEmailError"></p>
+                </div>
+              </div>
+
+              <div class="formRow">
+                <label for="category">Issue:</label>
+                <div>
+                  <select class="selectInput wideSelect" id="category">
+                    <option value="">Choose one</option>
+                    <option value="account">Account</option>
+                    <option value="tech">Tech</option>
+                    <option value="bugSite">Bug Report: Site</option>
+                    <option value="bugGame">Bug Report: Game</option>
+                    <option value="memberReport">Member Report</option>
+                    <option value="banAppeal">Ban Appeal</option>
+                    <option value="forgotCredentials">Forgot Username or Password</option>
+                    <option value="general">General Inquiry</option>
+                  </select>
+                  <p class="fieldError" id="categoryError"></p>
+                </div>
+              </div>
+
+              <div class="formRow" id="reportedRow" hidden>
+                <label for="reportedName">Fairy You're Reporting:</label>
+                <div>
+                  <input class="textInput" id="reportedName" maxlength="40" />
+                  <p class="fieldTip">Type the Fairy's name exactly as it appears in the game.</p>
+                  <p class="fieldError" id="reportedNameError"></p>
+                </div>
+              </div>
+
+              <div class="formRow" id="incidentWhenRow" hidden>
+                <label for="incidentWhen">When It Happened:</label>
+                <div>
+                  <input class="textInput" id="incidentWhen" maxlength="120" />
+                  <p class="fieldTip">Roughly is fine - "Tuesday evening" or "Sept 24, around 8pm".</p>
+                  <p class="fieldError" id="incidentWhenError"></p>
+                </div>
+              </div>
+
+              <div class="formRow" id="banWhenRow" hidden>
+                <label for="banWhen">When You Lost Access:</label>
+                <div>
+                  <input class="textInput" id="banWhen" maxlength="120" />
+                  <p class="fieldTip">Roughly is fine - "last Friday" or "about two weeks ago".</p>
+                  <p class="fieldError" id="banWhenError"></p>
+                </div>
+              </div>
+
+              <div class="formRow" id="banReasonRow" hidden>
+                <label for="banReason">Reason You Were Given:</label>
+                <div>
+                  <input class="textInput" id="banReason" maxlength="200" />
+                  <p class="fieldTip">Whatever the message said. "I don't know" is a fine answer.</p>
+                </div>
+              </div>
+
+              <div class="formRow" id="usernameRow" hidden>
+                <label for="username">Account ID:</label>
+                <div>
+                  <input class="textInput" id="username" maxlength="40" />
+                  <p class="fieldTip">If you remember it.</p>
+                  <p class="fieldError" id="usernameError"></p>
+                </div>
+              </div>
+
+              <div class="formRow" id="fairyNameRow" hidden>
+                <label for="fairyName">Fairy Name:</label>
+                <div>
+                  <input class="textInput" id="fairyName" maxlength="40" />
+                  <p class="fieldTip">The name of any fairy on the account.</p>
+                  <p class="fieldError" id="fairyNameError"></p>
+                </div>
+              </div>
+
+              <div class="formRow" id="accountInfoRow" hidden>
+                <label for="accountInfo">Account Information:</label>
+                <div>
+                  <textarea class="textInput textArea" id="accountInfo" maxlength="2000" rows="4" placeholder="Friends on your friends list, when you created the account, screenshots, anything else you remember..."></textarea>
+                  <p class="fieldError" id="accountInfoError"></p>
+                </div>
+              </div>
+
+              <div class="formRow">
+                <label for="subject">Subject:</label>
+                <div>
+                  <input class="textInput" id="subject" maxlength="120" />
+                  <p class="fieldError" id="subjectError"></p>
+                </div>
+              </div>
+
+              <div class="formRow">
+                <label for="message" id="messageLabel">Message:</label>
+                <div>
+                  <textarea class="textInput textArea" id="message" maxlength="5000" rows="7"></textarea>
+                  <p class="fieldTip" id="messageTip" hidden></p>
+                  <p class="fieldError" id="messageError"></p>
+                </div>
+              </div>
+
+              <div class="formRow" id="stepsRow" hidden>
+                <label for="stepsToReproduce">Steps to Reproduce:</label>
+                <div>
+                  <textarea class="textInput textArea" id="stepsToReproduce" maxlength="2000" rows="4"></textarea>
+                  <p class="fieldTip">What did you do, in order, right before it went wrong?</p>
+                  <p class="fieldError" id="stepsToReproduceError"></p>
+                </div>
+              </div>
+
+              <div class="formRow" id="expectedRow" hidden>
+                <label for="expectedBehavior">What Should Happen:</label>
+                <div>
+                  <textarea class="textInput textArea" id="expectedBehavior" maxlength="2000" rows="3"></textarea>
+                  <p class="fieldTip">What did you expect instead?</p>
+                  <p class="fieldError" id="expectedBehaviorError"></p>
+                </div>
+              </div>
+
+              <div class="formRow">
+                <label for="ticketFiles">Add Pictures:</label>
+                <div>
+                  <input type="file" id="ticketFiles" accept="image/png,image/jpeg,image/gif,image/webp,image/bmp" multiple />
+                  <p class="fieldTip">PNG, JPEG, GIF, WEBP or BMP - up to 10 pictures, 4MB each. A screenshot helps a lot!</p>
+                  <ul class="ticketFileStrip" id="ticketFileList"></ul>
+                  <p class="fieldError" id="ticketFilesError"></p>
+                </div>
+              </div>
+
+              <p class="center"><button class="btnGold" type="submit" id="sendButton">Send</button></p>
+              <p class="formMessage" id="sendMessage" role="alert"></p>
+            </form>
+          </div>
+
+          <div class="acctBox" id="sentBox" hidden>
+            <h3>Thank You!</h3>
+            <p>Your message is on its way. Your ticket number is <strong class="ticketNumber" id="ticketNumber"></strong>. We'll reply by e-mail.</p>
+            <p class="center"><button class="btnGold" type="button" id="anotherButton">Send Another</button></p>
+          </div>
+
+          <div class="acctBox" id="myTicketsBox" hidden>
+            <h3>Your Messages</h3>
+            <ul class="ticketList" id="ticketList"></ul>
+            <div class="ticketThread" id="ticketThread" hidden></div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="/site/site.js?v=20261028a"></script>
+  <script src="/site/nav.js?v=20260926m"></script>
+  <script src="/site/loginModal.js?v=20260926m"></script>
+  <script src="/site/tickets.js?v=20260926m"></script>
+  <script src="/site/contactUs.js?v=20260926m"></script>
+</body>
+</html>

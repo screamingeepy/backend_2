@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>My Fairies</title>
+  <meta name="description" content="Choose the Fairy you want to be today." />
+  <link rel="icon" href="/wings.ico" type="image/x-icon" />
+  <link rel="preload" href="/site/nav.xml" as="fetch" />
+  <link rel="stylesheet" href="/site/nav/nav.css?v=20260926m" />
+  <link rel="stylesheet" href="/site/site.css?v=20261028a" />
+  <link rel="stylesheet" href="/site/manager.css?v=20261027a" />
+</head>
+<body class="interiorPage">
+  <div class="siteWrap">
+    <nav id="mainNav" aria-label="Main"></nav>
+    <div class="memberBar" data-member-bar hidden></div>
+
+    <main class="pageFrame">
+      <div class="pageInner">
+        <div class="frameLogo"></div>
+        <p class="breadCrumbs"><a href="/">Pixie Hollow</a> &gt; <span>My Fairies</span></p>
+        <h1 class="pageTitle">My Fairies</h1>
+
+        <div class="managerPanel">
+          <h2 class="managerTitle" id="managerTitle">Which Fairy would you like to play with today?</h2>
+          <p class="managerTip" id="managerTip" hidden></p>
+
+          <ul class="managerOptions" id="managerOptions"></ul>
+
+          <p class="managerNote" id="managerNote"></p>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="/site/site.js?v=20261028a"></script>
+  <script src="/site/nav.js?v=20260926m"></script>
+  <script src="/site/loginModal.js?v=20260926m"></script>
+  <script src="/site/fairyManager.js?v=20261027a"></script>
+</body>
+</html>

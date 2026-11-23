@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GM Portal - Accounts</title>
+  <meta name="description" content="Removed fairies, deleted accounts and the registration waitlist." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" href="/wings.ico" type="image/x-icon" />
+  <link rel="preload" href="/site/nav.xml" as="fetch" />
+  <link rel="stylesheet" href="/site/nav/nav.css?v=20260927a" />
+  <link rel="stylesheet" href="/site/site.css?v=20260927a" />
+  <link rel="stylesheet" href="/site/account.css?v=20260927a" />
+  <link rel="stylesheet" href="/site/gm.css?v=20260929a" />
+</head>
+<body>
+  <div class="siteWrap">
+    <nav id="mainNav" aria-label="Main"></nav>
+    <div class="memberBar" data-member-bar hidden></div>
+
+    <main class="pageFrame">
+      <div class="pageInner">
+        <div class="frameLogo"></div>
+        <p class="breadCrumbs"><a href="/">Pixie Hollow</a> &gt; <a href="/account">Account Manager</a> &gt; <span>GM Portal - Accounts</span></p>
+        <h1 class="pageTitle">GM Portal - Accounts</h1>
+
+        <h2 class="pageHeading">Pixie Hollow Staff</h2>
+        <p class="pageLead" id="gmLead">Please Log In to the GM Portal.</p>
+
+        <section id="gmLogin" class="acctBoxes" hidden>
+          <div class="acctBox">
+            <h3>Staff Log In</h3>
+            <p>Log in with a Moderator or Administrator account.</p>
+            <form class="acctForm" id="gmLoginForm" novalidate>
+              <div class="formRow">
+                <label for="gmLoginName">Account ID:</label>
+                <input class="textInput" id="gmLoginName" autocomplete="username" />
+              </div>
+              <div class="formRow">
+                <label for="gmLoginPassword">Password:</label>
+                <input class="textInput" id="gmLoginPassword" type="password" autocomplete="current-password" />
+              </div>
+              <p class="formMessage" id="gmLoginMessage" role="alert"></p>
+              <p class="center"><button class="btnGray" type="submit" id="gmLoginButton">Log In</button></p>
+            </form>
+          </div>
+        </section>
+
+        <section id="gmDenied" class="acctBoxes" hidden>
+          <div class="acctBox">
+            <h3>Staff Only</h3>
+            <p>This account isn't a Moderator or Administrator. <a href="#" id="gmSwitchAccount">Log in with a different account</a>.</p>
+          </div>
+        </section>
+
+        <section id="gmTools" class="gmBoxes" hidden>
+          <div class="acctBox" id="waitlistAdminBox" hidden>
+            <h3 class="quill">Waitlist <span class="gmCount" id="waitlistCount"></span></h3>
+            <p class="gmHint">When it is on, the sign-up page asks only for an e-mail address and players get a one-time link when their turn comes. Each address can join once. Administrators only. To make an account for someone directly, use the <strong>create-account</strong> command.</p>
+
+            <form class="acctForm" id="waitlistAdminForm" novalidate>
+              <div class="formRow">
+                <label for="waitlistEnabled">Waitlist:</label>
+                <select class="selectInput" id="waitlistEnabled">
+                  <option value="false">Off - anyone can sign up</option>
+                  <option value="true">On - sign-up needs an invite link</option>
+                </select>
+              </div>
+              <div class="formRow">
+                <label for="waitlistCap">Invites per day:</label>
+                <input class="textInput" id="waitlistCap" inputmode="numeric" autocomplete="off" />
+                <span class="gmHint">Sent oldest first, checked every hour. The day starts at midnight UTC. An <strong>Invite now</strong> below uses one of the day's invites, so the next batch is one smaller. The <strong>invite-bypass</strong> command does not.</span>
+              </div>
+              <p class="center"><button class="btnGold" type="submit" id="waitlistSaveButton">Save</button></p>
+              <p class="formMessage" id="waitlistAdminMessage" role="alert"></p>
+            </form>
+
+            <p class="gmHint" id="waitlistStats"></p>
+
+            <div class="gmFilterRow">
+              <label class="modalLabel" for="waitlistView">Show</label>
+              <select class="selectInput" id="waitlistView">
+                <option value="waiting">Waiting</option>
+                <option value="invited">Invited, not signed up</option>
+                <option value="registered">Signed up</option>
+                <option value="revoked">Revoked</option>
+                <option value="all">All</option>
+              </select>
+              <label class="modalLabel" for="waitlistSearch">Search</label>
+              <input class="textInput" id="waitlistSearch" type="search" placeholder="e-mail address" autocomplete="off" />
+            </div>
+            <p class="formMessage" id="waitlistListMessage" role="status"></p>
+            <ul class="removedList" id="waitlistList"></ul>
+            <div class="gmPager" id="waitlistPager"></div>
+          </div>
+
+          <div class="acctBox">
+            <h3>Removed Fairies <span class="gmCount" id="removedCount"></span></h3>
+            <p class="gmHint">Fairies their owners removed. Nothing is thrown away, so one can be put back - unless the account has since filled the slot.</p>
+            <ul class="removedList" id="removedFairyList"></ul>
+            <div class="gmPager" id="removedPager"></div>
+          </div>
+
+          <div class="acctBox">
+            <h3>Deleted Accounts <span class="gmCount" id="deletedAccountCount"></span></h3>
+            <p class="gmHint">Accounts their owners deleted. They are only hidden for 30 days, so one can be put back with its fairies. After that it is removed for good.</p>
+            <ul class="removedList" id="deletedAccountList"></ul>
+            <div class="gmPager" id="deletedPager"></div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script src="/site/site.js?v=20260927a"></script>
+  <script src="/site/nav.js?v=20260927a"></script>
+  <script src="/site/loginModal.js?v=20260927a"></script>
+  <script src="/site/tickets.js?v=20260927a"></script>
+  <script src="/site/gmPortal.js?v=20260929a"></script>
+  <script src="/site/gmAccounts.js?v=20260929a"></script>
+</body>
+</html>

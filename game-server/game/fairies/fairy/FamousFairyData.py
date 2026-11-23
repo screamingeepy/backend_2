@@ -1,0 +1,104 @@
+# Quest Givers have Fixed Object IDs
+FAWN_DO_ID = 15500
+IRIDESSA_DO_ID = 15501
+ROSETTA_DO_ID = 15502
+SILVERMIST_DO_ID = 15503
+TINKERBELL_DO_ID = 15504
+KIT_DO_ID = 15505
+ELIXA_DO_ID = 15506
+TERENCE_DO_ID = 15507
+MARINA_DO_ID = 15508
+
+# Famous Fairy IDs (from npcToFamousFairy mapping in FamousFairyData)
+FAMOUS_FAIRY_TINKERBELL = 0
+FAMOUS_FAIRY_SILVERMIST = 1
+FAMOUS_FAIRY_FAWN = 2
+FAMOUS_FAIRY_ROSETTA = 3
+FAMOUS_FAIRY_IRIDESSA = 4
+
+FAMOUS_FAIRY_QUEEN = 34
+FAMOUS_FAIRY_TERENCE = 35
+FAMOUS_FAIRY_PERIWINKLE = 44
+FAMOUS_FAIRY_ELIXA = 30
+
+# Never News
+FAMOUS_FAIRY_TABBY = 5
+FAMOUS_FAIRY_KIT = 6
+FAMOUS_FAIRY_MARINA = 7
+FAMOUS_FAIRY_SWEETPEA = 8
+
+# Shopkeepers
+BELLA_ROSE = "Bella Rose"
+FAMOUS_FAIRY_BELLA_ROSE = 9
+
+BROOK = "Brook"
+FAMOUS_FAIRY_BROOK = 10
+
+DIVA_WINGS = "Diva Wings"
+FAMOUS_FAIRY_DIVA_WINGS = 11
+
+GALE = "Gale"
+FAMOUS_FAIRY_GALE = 12
+
+HARMONY = "Harmony"
+FAMOUS_FAIRY_HARMONY = 13
+
+TRINKET = "Trinket"
+FAMOUS_FAIRY_TRINKET = 14
+
+EMBER = "Ember"
+FAMOUS_FAIRY_EMBER = 15
+
+DAISY = "Daisy"
+FAMOUS_FAIRY_DAISY = 16
+
+PRISM = "Prism"
+FAMOUS_FAIRY_PRISM = 17
+
+PHOEBE = "Phoebe"
+FAMOUS_FAIRY_PHOEBE = 19
+
+SCHELLY = "Schelly"
+FAMOUS_FAIRY_SCHELLY = 20
+
+CASSIE = "Cassie"
+FAMOUS_FAIRY_CASSIE = 28
+
+BECK = "Beck"
+FAMOUS_FAIRY_BECK = 29
+
+COAL = "Coal"
+FAMOUS_FAIRY_COAL = 31
+
+NEVILLE = "Neville"
+FAMOUS_FAIRY_NEVILLE = 33
+
+ZEPHYR = "Zephyr"
+FAMOUS_FAIRY_ZEPHYR = 41
+
+SPRING = "Spring"
+FAMOUS_FAIRY_SPRING = 42
+
+ERICA = "Erica"
+FAMOUS_FAIRY_ERICA = 43
+
+SPIKE = "Spike"
+FAMOUS_FAIRY_SPIKE = 45
+
+TERENCE_DNA = (
+    6, # talent (Dust Keeper)
+    95, # head
+    100, # height
+    88, # body
+    5560, # hair_back
+    5106, # hair_front
+    4560, # face
+    4051, # eye
+    6001, # wing
+    77, # hair_color (Brown)
+    77, # hair_color2 (Brown)
+    63, # eye_color
+    106, # skin_color
+    112, # wing_color
+    2 # gender (Male)
+)

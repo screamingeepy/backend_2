@@ -1,0 +1,49 @@
+.subCard {
+  margin: 14px 0;
+  padding: 12px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.18);
+}
+
+.subHead { display: flex; flex-wrap: wrap; gap: 4px 14px; align-items: baseline; }
+.subKind { color: #b5e36e; font-weight: bold; }
+.subTitle { color: #fff; font-weight: bold; }
+.subMeta { color: #8fb4d8; font-size: 13px; }
+
+.subBody {
+  margin: 8px 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  color: #e4edf5;
+}
+
+.subImage { display: block; max-width: 100%; max-height: 360px; margin: 8px 0; border-radius: 6px; }
+
+.subActions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 8px; }
+.subNote { margin-top: 10px; }
+.subNote + .subActions { margin-top: 10px; }
+.subNoteInput { display: block; width: 100%; min-height: 72px; resize: vertical; box-sizing: border-box; padding: 6px 9px; font: 14px/20px Helvetica, Arial, sans-serif; }
+.subNoteRow { display: flex; align-items: center; gap: 10px; margin-top: 6px; }
+
+/* the big site button is for player pages; in the staff queue they sit in a row. */
+.subActions .btnGray,
+.subNoteRow .btnGray,
+.gmFilterRow .btnGray {
+  min-width: 0;
+  height: 30px;
+  padding: 0 14px;
+  font-size: 15px;
+  line-height: 28px;
+}
+
+.subStatus { padding: 1px 8px; border-radius: 10px; font-size: 12px; background: rgba(255, 255, 255, 0.12); }
+.subStatus.approved { background: rgba(155, 227, 106, 0.3); }
+.subStatus.rejected { background: rgba(255, 120, 120, 0.25); }
+.subStatus.picked { background: rgba(155, 227, 106, 0.3); }
+.subStatus.finalist { background: rgba(255, 240, 76, 0.3); }
+
+/* contest entries: several files per entry */
+.subFiles { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 8px; margin: 8px 0; }
+.subFiles .subImage { max-width: 240px; max-height: 200px; margin: 0; }
+.subDoc { display: inline-block; padding: 6px 12px; border-radius: 6px; background: rgba(255, 255, 255, 0.14); color: inherit; }

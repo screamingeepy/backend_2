@@ -1,0 +1,258 @@
+/* ---------------------------------------------------------------------------
+   Early news page.
+
+   A fixed-size "screen" layout, the way the game itself is laid out: the leaf
+   nav and the vine box are one composition at a designed size, scaled down as
+   a whole on smaller windows rather than reflowed.
+
+   Self-contained -- it does not load site/site.css.
+--------------------------------------------------------------------------- */
+
+@font-face {
+  font-family: "PHR Rounded";
+  src: url("/earlyhome/fonts/Helvetica Rounded LT Bold.otf") format("opentype");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+:root {
+  --muted: rgba(255, 255, 255, 0.86);
+  --blue-text: #8fb0c9;
+  --gold: #f4d65c;
+  --green-date: #a8c979;
+  --leaf-text: #edf195;
+  --roundFont: "PHR Rounded", "Arial Rounded MT Bold", Arial, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  color: #fff;
+  font-family: var(--roundFont);
+
+  /* As a fixed background rather than a pinned <img>, so it still covers when
+     the layout is scaled down and the page ends up taller than the viewport. */
+  background: #14324a url("/earlyhome/images/newsbackground.png") no-repeat center center fixed;
+  background-size: cover;
+
+  /* The original hid all overflow, which silently cut the box off on a short
+     window. Let it scroll instead; the scale rules below keep that rare. */
+  overflow-x: hidden;
+}
+
+.page {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.news .layout {
+  position: relative;
+  width: min(1280px, 96vw);
+  height: 82vh;
+  min-height: 720px;
+  margin: 0 auto;
+}
+
+/* ---- the vine box ---- */
+
+.news .box {
+  position: absolute;
+  top: 38px;
+  left: 60%;
+  z-index: 1;
+  width: 90%;
+  height: auto;
+  transform: translateX(-50%);
+}
+
+/* ---- leaf nav ---- */
+
+.news .nav-area {
+  position: absolute;
+  top: 70px;
+  left: -90px;
+  z-index: 4;
+  width: 330px;
+}
+
+.news .nav {
+  display: block;
+  width: 95%;
+  height: auto;
+}
+
+.news .logo {
+  position: absolute;
+  top: -85px;
+  left: 50%;
+  z-index: 6;
+  width: 300px;
+  transform: translateX(-50%);
+}
+
+.news .logo img { display: block; width: 100%; height: auto; }
+
+.news .play {
+  position: absolute;
+  top: 125px;
+  left: 23px;
+  z-index: 6;
+  width: 285px;
+}
+
+.news .play img {
+  display: block;
+  width: 95%;
+  height: auto;
+  transition: transform 160ms ease;
+}
+
+.news .play:hover img { transform: translateY(-2px) scale(1.02); }
+
+/* The original gave every link its own hand-tuned `top`, which drifted out of
+   step with the leaf slots as soon as any of them changed. The slots are
+   evenly spaced, so one column with a fixed rhythm lands on them and stays
+   there if a link is added or renamed. */
+.news .nav-links {
+  position: absolute;
+  top: 218px;
+  left: 0;
+  z-index: 7;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  width: 100%;
+}
+
+.news .nav-item {
+  align-self: center;
+  color: var(--leaf-text);
+  font-size: 24px;
+  line-height: 1;
+  text-decoration: none;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+  white-space: nowrap;
+}
+
+.news .nav-item:hover,
+.news .nav-item:focus-visible { color: #fff; }
+
+.news .nav-item[aria-current="page"] { color: #fff; }
+
+/* ---- article ---- */
+
+.news .content-area {
+  position: absolute;
+  top: 118px;
+  left: 300px;
+  z-index: 3;
+  width: min(950px, calc(100% - 320px));
+}
+
+.news .content-area h1 {
+  margin: 0;
+  color: var(--gold);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 40px;
+  font-weight: normal;
+  line-height: 1;
+}
+
+.news .date {
+  margin: 8px 0 20px;
+  color: var(--green-date);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
+}
+
+.news .content-image {
+  display: block;
+  width: min(680px, 100%);
+  height: auto;
+  margin: 0 auto 14px;
+  transform: translateY(-40px);
+}
+
+/* A fixed height with its own scrollbar, so a long post stays inside the vine
+   box instead of running out the bottom of the art. */
+.news .body-text {
+  width: 100%;
+  height: 240px;
+  padding: 10px;
+  overflow-y: auto;
+  color: var(--blue-text);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  line-height: 1.42;
+  transform: translateY(-60px);
+}
+
+.news .body-text p { margin: 0 0 16px; }
+.news .body-text p:last-child { margin-bottom: 0; }
+
+/* ---- footer ---- */
+
+.news .footer {
+  position: absolute;
+  bottom: 22px;
+  left: 0;
+  z-index: 5;
+  display: grid;
+  place-items: center;
+  width: 100%;
+}
+
+.news .disclaimer {
+  width: min(620px, 88vw);
+  margin: 0;
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+  text-align: center;
+}
+
+/* `bottom: -35x` is not a length, so the browser dropped the declaration and
+   the petals fell back to wherever they happened to land. */
+.news .petals {
+  position: absolute;
+  bottom: -10px;
+  width: min(190px, 16vw);
+  height: auto;
+  pointer-events: none;
+}
+
+.news .petals--left { right: calc(50% + min(320px, 46vw)); }
+.news .petals--right { left: calc(50% + min(320px, 46vw)); }
+
+/* ================= RESPONSIVE ================= */
+
+/* Scale the whole composition rather than reflowing it -- the nav art and the
+   box are drawn to fit each other. */
+@media (max-width: 1200px) {
+  .news .layout {
+    width: 1120px;
+    transform: scale(0.9);
+    transform-origin: top center;
+  }
+}
+
+@media (max-height: 760px) {
+  .news .layout {
+    transform: scale(0.86);
+    transform-origin: top center;
+  }
+  .news .footer { bottom: 12px; }
+}
+
+@media (max-width: 720px) {
+  .news .petals { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .news .play img { transition: none; }
+}

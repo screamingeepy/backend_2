@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Join the Team</title>
+  <meta name="description" content="Apply to join the Pixie Hollow Rewritten Mod Team or Code Team." />
+  <link rel="icon" href="/wings.ico" type="image/x-icon" />
+  <link rel="preload" href="/site/nav.xml" as="fetch" />
+  <link rel="stylesheet" href="/site/nav/nav.css?v=20260926m" />
+  <link rel="stylesheet" href="/site/site.css?v=20261028a" />
+  <link rel="stylesheet" href="/site/account.css?v=20261103d" />
+</head>
+<body class="interiorPage">
+  <div class="siteWrap">
+    <nav id="mainNav" aria-label="Main"></nav>
+    <div class="memberBar" data-member-bar hidden></div>
+
+    <main class="pageFrame">
+      <div class="pageInner">
+        <div class="frameLogo"></div>
+        <p class="breadCrumbs"><a href="/">Pixie Hollow</a> &gt; <a href="/faqs.html">Help</a> &gt; <span>Join the Team</span></p>
+        <h1 class="pageTitle">Join the Team</h1>
+
+        <h2 class="pageHeading">Team Applications</h2>
+        <p class="pageLead">Want to help look after Pixie Hollow? Pick a team and tell us about yourself. We'll reply by e-mail.</p>
+
+        <div class="acctBoxes wideBoxes">
+          <div class="acctBox" id="closedBox" hidden>
+            <h3>Applications Are Closed</h3>
+            <p>We aren't taking applications right now. Please watch the Discord for when they open.</p>
+          </div>
+
+          <div class="acctBox" id="formBox" hidden>
+            <h3 class="quill">Apply</h3>
+            <form class="acctForm" id="applyForm" novalidate>
+              <div aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden">
+                <label>Leave this empty <input id="website" name="website" tabindex="-1" autocomplete="off" /></label>
+              </div>
+
+              <div class="formRow">
+                <label for="formPick">Which team?</label>
+                <div>
+                  <select class="selectInput wideSelect" id="formPick"></select>
+                </div>
+              </div>
+
+              <div class="formRow" id="accountNameRow">
+                <label for="accountName">Account ID:</label>
+                <div>
+                  <input class="textInput" id="accountName" maxlength="40" autocomplete="username" />
+                  <p class="fieldTip">Optional. Your Pixie Hollow Account ID, if you have one.</p>
+                </div>
+              </div>
+
+              <div class="formRow" id="emailRow">
+                <label for="applyEmail">E-mail:</label>
+                <div>
+                  <input class="textInput" id="applyEmail" type="email" autocomplete="email" />
+                  <p class="fieldError" id="emailError"></p>
+                </div>
+              </div>
+
+              <div id="questions"></div>
+
+              <p class="center"><button class="btnGold" type="submit" id="applyButton">Send Application</button></p>
+              <p class="formMessage" id="applyMessage" role="alert"></p>
+            </form>
+          </div>
+
+          <div class="acctBox" id="sentBox" hidden>
+            <h3>Thank You!</h3>
+            <p>Thank you for filling out the application! Your ticket number is <strong class="ticketNumber" id="ticketNumber"></strong>. Please watch the Discord for when we plan to review applications. We'll be in touch by e-mail.</p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="/site/site.js?v=20261028a"></script>
+  <script src="/site/nav.js?v=20260926m"></script>
+  <script src="/site/loginModal.js?v=20260926m"></script>
+  <script src="/site/apply.js?v=20261103a"></script>
+</body>
+</html>

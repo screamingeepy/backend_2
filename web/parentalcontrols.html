@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Parental Controls</title>
+  <meta name="robots" content="noindex" />
+  <link rel="icon" href="/wings.ico" type="image/x-icon" />
+  <link rel="preload" href="/site/nav.xml" as="fetch" />
+  <link rel="stylesheet" href="/site/nav/nav.css?v=20260926m" />
+  <link rel="stylesheet" href="/site/site.css?v=20261028a" />
+  <link rel="stylesheet" href="/site/account.css?v=20261028a" />
+</head>
+<body class="interiorPage">
+  <div class="siteWrap">
+    <nav id="mainNav" aria-label="Main"></nav>
+    <div class="memberBar" data-member-bar hidden></div>
+
+    <main class="pageFrame">
+      <div class="pageInner">
+        <div class="frameLogo"></div>
+        <p class="breadCrumbs"><a href="/">Pixie Hollow</a> &gt; <a href="/parentalcontrols.html">Parental Controls</a> </p>
+        <h1 class="pageTitle">Parental Controls</h1>
+
+        <p class="pageLead" id="portalStatus">One moment...</p>
+
+        <section id="needLink" hidden>
+          <div class="acctBoxes">
+            <div class="acctBox">
+              <h3>For Parents and Guardians</h3>
+              <p>This page is for the parent or guardian of a player under 13. There is no password: we e-mail you a link. Enter the child's Account ID and the parent's e-mail address on the account.</p>
+              <form class="acctForm" id="linkForm" novalidate>
+                <div class="formRow">
+                  <label for="linkUsername">Account ID:</label>
+                  <input class="textInput" id="linkUsername" maxlength="20" autocomplete="off" />
+                </div>
+                <div class="formRow">
+                  <label for="linkEmail">Parent's E-mail:</label>
+                  <input class="textInput" id="linkEmail" type="email" autocomplete="email" />
+                </div>
+                <p class="center"><button class="btnGold" type="submit" id="linkButton">E-mail Me a Link</button></p>
+                <p class="formMessage" id="linkMessage" role="status"></p>
+              </form>
+              <p class="center" id="childLinkRow" hidden><button type="button" class="linkButton" id="childLinkButton">Or e-mail my parent a link now</button></p>
+            </div>
+          </div>
+        </section>
+
+        <section id="portal" hidden>
+          <div class="acctBoxes">
+            <div class="acctBox">
+              <h3>SpeedChat Plus</h3>
+              <p id="chatExplain"></p>
+              <p class="center"><button class="btnGold" type="button" id="chatButton"></button></p>
+              <p class="formMessage" id="chatMessage" role="status"></p>
+            </div>
+
+            <div class="acctBox">
+              <h3 class="quill">Account ID and E-mail</h3>
+              <dl class="acctDetails">
+                <dt>Account ID:</dt><dd id="portalUsername"></dd>
+                <dt>E-mail:</dt><dd id="portalEmail"></dd>
+                <dt>Age:</dt><dd id="portalAge"></dd>
+              </dl>
+              <p>Fill in only what you want to change. A new e-mail address has to be confirmed again, and SpeedChat Plus switches off until you do.</p>
+              <form class="acctForm" id="loginForm" novalidate>
+                <div class="formRow">
+                  <label for="newUsername">New Account ID:</label>
+                  <input class="textInput" id="newUsername" maxlength="20" autocomplete="off" />
+                </div>
+                <div class="formRow">
+                  <label for="newEmail">New E-mail:</label>
+                  <input class="textInput" id="newEmail" type="email" autocomplete="off" />
+                </div>
+                <p class="center"><button class="btnGold" type="submit" id="loginButton">Save</button></p>
+                <p class="formMessage" id="loginMessage" role="status"></p>
+              </form>
+            </div>
+
+            <div class="acctBox">
+              <h3>Ignored Fairies</h3>
+              <p>These players can't whisper to this account, send friend requests or see its chat.</p>
+              <ul class="ignoreList" id="ignoreList"></ul>
+              <p class="formMessage" id="ignoreMessage" role="status"></p>
+            </div>
+
+            <div class="acctBox">
+              <h3>Delete This Account</h3>
+              <p>Ask us to delete this account and all of its fairies. A person on our team will look after it and e-mail you.</p>
+              <p class="center"><button class="btnGray" type="button" id="deleteButton">Ask Us to Delete It</button></p>
+              <p class="formMessage" id="deleteMessage" role="status"></p>
+            </div>
+          </div>
+
+          <p class="center"><span id="minutesLeft"></span> <button type="button" class="linkButton" id="leaveButton">Leave Parental Controls</button></p>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script src="/site/site.js?v=20261028a"></script>
+  <script src="/site/nav.js?v=20260926m"></script>
+  <script src="/site/loginModal.js?v=20260926m"></script>
+  <script src="/site/parentalControls.js?v=20260928a"></script>
+</body>
+</html>

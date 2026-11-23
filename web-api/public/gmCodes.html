@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GM Portal - Secret Codes</title>
+  <meta name="description" content="Make and manage the secret codes players redeem." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" href="/wings.ico" type="image/x-icon" />
+  <link rel="preload" href="/site/nav.xml" as="fetch" />
+  <link rel="stylesheet" href="/site/nav/nav.css?v=20260927a" />
+  <link rel="stylesheet" href="/site/site.css?v=20260927a" />
+  <link rel="stylesheet" href="/site/account.css?v=20260927a" />
+  <link rel="stylesheet" href="/site/gm.css?v=20260929a" />
+  
+</head>
+<body>
+  <div class="siteWrap">
+    <nav id="mainNav" aria-label="Main"></nav>
+    <div class="memberBar" data-member-bar hidden></div>
+
+    <main class="pageFrame">
+      <div class="pageInner">
+        <div class="frameLogo"></div>
+        <p class="breadCrumbs"><a href="/">Pixie Hollow</a> &gt; <a href="/account">Account Manager</a> &gt; <span>GM Portal - Secret Codes</span></p>
+        <h1 class="pageTitle">GM Portal - Secret Codes</h1>
+
+        <h2 class="pageHeading">Pixie Hollow Staff</h2>
+        <p class="pageLead" id="gmLead">Please Log In to the GM Portal.</p>
+
+        <section id="gmLogin" class="acctBoxes" hidden>
+          <div class="acctBox">
+            <h3>Staff Log In</h3>
+            <p>Log in with a Moderator or Administrator account.</p>
+            <form class="acctForm" id="gmLoginForm" novalidate>
+              <div class="formRow">
+                <label for="gmLoginName">Account ID:</label>
+                <input class="textInput" id="gmLoginName" autocomplete="username" />
+              </div>
+              <div class="formRow">
+                <label for="gmLoginPassword">Password:</label>
+                <input class="textInput" id="gmLoginPassword" type="password" autocomplete="current-password" />
+              </div>
+              <p class="formMessage" id="gmLoginMessage" role="alert"></p>
+              <p class="center"><button class="btnGray" type="submit" id="gmLoginButton">Log In</button></p>
+            </form>
+          </div>
+        </section>
+
+        <section id="gmDenied" class="acctBoxes" hidden>
+          <div class="acctBox">
+            <h3>Staff Only</h3>
+            <p>This account isn't a Moderator or Administrator. <a href="#" id="gmSwitchAccount">Log in with a different account</a>.</p>
+          </div>
+        </section>
+
+        <section id="gmTools" class="gmBoxes" hidden>
+          <p class="gmHint" id="codesDenied" hidden>Secret Codes are for Administrators.</p>
+          <div class="acctBox" id="codesBox" hidden>
+            <h3 class="quill">Secret Codes</h3>
+            <p class="gmHint">Codes players type on the Secret Codes page for a gift. A code gives every fairy on the account the item, once per account. Administrators only.</p>
+
+            <form class="acctForm" id="codeMakeForm" novalidate>
+              <div class="formRow">
+                <label for="codeRewardType">Gives:</label>
+                <select class="selectInput" id="codeRewardType">
+                  <option value="item">An item (clothes, home item or ingredient)</option>
+                  <option value="gold">Gold</option>
+                  <option value="badge">A badge</option>
+                </select>
+              </div>
+              <div class="formRow" id="codeRewardRow">
+                <label for="codeReward" id="codeRewardLabel">Reward item number:</label>
+                <input class="textInput" id="codeReward" inputmode="numeric" autocomplete="off" placeholder="1012" />
+                <span class="gmHint" id="codeRewardHint">Clothes are under 4000 and home items under 8000. Anything higher goes in the pouch as an ingredient.</span>
+              </div>
+              <div class="formRow" id="codeQuantityRow">
+                <label for="codeQuantity" id="codeQuantityLabel">How many:</label>
+                <input class="textInput" id="codeQuantity" inputmode="numeric" value="1" autocomplete="off" />
+                <span class="gmHint" id="codeQuantityHint">Only used for pouch items. Clothes and home items are always one.</span>
+              </div>
+              <div class="formRow" id="codeColorRow">
+                <label for="codeColor">Starting color:</label>
+                <input class="textInput" id="codeColor" inputmode="numeric" autocomplete="off" placeholder="166 (Snow White)" />
+                <span class="gmHint">Clothes and home items only. Leave blank for Snow White. An item with no real color cannot be dyed, so this is never left empty.</span>
+              </div>
+              <div class="formRow">
+                <label for="codeGender">Who gets it:</label>
+                <select class="selectInput" id="codeGender">
+                  <option value="0">Every fairy on the account</option>
+                  <option value="1">Fairies only (not Sparrow Men)</option>
+                  <option value="2">Sparrow Men only</option>
+                </select>
+                <span class="gmHint">Clothes are usually for one or the other. Anyone the code is not for is skipped, and it is not used up if that leaves nobody.</span>
+              </div>
+              <div class="formRow">
+                <label for="codeCustom">Your own code:</label>
+                <input class="textInput" id="codeCustom" maxlength="40" autocomplete="off" placeholder="leave empty to have codes made for you" />
+              </div>
+              <div class="formRow">
+                <label for="codeHowMany">How many codes:</label>
+                <input class="textInput" id="codeHowMany" inputmode="numeric" value="1" autocomplete="off" />
+                <span class="gmHint">Up to 200 at once, for a batch on toys or prizes. Ignored if you type your own.</span>
+              </div>
+              <div class="formRow">
+                <label for="codeMaxUses">Times it can be used:</label>
+                <input class="textInput" id="codeMaxUses" inputmode="numeric" value="0" autocomplete="off" />
+                <span class="gmHint">0 (the usual) lets everyone use it, once per account. Type a number only to cap the total, for example 1 for a code printed on a single toy.</span>
+              </div>
+              <div class="formRow">
+                <label for="codeRepeat">Used again by the same account:</label>
+                <input class="textInput" id="codeRepeat" inputmode="numeric" autocomplete="off" placeholder="blank = only once" />
+                <span class="gmHint">Blank: each account can use it once (the usual). 0: as often as they like. A number: again after that many hours, for example 24 for a daily gift.</span>
+              </div>
+              <div class="formRow">
+                <label for="codeExpires">Stops working after:</label>
+                <input class="textInput" id="codeExpires" type="date" />
+                <span class="gmHint">Optional.</span>
+              </div>
+              <div class="formRow">
+                <label for="codeNote">Note:</label>
+                <input class="textInput" id="codeNote" maxlength="120" autocomplete="off" placeholder="what it is for, for your own reference" />
+              </div>
+              <p class="center"><button class="btnGold" type="submit" id="codeMakeButton">Make Codes</button></p>
+              <p class="formMessage" id="codeMakeMessage" role="alert"></p>
+              <textarea class="textInput textArea" id="codeOutput" rows="6" readonly hidden aria-label="The codes just made"></textarea>
+            </form>
+
+            <h4 class="newsEditorTitle">Codes <span class="gmCount" id="codeCount"></span></h4>
+            <ul class="removedList" id="codeList"></ul>
+            <div class="gmPager" id="codePager"></div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script src="/site/site.js?v=20260927a"></script>
+  <script src="/site/nav.js?v=20260927a"></script>
+  <script src="/site/loginModal.js?v=20260927a"></script>
+  <script src="/site/tickets.js?v=20260927a"></script>
+  <script src="/site/gmPortal.js?v=20260929a"></script>
+  <script src="/site/gmCodes.js?v=20260929a"></script>
+</body>
+</html>

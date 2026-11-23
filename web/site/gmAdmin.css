@@ -1,0 +1,63 @@
+/* GM Portal - Admin Controls */
+
+.adminBox {
+  margin-bottom: 20px;
+}
+
+.adminSectionHeader {
+  margin: 0 0 10px;
+  color: var(--gold, #f7e746);
+  font: bold 16px/22px Helvetica, Arial, sans-serif;
+}
+
+.adminNotice {
+  padding: 10px 14px;
+  margin-bottom: 15px;
+  border-left: 3px solid #f7e746;
+  border-radius: 4px;
+  background: rgba(247, 231, 70, 0.08);
+  color: #fff;
+  font: 13px/18px Helvetica, Arial, sans-serif;
+}
+
+.adminWarning {
+  border-left-color: #ff5b73;
+  background: rgba(255, 91, 115, 0.1);
+  color: #ffc2cb;
+}
+
+
+.adminStatus {
+  margin-top: 10px;
+  font: 13px/18px Helvetica, Arial, sans-serif;
+}
+
+.adminStatus.ok {
+  color: #9be36a;
+}
+
+.adminStatus.error {
+  color: #ff5b73;
+}
+
+.staffList {
+  margin: 0 0 14px;
+  padding: 0;
+  list-style: none;
+}
+
+.staffList li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 6px 0;
+  border-top: 1px solid #2c4453;
+  color: #fff;
+  font: bold 14px/20px Helvetica, Arial, sans-serif;
+}
+
+.staffList li:first-child { border-top: 0; }
+.staffList .staffEmpty { color: #7fb3cf; font-weight: normal; }
+
+.staffRemove { min-width: 0; }

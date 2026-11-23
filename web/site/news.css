@@ -1,0 +1,272 @@
+/* never news and known issues */
+
+.newsPage {
+  --newsGold: #fff04c;
+  --newsCommentBg: #395988;
+  --newsAdmin: #639de4;
+}
+
+.newsLoading,
+.newsEmpty {
+  margin: 20px 0;
+  color: #fff;
+  font: 15px/22px var(--roundFont);
+  text-align: center;
+}
+
+/* index list */
+
+.newsList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* rows are separated by a thin blue rule, as on the Events reference. */
+.newsList li + li {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 1px solid rgba(127, 179, 207, 0.35);
+}
+
+.newsRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1.9fr) minmax(0, 1fr);
+  gap: 24px;
+  align-items: center;
+  padding: 24px 10px;
+  border: 1px solid transparent;
+  border-radius: 14px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.newsRow.noThumb { grid-template-columns: 1fr; }
+
+.newsRow:hover,
+.newsRow:focus-visible {
+  border-color: rgba(127, 179, 207, 0.5);
+  background: rgba(127, 179, 207, 0.06);
+}
+
+.newsThumb {
+  display: block;
+  width: 100%;
+  aspect-ratio: 289 / 146;
+  border: 2px solid #3d6079;
+  border-radius: 10px;
+  object-fit: cover;
+  background: rgba(0, 0, 0, 0.25);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.45);
+}
+
+.newsRowText { min-width: 0; }
+
+.newsRow h2 {
+  margin: 0 0 12px;
+  color: #fff;
+  font: bold 22px/26px "Times New Roman", var(--serifFont);
+  text-decoration: underline;
+}
+
+.newsByline {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 0 0 12px;
+  color: #a9e46a;
+  font: bold 15px/20px var(--roundFont);
+}
+
+.newsExcerpt {
+  margin: 0 0 14px;
+  color: #7fb3cf;
+  font: 15px/21px Helvetica, Arial, sans-serif;
+}
+
+.newsCommentCount {
+  display: block;
+  margin: 0 0 10px;
+  color: #7fb3cf;
+  font: 13px/18px var(--roundFont);
+}
+
+.newsReadMore {
+  min-width: 0;
+  height: 34px;
+  padding: 0 22px;
+  font-size: 17px;
+  line-height: 32px;
+}
+
+@media (max-width: 720px) {
+  .newsRow { grid-template-columns: 1fr; }
+}
+
+/* paging */
+
+/* the blog's nav template was leftArrow, a range readout, then rightArrow. */
+.newsPager {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  margin: 24px 0 0;
+}
+
+.newsPager .newsRange {
+  color: var(--newsGold);
+  font: 15px/20px var(--roundFont);
+}
+
+.newsArrow {
+  width: 15px;
+  height: 32px;
+  padding: 0;
+  border: 0;
+  background: url("/site/img/carouselArrow.png") no-repeat;
+  background-size: 15px 32px;
+  cursor: pointer;
+}
+
+.newsArrow.prev { transform: scaleX(-1); }
+
+.newsArrow:disabled { opacity: 0.35; cursor: default; }
+
+.newsArrow:hover:not(:disabled) { filter: brightness(1.2); }
+
+/* one entry */
+
+.newsEntry h2 {
+  margin: 0 0 8px;
+  color: var(--newsGold);
+  font: bold 22px/28px var(--roundFont);
+}
+
+/* never News header art was 289x146 and sat above the post. */
+.newsHero {
+  display: block;
+  max-width: 100%;
+  margin: 0 auto 16px;
+  border-radius: 10px;
+}
+
+.newsBody {
+  color: #fff;
+  font: 15px/22px var(--roundFont);
+}
+
+.newsBody p { margin: 0 0 14px; }
+.newsBody a { color: var(--newsGold); font-weight: bold; }
+.newsBody h3,
+.newsBody h4 { margin: 18px 0 8px; color: var(--newsGold); font: bold 18px/24px var(--roundFont); }
+.newsBody ul,
+.newsBody ol { margin: 0 0 14px; padding-left: 26px; }
+.newsBody li { margin-bottom: 6px; }
+.newsBody img { max-width: 100%; height: auto; border-radius: 8px; }
+.newsBody blockquote {
+  margin: 0 0 14px;
+  padding: 8px 14px;
+  border-left: 3px solid var(--newsGold);
+  color: #cfe6f3;
+}
+
+.newsSignature {
+  display: block;
+  margin: 6px 0 0 auto;
+  max-width: 320px;
+}
+
+.newsVine {
+  width: 357px;
+  height: 31px;
+  margin: 22px auto;
+  background: url("/publish/images/polls/vine_long.png") no-repeat;
+}
+
+.newsThreadNav {
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  margin: 0 0 18px;
+  font: 15px/20px var(--roundFont);
+}
+
+.newsThreadNav a { color: var(--newsGold); font-weight: bold; }
+.newsThreadNav .spacer { visibility: hidden; }
+
+/* comments */
+
+.newsComments { margin-top: 10px; }
+
+.newsComments h3 {
+  margin: 0 0 12px;
+  color: var(--newsGold);
+  font: bold 22px/28px var(--roundFont);
+  text-align: center;
+}
+
+.newsCommentList {
+  margin: 0 0 20px;
+  padding: 0;
+  list-style: none;
+}
+
+/* staticImg templateStretchColor 0x395988 with a 25px ellipse. */
+.newsComment {
+  margin-bottom: 10px;
+  padding: 12px 15px;
+  border-radius: 13px;
+  background: var(--newsCommentBg);
+}
+
+.newsComment .newsCommentWho {
+  margin: 0 0 6px;
+  color: var(--newsGold);
+  font: bold 15px/20px var(--roundFont);
+}
+
+/* adminHighlight: a Never Fairy's own comment stood out from the players'. */
+.newsComment.fromStaff { background: var(--newsAdmin); }
+.newsComment.fromStaff .newsCommentWho { color: #fff; }
+
+.newsComment .newsCommentBody {
+  margin: 0 0 6px;
+  color: #fff;
+  font: 15px/21px var(--roundFont);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.newsComment .newsCommentWhen {
+  margin: 0;
+  color: #cfe6f3;
+  font: 13px/18px var(--roundFont);
+}
+
+.newsCommentForm .formRow { grid-template-columns: 150px 1fr; }
+
+.newsCommentNote {
+  margin: 0 0 14px;
+  color: #fff;
+  font: 15px/21px var(--roundFont);
+  text-align: center;
+}
+
+.newsCommentNote a { color: var(--newsGold); font-weight: bold; }
+
+.newsCommentsClosed {
+  margin: 10px 0 0;
+  color: #7fb3cf;
+  font: 15px/21px var(--roundFont);
+  text-align: center;
+}
+
+@media (max-width: 520px) {
+  .newsRow { grid-template-columns: 96px 1fr; }
+  .newsThumb { width: 96px; height: 76px; }
+  .newsVine,
+  .newsList li + li { background-size: 260px 23px; }
+  .newsVine { width: 260px; height: 23px; }
+  .newsByline { flex-direction: column; gap: 2px; }
+}

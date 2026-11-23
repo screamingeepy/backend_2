@@ -1,0 +1,649 @@
+
+/* the only page with a dark background instead of the seasonal one. */
+html body.pixiePageBody { background-image: none; background-color: #0B1522; }
+
+/* wider than the rest of the site on purpose */
+.pixiePageBody .siteWrap { width: min(1330px, calc(100vw - 24px)); }
+
+.pixieStage {
+  width: 100%;
+  margin: 0 auto;
+  padding: 70px 0 60px 250px;
+}
+
+/* the home viewer */
+
+/* homeFrame.svg is the game's own window shape from swf/panel_content/homeViewer.swf */
+.homeViewer {
+  position: relative;
+  aspect-ratio: 880 / 379;
+  margin-bottom: 26px;
+  overflow: hidden;
+  background:
+    url("/site/img/pixiepage/homeFrame.svg") center top / 100% auto no-repeat,
+    radial-gradient(ellipse at 50% 60%, #14202e 0%, #0b1622 70%);
+}
+
+.viewerHome {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-mask: url("/site/img/pixiepage/homeFrame.svg") center top / 100% auto no-repeat;
+  mask: url("/site/img/pixiepage/homeFrame.svg") center top / 100% auto no-repeat;
+}
+
+.viewerName {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  z-index: 2;
+  margin: 0;
+  padding: 6px 16px;
+  border-radius: 8px;
+  background: rgba(20, 12, 4, 0.66);
+  text-align: right;
+}
+
+.viewerFairy {
+  display: block;
+  color: #fff;
+  font: 34px/36px var(--scriptFont);
+  text-shadow: 0 2px 4px #000;
+}
+
+.viewerAddress {
+  display: block;
+  color: var(--gold);
+  font: 22px/24px var(--scriptFont);
+}
+
+/* where they stood in the game */
+.viewerFigure {
+  position: absolute;
+  left: 70.3%;
+  bottom: 3%;
+  max-height: 80%;
+  transform: translateX(-50%);
+  animation: fairyFloat 3.4s ease-in-out infinite;
+}
+
+@keyframes fairyFloat {
+  0%, 100% { transform: translate(-50%, 0); }
+  50% { transform: translate(-50%, -9px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .viewerFigure { animation: none; }
+}
+
+/* columns */
+
+.pixieColumns {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.pixieMain { flex: 1 1 auto; min-width: 0; }
+.pixieSide { flex: 0 0 250px; }
+
+/* green leaf panels */
+
+/* the shape is painted by a backdrop layer instead of masking the panel */
+.leafPanel {
+  position: relative;
+  z-index: 0;
+  margin: 46px 0 30px;
+  padding: 58px 26px 44px;
+}
+
+.leafPanel::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0) 40%, rgba(0, 40, 0, 0.18)), var(--panelPrimary, #85c356);
+  -webkit-mask: url("/site/img/pixiepage/panelProfile.svg") left top / 100% 100% no-repeat;
+  mask: url("/site/img/pixiepage/panelProfile.svg") left top / 100% 100% no-repeat;
+  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.45));
+}
+
+.leafPanel.messages { padding-top: 88px; }
+
+.leafPanel.messages::before {
+  -webkit-mask-image: url("/site/img/pixiepage/panelMessages.svg");
+  mask-image: url("/site/img/pixiepage/panelMessages.svg");
+}
+
+/* the leaf overlaps the panel's top left corner so it is a sibling of the masked panel */
+.leafTab {
+  position: absolute;
+  top: -30px;
+  left: -14px;
+  z-index: 2;
+  width: 164px;
+  height: 131px;
+  padding: 44px 0 0 34px;
+  background: var(--leafPrimary, url("/site/img/pixiepage/leafPrimary1.svg")) left top / 164px auto no-repeat;
+  color: #fff;
+  font: 25px/23px var(--scriptFont);
+  text-shadow: 0 2px 3px rgba(0, 0, 0, 0.55);
+  pointer-events: none;
+}
+
+/* the violet panels take the smaller, flowerless leaf. */
+.leafTab.violet {
+  top: -1px;
+  left: -10px;
+  width: 104px;
+  height: 51px;
+  padding: 9px 0 0 20px;
+  background-image: var(--leafSecondary, url("/site/img/pixiepage/leafSecondary1.svg"));
+  background-size: 104px auto;
+  font-size: 19px;
+  line-height: 18px;
+}
+
+/* A panel and the leaf that hangs off it, so the leaf escapes the mask. */
+.panelWrap { position: relative; }
+
+.panelFacts {
+  margin: 30px 0 0px 150px;
+  color: #fff;
+  font: 32px/38px var(--scriptFont);
+  text-align: left;
+}
+
+.panelFacts span { color: #f7b21a; }
+.panelFacts span + span,
+.panelFacts #pixieTalent { color: #e0bb16; }
+
+/* the swirl belongs to this container */
+.panelInset {
+  padding: 14px 18px;
+  border-radius: 10px;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.16), rgba(0, 50, 20, 0.22)),
+    url("/site/img/pixiepage/greenTexture.svg") center / 100% 100% no-repeat;
+  border: 1px solid rgba(20, 90, 40, 0.55);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), inset 0 -2px 6px rgba(0, 60, 20, 0.35), 0 1px 2px rgba(0, 0, 0, 0.25);
+}
+
+.pixieBio {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(3, auto);
+  grid-auto-flow: column;
+  gap: 8px 24px;
+  margin: 0;
+  font: bold 14px/20px Helvetica, Arial, sans-serif;
+}
+
+.pixieBio > div {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0 12px;
+}
+
+.pixieBio dt { color: #08120a; }
+.pixieBio dd { margin: 0; color: #fff; }
+
+@media (max-width: 520px) {
+  /* one pair per row, so the column fill has to go back to row order. */
+  .pixieBio {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+    grid-auto-flow: row;
+  }
+}
+
+.badgeRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 30px;
+  margin-top: 22px;
+}
+
+.badgeLabel {
+  align-self: center;
+  color: #1f3d10;
+  font: bold 13px/18px Helvetica, Arial, sans-serif;
+}
+
+.badgeStat { text-align: center; }
+
+.badgeStatTitle {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--gold);
+  font: 28px/32px var(--scriptFont);
+  text-shadow: 0 1px 2px rgba(60, 80, 0, 0.5);
+}
+
+.badgeStatValue {
+  display: block;
+  width: 104px;
+  margin: 0 auto;
+  padding: 10px 0;
+  border-radius: 10px;
+  background: linear-gradient(#f2f9e3, #d3e6b4);
+  box-shadow: inset 0 1px 0 #fff, 0 1px 3px rgba(0, 60, 0, 0.35);
+  color: #1f3d10;
+  font: bold 26px/30px Helvetica, Arial, sans-serif;
+}
+
+.badgeSlot {
+  display: block;
+  width: 150px;
+  height: 190px;
+  padding: 12px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.24);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+/* the lighter square a badge sits in, present even when the slot is empty. */
+.badgeSlot::before {
+  content: "";
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.badgeSlot:has(img)::before { display: none; }
+
+.badgeSlot img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.4);
+  object-fit: contain;
+}
+
+.badgeCaption {
+  display: block;
+  margin-top: 6px;
+  color: #1f3d10;
+  font: bold 12px/15px Helvetica, Arial, sans-serif;
+}
+
+.panelSub {
+  margin: 20px 0 14px 40px;
+  color: #1f3d10;
+  font: bold 13px/18px Helvetica, Arial, sans-serif;
+}
+
+.pixieGames {
+  margin: 0 0 8px 40px;
+  padding: 0;
+  list-style: none;
+  color: #1f3d10;
+  font: 13px/20px Helvetica, Arial, sans-serif;
+}
+
+.panelButtons {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 8px 0 12px 130px;
+}
+
+.panelNote { color: #eafbd8; font: 13px/18px Helvetica, Arial, sans-serif; }
+
+/* an empty guestbook is one of the reference's dark bars, not loose text. */
+.messageList:empty { display: none; }
+
+.panelNote:not([hidden]) {
+  padding: 22px 16px;
+  border-radius: 10px;
+  background: linear-gradient(rgba(255, 255, 255, 0.1) 0 50%, rgba(0, 0, 0, 0.14) 50% 100%), #4d7a45;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  text-align: center;
+}
+
+/* signing the guestbook */
+
+.signForm { margin: 8px 0 14px; }
+
+.signLead {
+  display: block;
+  margin-bottom: 6px;
+  color: #1f3d10;
+  font: bold 13px/18px Helvetica, Arial, sans-serif;
+}
+
+.signRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.signRow button { flex: 0 0 auto; }
+
+.signRow select {
+  min-width: 0;
+  padding: 5px;
+  border: 1px solid rgba(31, 61, 16, 0.5);
+  border-radius: 6px;
+  font: 13px/18px Helvetica, Arial, sans-serif;
+}
+
+.signRow select:first-of-type { flex: 3 1 0; }
+.signRow select + select { flex: 2 1 0; }
+
+/* the sentence as it will read, before it is left anywhere. */
+.signPreview {
+  margin: 8px 0 0;
+  min-height: 20px;
+  color: #fff;
+  font: italic 15px/20px var(--serifFont);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+.signed { position: relative; padding-right: 34px; }
+
+.signRemove {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border: 0;
+  border-radius: 11px;
+  background: rgba(31, 61, 16, 0.45);
+  color: #fff;
+  font: bold 15px/22px Helvetica, Arial, sans-serif;
+  cursor: pointer;
+}
+
+.signRemove:hover { background: rgba(31, 61, 16, 0.8); }
+
+.messageList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.messageCard {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  background: linear-gradient(rgba(255, 255, 255, 0.1) 0 50%, rgba(0, 0, 0, 0.14) 50% 100%), #4d7a45;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25), 0 1px 3px rgba(0, 40, 0, 0.3);
+}
+
+.messagePicture {
+  flex: none;
+  width: 118px;
+  border-radius: 6px;
+}
+
+.messageText { min-width: 0; }
+
+.messageWords {
+  display: block;
+  color: #fff;
+  font: bold 15px/20px Helvetica, Arial, sans-serif;
+}
+
+.messageFrom {
+  display: block;
+  color: #1f3d10;
+  font: bold 12px/17px Helvetica, Arial, sans-serif;
+}
+
+.messageWhen {
+  display: block;
+  color: #eafbd8;
+  font: 12px/17px Helvetica, Arial, sans-serif;
+}
+
+/* violet side panels */
+
+.sidebarTop { margin: 22px 0 14px; text-align: right; }
+
+.violetPanel {
+  position: relative;
+  z-index: 0;
+  margin: 30px 0 26px;
+  padding: 34px 22px 24px;
+}
+
+.violetPanel::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: linear-gradient(rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0) 45%, rgba(15, 10, 90, 0.22)), var(--panelSecondary, #696ec2);
+  -webkit-mask: url("/site/img/pixiepage/panelPrint.svg") left top / 100% 100% no-repeat;
+  mask: url("/site/img/pixiepage/panelPrint.svg") left top / 100% 100% no-repeat;
+  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.45));
+}
+
+#pollPanel::before {
+  -webkit-mask-image: url("/site/img/pixiepage/panelPoll.svg");
+  mask-image: url("/site/img/pixiepage/panelPoll.svg");
+}
+
+#quizPanel::before {
+  -webkit-mask-image: url("/site/img/pixiepage/panelQuiz.svg");
+  mask-image: url("/site/img/pixiepage/panelQuiz.svg");
+}
+
+/* clear of the bust on the corner. */
+.violetLead { padding-left: 46px; }
+
+.violetLead,
+.violetQuestion {
+  margin: 0 0 12px;
+  color: #fff;
+  font: bold 14px/19px Helvetica, Arial, sans-serif;
+  text-align: center;
+}
+
+.violetQuestion { margin-top: 26px; }
+
+.pollOptions,
+.pollResults {
+  margin: 0 0 12px;
+  padding: 0;
+  list-style: none;
+}
+
+.pollOptions li {
+  margin-bottom: 6px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.pollOptions label {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  color: #fff;
+  font: bold 13px/18px Helvetica, Arial, sans-serif;
+  cursor: pointer;
+}
+
+.pollOptions input { margin-top: 3px; }
+
+.pollResults li {
+  margin-bottom: 8px;
+  color: #fff;
+  font: bold 13px/18px Helvetica, Arial, sans-serif;
+}
+
+.pollResults li.yourAnswer {
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.pollOptionName { display: block; }
+
+.pollBar {
+  display: block;
+  height: 10px;
+  margin: 3px 0 2px;
+  border-radius: 5px;
+  background: rgba(43, 52, 85, 0.5);
+  overflow: hidden;
+}
+
+.pollBar span {
+  display: block;
+  height: 100%;
+  min-width: 2px;
+  border-radius: 5px;
+  background: linear-gradient(var(--paleGold), var(--gold));
+}
+
+.pollTally {
+  display: block;
+  color: #e6e7f7;
+  font: 12px/16px Helvetica, Arial, sans-serif;
+  text-align: right;
+}
+
+.quizQuestion {
+  margin: 0 0 10px;
+  color: #fff;
+  font: bold 14px/19px Helvetica, Arial, sans-serif;
+  text-align: center;
+}
+
+.quizAnswers {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.quizAnswers li { margin-bottom: 6px; }
+
+.quizAnswer {
+  display: block;
+  width: 100%;
+  padding: 7px 10px;
+  border: 1px solid rgba(43, 52, 85, 0.6);
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.22);
+  color: #fff;
+  font: bold 13px/18px Helvetica, Arial, sans-serif;
+  text-align: left;
+  cursor: pointer;
+}
+
+.quizAnswer:hover { background: rgba(255, 255, 255, 0.36); }
+
+.quizResultTitle {
+  margin: 0 0 8px;
+  color: var(--gold);
+  font: 22px/26px var(--serifFont);
+  text-align: center;
+}
+
+.quizResultText {
+  margin: 0 0 12px;
+  color: #fff;
+  font: bold 13px/18px Helvetica, Arial, sans-serif;
+  text-align: center;
+}
+
+/* the owner's picker, folded out of the Edit Page button. */
+.pagePicker {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(43, 52, 85, 0.4);
+  text-align: center;
+}
+
+.pagePicker label {
+  display: block;
+  margin-bottom: 6px;
+  color: #fff;
+  font: bold 12px/17px Helvetica, Arial, sans-serif;
+}
+
+.pagePicker select {
+  display: block;
+  width: 100%;
+  margin-bottom: 8px;
+  padding: 5px;
+  border: 1px solid rgba(43, 52, 85, 0.6);
+  border-radius: 6px;
+  font: 12px/17px Helvetica, Arial, sans-serif;
+}
+
+/* her bust on the print panel's corner */
+.printBust {
+  position: absolute;
+  top: -16px;
+  left: -14px;
+  z-index: 2;
+  width: 100px;
+  height: 100px;
+  padding: 6px;
+  border-radius: 50%;
+  background: url("/site/img/pixiepage/bustPlate.svg") center / 100% 100% no-repeat;
+  object-fit: cover;
+  object-position: center bottom;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.5));
+}
+
+/* the printer that sat on the button in the game (printPanel.swf shape 10). */
+.pixieButton.withPrinter {
+  padding-right: 42px;
+  background-image: url("/site/img/pixiepage/printerIcon.svg"), linear-gradient(#4d5985, #2b3455);
+  background-repeat: no-repeat;
+  background-position: right 10px center, center;
+  background-size: 22px auto, auto;
+}
+
+/* buttons */
+
+.pixieButton {
+  display: inline-block;
+  padding: 7px 18px;
+  border: 1px solid #2b3455;
+  border-radius: 7px;
+  background: linear-gradient(#4d5985, #2b3455);
+  color: #fff;
+  font: bold 14px/19px Helvetica, Arial, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
+#editPage {
+  min-width: 138px;
+  padding: 8px 24px;
+  border: 1px solid #4b6a1d;
+  border-radius: 8px;
+  background: linear-gradient(#93b955, #6c9333);
+  font-size: 19px;
+  line-height: 24px;
+}
+
+.pixieButton:hover:not(:disabled) { filter: brightness(1.15); }
+.pixieButton:disabled { opacity: 0.55; cursor: default; }
+
+.pixieMissing {
+  padding: 40px;
+  color: #fff;
+  text-align: center;
+}
+
+.pixieMissing h1 { color: var(--gold); font: 34px/40px var(--serifFont); }
+
+.sidebarNote { margin: 0 0 12px; text-align: right; color: #2c2417; }
+.sidebarNote.bad { color: #a3132d; font-weight: 700; }

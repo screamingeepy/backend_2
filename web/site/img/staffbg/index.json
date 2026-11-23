@@ -1,0 +1,2680 @@
+{
+ "default": "zone100",
+ "groups": [
+  {
+   "name": "Spring Meadows",
+   "zones": [
+    {
+     "id": "zone100",
+     "name": "Cherryblossom Heights",
+     "parent": null,
+     "variants": [
+      {
+       "id": "zone100",
+       "label": "Usual",
+       "file": "zone100/usual.jpg"
+      },
+      {
+       "id": "zone100~Meadow_Spring_Rain",
+       "label": "Spring Rain",
+       "file": "zone100/Meadow_Spring_Rain.jpg"
+      },
+      {
+       "id": "zone100~Meadow_SpringPrep",
+       "label": "Spring Prep",
+       "file": "zone100/Meadow_SpringPrep.jpg"
+      },
+      {
+       "id": "zone100~Meadow_SpringCelebration",
+       "label": "Spring Celebration",
+       "file": "zone100/Meadow_SpringCelebration.jpg"
+      },
+      {
+       "id": "zone100~Meadow_SpringCrisis_2012_Closed",
+       "label": "Spring Crisis 2012 Closed",
+       "file": "zone100/Meadow_SpringCrisis_2012_Closed.jpg"
+      },
+      {
+       "id": "zone100~Meadow_SpringFlood",
+       "label": "Spring Flood",
+       "file": "zone100/Meadow_SpringFlood.jpg"
+      },
+      {
+       "id": "zone100~Great_Games_Days",
+       "label": "Great Games Days",
+       "file": "zone100/Great_Games_Days.jpg"
+      },
+      {
+       "id": "zone100~Meadow_GreatGames2010",
+       "label": "Great Games 2010",
+       "file": "zone100/Meadow_GreatGames2010.jpg"
+      },
+      {
+       "id": "zone100~Meadow_GGSpring",
+       "label": "GGSpring",
+       "file": "zone100/Meadow_GGSpring.jpg"
+      },
+      {
+       "id": "zone100~Meadow_SpringAll",
+       "label": "Spring All",
+       "file": "zone100/Meadow_SpringAll.jpg"
+      },
+      {
+       "id": "zone100~Meadow_Spring_Celebration",
+       "label": "Spring Celebration",
+       "file": "zone100/Meadow_Spring_Celebration.jpg"
+      },
+      {
+       "id": "zone100~Meadow_CampSpring",
+       "label": "Camp Spring",
+       "file": "zone100/Meadow_CampSpring.jpg"
+      },
+      {
+       "id": "zone100~Meadow_AnimalMasq2010",
+       "label": "Animal Masq 2010",
+       "file": "zone100/Meadow_AnimalMasq2010.jpg"
+      },
+      {
+       "id": "zone100~Meadow_AnimalMothers2011",
+       "label": "Animal Mothers 2011",
+       "file": "zone100/Meadow_AnimalMothers2011.jpg"
+      },
+      {
+       "id": "zone100~Meadow_Garden_Games",
+       "label": "Garden Games",
+       "file": "zone100/Meadow_Garden_Games.jpg"
+      },
+      {
+       "id": "zone100~Meadow_PHG2011_Prep",
+       "label": "PHG2011 Prep",
+       "file": "zone100/Meadow_PHG2011_Prep.jpg"
+      },
+      {
+       "id": "zone100~Meadow_PGH2011",
+       "label": "PGH2011",
+       "file": "zone100/Meadow_PGH2011.jpg"
+      },
+      {
+       "id": "zone100~Meadow_SpringEquinox_2012_Open",
+       "label": "Spring Equinox 2012 Open",
+       "file": "zone100/Meadow_SpringEquinox_2012_Open.jpg"
+      },
+      {
+       "id": "zone100~Meadow_Theater_TroopButterfly2012",
+       "label": "Theater Troop Butterfly 2012",
+       "file": "zone100/Meadow_Theater_TroopButterfly2012.jpg"
+      },
+      {
+       "id": "zone100~Meadow_Masquerade2012",
+       "label": "Masquerade 2012",
+       "file": "zone100/Meadow_Masquerade2012.jpg"
+      },
+      {
+       "id": "zone100~Meadow_SpringEquinox",
+       "label": "Spring Equinox",
+       "file": "zone100/Meadow_SpringEquinox.jpg"
+      },
+      {
+       "id": "zone100~Meadow_Camp2013",
+       "label": "Camp 2013",
+       "file": "zone100/Meadow_Camp2013.jpg"
+      }
+     ]
+    },
+    {
+     "id": "zone101",
+     "name": "Springtime Orchard",
+     "parent": null,
+     "variants": [
+      {
+       "id": "zone101",
+       "label": "Usual",
+       "file": "zone101/usual.jpg"
+      },
+      {
+       "id": "zone101~Meadow_Decorations_SummerSparkler",
+       "label": "Decorations Summer Sparkler",
+       "file": "zone101/Meadow_Decorations_SummerSparkler.jpg"
+      },
+      {
+       "id": "zone101~Meadow_Spring_Rain",
+       "label": "Spring Rain",
+       "file": "zone101/Meadow_Spring_Rain.jpg"
+      },
+      {
+       "id": "zone101~Meadow_SummerSparkler2010",
+       "label": "Summer Sparkler 2010",
+       "file": "zone101/Meadow_SummerSparkler2010.jpg"
+      },
+      {
+       "id": "zone101~Meadow_SpringCelebration",
+       "label": "Spring Celebration",
+       "file": "zone101/Meadow_SpringCelebration.jpg"
+      },
+      {
+       "id": "zone101~Meadow_SpringPrep",
+       "label": "Spring Prep",
+       "file": "zone101/Meadow_SpringPrep.jpg"
+      },
+      {
+       "id": "zone101~Meadow_SpringCrisis_2012_Closed",
+       "label": "Spring Crisis 2012 Closed",
+       "file": "zone101/Meadow_SpringCrisis_2012_Closed.jpg"
+      },
+      {
+       "id": "zone101~Meadow_Theater_TroopGlowworm2012",
+       "label": "Theater Troop Glowworm 2012",
+       "file": "zone101/Meadow_Theater_TroopGlowworm2012.jpg"
+      },
+      {
+       "id": "zone101~Meadow_SpringFlood",
+       "label": "Spring Flood",
+       "file": "zone101/Meadow_SpringFlood.jpg"
+      },
+      {
+       "id": "zone101~Great_Games_Days",
+       "label": "Great Games Days",
+       "file": "zone101/Great_Games_Days.jpg"
+      },
+      {
+       "id": "zone101~Meadow_GreatGames2010",
+       "label": "Great Games 2010",
+       "file": "zone101/Meadow_GreatGames2010.jpg"
+      },
+      {
+       "id": "zone101~Meadow_Spring_Prep",
+       "label": "Spring Prep",
+       "file": "zone101/Meadow_Spring_Prep.jpg"
+      },
+      {
+       "id": "zone101~Meadow_Spring_Celebration",
+       "label": "Spring Celebration",
+       "file": "zone101/Meadow_Spring_Celebration.jpg"
+      },
+      {
+       "id": "zone101~Meadow_GreatGames",
+       "label": "Great Games",
+       "file": "zone101/Meadow_GreatGames.jpg"
+      },
+      {
+       "id": "zone101~Meadow_AnimalMasq2010",
+       "label": "Animal Masq 2010",
+       "file": "zone101/Meadow_AnimalMasq2010.jpg"
+      },
+      {
+       "id": "zone101~Meadow_SillyDays2011",
+       "label": "Silly Days 2011",
+       "file": "zone101/Meadow_SillyDays2011.jpg"
+      },
+      {
+       "id": "zone101~Meadow_AnimalMothers2011",
+       "label": "Animal Mothers 2011",
+       "file": "zone101/Meadow_AnimalMothers2011.jpg"
+      },
+      {
+       "id": "zone101~Meadow_Light_Games",
+       "label": "Light Games",
+       "file": "zone101/Meadow_Light_Games.jpg"
+      },
+      {
+       "id": "zone101~Meadow_SpringEquinox_2012_Open",
+       "label": "Spring Equinox 2012 Open",
+       "file": "zone101/Meadow_SpringEquinox_2012_Open.jpg"
+      },
+      {
+       "id": "zone101~Meadow_MothersDay",
+       "label": "Mothers Day",
+       "file": "zone101/Meadow_MothersDay.jpg"
+      },
+      {
+       "id": "zone101~Meadow_Masquerade2012",
+       "label": "Masquerade 2012",
+       "file": "zone101/Meadow_Masquerade2012.jpg"
+      }
+     ]
+    },
+    {
+     "id": "zone102",
+     "name": "Dewdrop Vale",
+     "parent": null,
+     "variants": [
+      {
+       "id": "zone102",
+       "label": "Usual",
+       "file": "zone102/usual.jpg"
+      },
+      {
+       "id": "zone102~Meadow_SpringPrep",
+       "label": "Spring Prep",
+       "file": "zone102/Meadow_SpringPrep.jpg"
+      },
+      {
+       "id": "zone102~Meadow_SpringCelebration",
+       "label": "Spring Celebration",
+       "file": "zone102/Meadow_SpringCelebration.jpg"
+      },
+      {
+       "id": "zone102~Meadow_SpringFlood",
+       "label": "Spring Flood",
+       "file": "zone102/Meadow_SpringFlood.jpg"
+      },
+      {
+       "id": "zone102~Meadow_SpringCrisis_2012_Closed",
+       "label": "Spring Crisis 2012 Closed",
+       "file": "zone102/Meadow_SpringCrisis_2012_Closed.jpg"
+      },
+      {
+       "id": "zone102~Meadow_Decorations_TeaParty",
+       "label": "Decorations Tea Party",
+       "file": "zone102/Meadow_Decorations_TeaParty.jpg"
+      },
+      {
+       "id": "zone102~Meadow_Spring_Rain",
+       "label": "Spring Rain",
+       "file": "zone102/Meadow_Spring_Rain.jpg"
+      },
+      {
+       "id": "zone102~Meadow_AnimalMasq2010",
+       "label": "Animal Masq 2010",
+       "file": "zone102/Meadow_AnimalMasq2010.jpg"
+      },
+      {
+       "id": "zone102~Meadow_SillyDays2011",
+       "label": "Silly Days 2011",
+       "file": "zone102/Meadow_SillyDays2011.jpg"
+      },
+      {
+       "id": "zone102~Meadow_NeverDove2011",
+       "label": "Never Dove 2011",
+       "file": "zone102/Meadow_NeverDove2011.jpg"
+      },
+      {
+       "id": "zone102~Meadow_Water_Games",
+       "label": "Water Games",
+       "file": "zone102/Meadow_Water_Games.jpg"
+      },
+      {
+       "id": "zone102~Meadow_PGH2011",
+       "label": "PGH2011",
+       "file": "zone102/Meadow_PGH2011.jpg"
+      },
+      {
+       "id": "zone102~Meadow_PHG2011_Prep",
+       "label": "PHG2011 Prep",
+       "file": "zone102/Meadow_PHG2011_Prep.jpg"
+      },
+      {
+       "id": "zone102~Meadow_SpringEquinox_2012_Open",
+       "label": "Spring Equinox 2012 Open",
+       "file": "zone102/Meadow_SpringEquinox_2012_Open.jpg"
+      },
+      {
+       "id": "zone102~Meadow_WinterLightup2012",
+       "label": "Winter Lightup 2012",
+       "file": "zone102/Meadow_WinterLightup2012.jpg"
+      },
+      {
+       "id": "zone102~Meadow_Masquerade2012",
+       "label": "Masquerade 2012",
+       "file": "zone102/Meadow_Masquerade2012.jpg"
+      },
+      {
+       "id": "zone102~Meadow_NeverDove",
+       "label": "Never Dove",
+       "file": "zone102/Meadow_NeverDove.jpg"
+      },
+      {
+       "id": "zone102~Meadow_Theater_Camp",
+       "label": "Theater Camp",
+       "file": "zone102/Meadow_Theater_Camp.jpg"
+      }
+     ]
+    },
+    {
+     "id": "zone103",
+     "name": "Neverberry Thicket",
+     "parent": null,
+     "variants": [
+      {
+       "id": "zone103",
+       "label": "Usual",
+       "file": "zone103/usual.jpg"
+      },
+      {
+       "id": "zone103~Meadow_Spring_Rain",
+       "label": "Spring Rain",
+       "file": "zone103/Meadow_Spring_Rain.jpg"
+      },
+      {
+       "id": "zone103~Meadow_SpringCelebration",
+       "label": "Spring Celebration",
+       "file": "zone103/Meadow_SpringCelebration.jpg"
+      },
+      {
+       "id": "zone103~Meadow_SpringPrep",
+       "label": "Spring Prep",
+       "file": "zone103/Meadow_SpringPrep.jpg"
+      },
+      {
+       "id": "zone103~Meadow_SpringFlood",
+       "label": "Spring Flood",
+       "file": "zone103/Meadow_SpringFlood.jpg"
+      },
+      {
+       "id": "zone103~Great_Games_Days",
+       "label": "Great Games Days",
+       "file": "zone103/Great_Games_Days.jpg"
+      },
+      {
+       "id": "zone103~Meadow_GreatGames2010",
+       "label": "Great Games 2010",
+       "file": "zone103/Meadow_GreatGames2010.jpg"
+      },
+      {
+       "id": "zone103~Meadow_Spring_Prep",
+       "label": "Spring Prep",
+       "file": "zone103/Meadow_Spring_Prep.jpg"
+      },
+      {
+       "id": "zone103~Meadow_Spring_Celebration",
+       "label": "Spring Celebration",
+       "file": "zone103/Meadow_Spring_Celebration.jpg"
+      },
+      {
+       "id": "zone103~Meadow_AnimalMasq2010",
+       "label": "Animal Masq 2010",
+       "file": "zone103/Meadow_AnimalMasq2010.jpg"
+      },
+      {
+       "id": "zone103~Meadow_Water_Games",
+       "label": "Water Games",
+       "file": "zone103/Meadow_Water_Games.jpg"
+      },
+      {
+       "id": "zone103~Meadow_SpringCrisis_2012_Closed",
+       "label": "Spring Crisis 2012 Closed",
+       "file": "zone103/Meadow_SpringCrisis_2012_Closed.jpg"
+      },
+      {
+       "id": "zone103~Meadow_SpringEquinox_2012_Open",
+       "label": "Spring Equinox 2012 Open",
+       "file": "zone103/Meadow_SpringEquinox_2012_Open.jpg"
+      },
+      {
+       "id": "zone103~Meadow_Masquerade2012",
+       "label": "Masquerade 2012",
+       "file": "zone103/Meadow_Masquerade2012.jpg"
+      },
+      {
+       "id": "zone103~Meadow_SpringEquinox",
+       "label": "Spring Equinox",
+       "file": "zone103/Meadow_SpringEquinox.jpg"
+      }
+     ]
+    },
+    {
+     "id": "zone104",
+     "name": "Treetop Bend",
+     "parent": null,
+     "variants": [
+      {
+       "id": "zone104",
+       "label": "Usual",
+       "file": "zone104/usual.jpg"
+      },
+      {
+       "id": "zone104~Meadow_Spring_Rain",
+       "label": "Spring Rain",
+       "file": "zone104/Meadow_Spring_Rain.jpg"
+      },
+      {
+       "id": "zone104~Meadow_SpringCelebration",
+       "label": "Spring Celebration",
+       "file": "zone104/Meadow_SpringCelebration.jpg"
+      },
+      {
+       "id": "zone104~Meadow_SpringPrep",
+       "label": "Spring Prep",
+       "file": "zone104/Meadow_SpringPrep.jpg"
+      },
+      {
+       "id": "zone104~Meadow_SpringFlood",
+       "label": "Spring Flood",
+       "file": "zone104/Meadow_SpringFlood.jpg"
+      },
+      {
+       "id": "zone104~Meadow_SpringCrisis_2012_Closed",
+       "label": "Spring Crisis 2012 Closed",
+       "file": "zone104/Meadow_SpringCrisis_2012_Closed.jpg"
+      },
+      {
+       "id": "zone104~Meadow_GreatGames2010",
+       "label": "Great Games 2010",
+       "file": "zone104/Meadow_GreatGames2010.jpg"
+      },
+      {
+       "id": "zone104~Meadow_Friendship_Festival",
+       "label": "Friendship Festival",
+       "file": "zone104/Meadow_Friendship_Festival.jpg"
+      },
+      {
+       "id": "zone104~Meadow_GreatGames",
+       "label": "Great Games",
+       "file": "zone104/Meadow_GreatGames.jpg"
+      },
+      {
+       "id": "zone104~Meadow_AnimalMasq2010",
+       "label": "Animal Masq 2010",
+       "file": "zone104/Meadow_AnimalMasq2010.jpg"
+      },
+      {
+       "id": "zone104~Meadow_Spring_Celebration",
+       "label": "Spring Celebration",
+       "file": "zone104/Meadow_Spring_Celebration.jpg"
+      },
+      {
+       "id": "zone104~Meadow_Friendship2011",
+       "label": "Friendship 2011",
+       "file": "zone104/Meadow_Friendship2011.jpg"
+      },
+      {
+       "id": "zone104~Meadow_Fairy_Friendship_2012",
+       "label": "Fairy Friendship 2012",
+       "file": "zone104/Meadow_Fairy_Friendship_2012.jpg"
+      },
+      {
+       "id": "zone104~Meadow_SpringEquinox_2012_Open",
+       "label": "Spring Equinox 2012 Open",
+       "file": "zone104/Meadow_SpringEquinox_2012_Open.jpg"
+      },
+      {
+       "id": "zone104~Meadow_Masquerade2012",
+       "label": "Masquerade 2012",
+       "file": "zone104/Meadow_Masquerade2012.jpg"
+      },
+      {
+       "id": "zone104~Meadow_SpringEquinox",
+       "label": "Spring Equinox",
+       "file": "zone104/Meadow_SpringEquinox.jpg"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Summer Meadows",
+   "zones": [
+    {
+     "id": "zone400",
+     "name": "Palm Tree Cove",
+     "parent": null,
+     "variants": [
+      {
+       "id": "zone400",
+       "label": "Usual",
+       "file": "zone400/usual.jpg"
+      },
+      {
+       "id": "zone400~Meadow_SillyDays2011",
+       "label": "Silly Days 2011",
+       "file": "zone400/Meadow_SillyDays2011.jpg"
+      },
+      {
+       "id": "zone400~Meadow_Decorations_SummerSplash",
+       "label": "Decorations Summer Splash",
+       "file": "zone400/Meadow_Decorations_SummerSplash.jpg"
+      },
+      {
+       "id": "zone400~Meadow_Theater_CampPixie2012",
+       "label": "Theater Camp Pixie 2012",
+       "file": "zone400/Meadow_Theater_CampPixie2012.jpg"
+      },
+      {
+       "id": "zone400~Meadow_GardenTea2010",
+       "label": "Garden Tea 2010",
+       "file": "zone400/Meadow_GardenTea2010.jpg"
+      },
+      {
+       "id": "zone400~Meadow_AnimalMasq2010",
+       "label": "Animal Masq 2010",
+       "file": "zone400/Meadow_AnimalMasq2010.jpg"
+      },
+      {
+       "id": "zone400~Meadow_Theater_TroopOtter2012",
+       "label": "Theater Troop Otter 2012",
+       "file": "zone400/Meadow_Theater_TroopOtter2012.jpg"
+      },
+      {
+       "id": "zone400~Meadow_Masquerade2012",
+       "label": "Masquerade 2012",
+       "file": "zone400/Meadow_Masquerade2012.jpg"
+      },
+      {
+       "id": "zone400~Meadow_TeaParty",
+       "label": "Tea Party",
+       "file": "zone400/Meadow_TeaParty.jpg"
+      },
+      {
+       "id": "zone400~Box_Closed",
+       "label": "Box Closed",
+       "file": "zone400/Box_Closed.jpg"
+      },
+      {
+       "id": "zone400~Box_Open",
+       "label": "Box Open",
+       "file": "zone400/Box_Open.jpg"
+      },
+      {
+       "id": "zone400~Meadow_SillyDays2010",
+       "label": "Silly Days 2010",
+       "file": "zone400/Meadow_SillyDays2010.jpg"
+      },
+      {
+       "id": "zone400~Meadow_NatureDays2010",
+       "label": "Nature Days 2010",
+       "file": "zone400/Meadow_NatureDays2010.jpg"
+      },
+      {
+       "id": "zone400~Meadow_NeverDove2011",
+       "label": "Never Dove 2011",
+       "file": "zone400/Meadow_NeverDove2011.jpg"
+      },
+      {
+       "id": "zone400~Meadow_TeaParty2011",
+       "label": "Tea Party 2011",
+       "file": "zone400/Meadow_TeaParty2011.jpg"
+      },
+      {
+       "id": "zone400~Meadow_Marina_SummerSplash",
+       "label": "Marina Summer Splash",
+       "file": "zone400/Meadow_Marina_SummerSplash.jpg"
+      },
+      {
+       "id": "zone400~Meadow_Tinker_Games",
+       "label": "Tinker Games",
+       "file": "zone400/Meadow_Tinker_Games.jpg"
+      },
+      {
+       "id": "zone400~Meadow_Marina_Default",
+       "label": "Marina Default",
+       "file": "zone400/Meadow_Marina_Default.jpg"
+      },
+      {
+       "id": "zone400~Meadow_Marina_NoBanners",
+       "label": "Marina No Banners",
+       "file": "zone400/Meadow_Marina_NoBanners.jpg"
+      },
+      {
+       "id": "zone400~Meadow_Theater_TroopButterfly2012",
+       "label": "Theater Troop Butterfly 2012",
+       "file": "zone400/Meadow_Theater_TroopButterfly2012.jpg"
+      },
+      {
+       "id": "zone400~Meadow_SummerSplash",
+       "label": "Summer Splash",
+       "file": "zone400/Meadow_SummerSplash.jpg"
+      }
+     ]
+    },
+    {
+     "id": "zone401",
+     "name": "Sunflower Gully",
+     "parent": null,
+     "variants": [
+      {
+       "id": "zone401",
+       "label": "Usual",
+       "file": "zone401/usual.jpg"
+      },
+      {
+       "id": "zone401~Meadow_Decorations_TeaParty",
+       "label": "Decorations Tea Party",
+       "file": "zone401/Meadow_Decorations_TeaParty.jpg"
+      },
+      {
+       "id": "zone401~Meadow_GardenTea2010",
+       "label": "Garden Tea 2010",
+       "file": "zone401/Meadow_GardenTea2010.jpg"
+      },
+      {
+       "id": "zone401~Meadow_TeaParty2011",
+       "label": "Tea Party 2011",
+       "file": "zone401/Meadow_TeaParty2011.jpg"
+      },
+      {
+       "id": "zone401~Meadow_Light_Games",
+       "label": "Light Games",
+       "file": "zone401/Meadow_Light_Games.jpg"
+      },
+      {
+       "id": "zone401~Meadow_PHG2011_Prep",
+       "label": "PHG2011 Prep",
+       "file": "zone401/Meadow_PHG2011_Prep.jpg"
+      },
+      {
+       "id": "zone401~Meadow_PGH2011",
+       "label": "PGH2011",
+       "file": "zone401/Meadow_PGH2011.jpg"
+      },
+      {
+       "id": "zone401~old_default",
+       "label": "old default",
+       "file": "zone401/old_default.jpg"
+      },
+      {
+       "id": "zone401~Meadow_Theater_TroopGlowworm2012",
+       "label": "Theater Troop Glowworm 2012",
+       "file": "zone401/Meadow_Theater_TroopGlowworm2012.jpg"
+      },
+      {
+       "id": "zone401~Meadow_TeaParty",
+       "label": "Tea Party",
+       "file": "zone401/Meadow_TeaParty.jpg"
+      },
+      {
+       "id": "zone401~Meadow_MothersDay",
+       "label": "Mothers Day",
+       "file": "zone401/Meadow_MothersDay.jpg"
+      },
+      {
+       "id": "zone401~Meadow_Camp2013",
+       "label": "Camp 2013",
+       "file": "zone401/Meadow_Camp2013.jpg"
+      }
+     ]
+    },
+    {
+     "id": "zone402",
+     "name": "Neverfruit Grove",
+     "parent": null,
+     "variants": [
+      {
+       "id": "zone402",
+       "label": "Usual",
+       "file": "zone402/usual.jpg"
+      },
+      {
+       "id": "zone402~Meadow_GreatGames2010",
+       "label": "Great Games 2010",
+       "file": "zone402/Meadow_GreatGames2010.jpg"
+      },
+      {
+       "id": "zone402~Meadow_CampSummer",
+       "label": "Camp Summer",
+       "file": "zone402/Meadow_CampSummer.jpg"
+      },
+      {
+       "id": "zone402~Meadow_SummerAll",
+       "label": "Summer All",
+       "file": "zone402/Meadow_SummerAll.jpg"
+      },
+      {
+       "id": "zone402~Meadow_AnimalMasq2010",
+       "label": "Animal Masq 2010",
+       "file": "zone402/Meadow_AnimalMasq2010.jpg"
+      },
+      {
+       "id": "zone402~Meadow_Friendship2011",
+       "label": "Friendship 2011",
+       "file": "zone402/Meadow_Friendship2011.jpg"
+      },
+      {
+       "id": "zone402~Meadow_AnimalMothers2011",
+       "label": "Animal Mothers 2011",
+       "file": "zone402/Meadow_AnimalMothers2011.jpg"
+      },
+      {
+       "id": "zone402~Meadow_TeaParty2011",
+       "label": "Tea Party 2011",
+       "file": "zone402/Meadow_TeaParty2011.jpg"
+      },
+      {
+       "id": "zone402~Meadow_Fairy_Friendship_2012",
+       "label": "Fairy Friendship 2012",
+       "file": "zone402/Meadow_Fairy_Friendship_2012.jpg"
+      },
+      {
+       "id": "zone402~Meadow_Masquerade2012",
+       "label": "Masquerade 2012",
+       "file": "zone402/Meadow_Masquerade2012.jpg"
+      },
+      {
+       "id": "zone402~Meadow_FairyFriendship",
+       "label": "Fairy Friendship",
+       "file": "zone402/Meadow_FairyFriendship.jpg"
+      },
+      {
+       "id": "zone402~Meadow_TeaParty",
+       "label": "Tea Party",
+       "file": "zone402/Meadow_TeaParty.jpg"
+      }
+     ]
+    },
+    {
+     "id": "zone403",
+     "name": "Mermaid Grotto",
+     "parent": null,
+     "variants": [
+      {
+       "id": "zone403",
+       "label": "Usual",
+       "file": "zone403/usual.jpg"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Autumn Meadows",
+   "zones": [
+    {
+     "id": "zone200",
+     "name": "Acorn Summit",
+     "parent": null,
+     "variants": [
+      {
+       "id": "zone200",
+       "label": "Usual",
+       "file": "zone200/usual.jpg"
+      },
+      {
+       "id": "zone200~Meadow_Decorations_SummerSparkler",
+       "label": "Decorations Summer Sparkler",
+       "file": "zone200/Meadow_Decorations_SummerSparkler.jpg"
+      },
+      {
+       "id": "zone200~Meadow_SummerSparkler2010",
+       "label": "Summer Sparkler 2010",
+       "file": "zone200/Meadow_SummerSparkler2010.jpg"
+      },
+      {
+       "id": "zone200~Meadow_Theater_TroopGlowworm2012",
+       "label": "Theater Troop Glowworm 2012",
+       "file": "zone200/Meadow_Theater_TroopGlowworm2012.jpg"
+      },
+      {
+       "id": "zone200~Great_Games_Days_Fairy_Fireworks",
+       "label": "Great Games Days Fairy Fireworks",
+       "file": "zone200/Great_Games_Days_Fairy_Fireworks.jpg"
+      },
+      {
+       "id": "zone200~Friendship_Festival",
+       "label": "Friendship Festival",
+       "file": "zone200/Friendship_Festival.jpg"
+      },
+      {
+       "id": "zone200~Meadow_Decorations_Changing_Leaves_Berry_Harvest",
+       "label": "Decorations Changing Leaves Berry Harvest",
+       "file": "zone200/Meadow_Decorations_Changing_Leaves_Berry_Harvest.jpg"
+      },
+      {
+       "id": "zone200~Meadow_Decorations_Changing_Leaves_End",
+       "label": "Decorations Changing Leaves End",
+       "file": "zone200/Meadow_Decorations_Changing_Leaves_End.jpg"
+      },
+      {
+       "id": "zone200~Animal_Masquerade",
+       "label": "Animal Masquerade",
+       "file": "zone200/Animal_Masquerade.jpg"
+      },
+      {
+       "id": "zone200~Meadow_Autumn_Revelry_Prep",
+       "label": "Autumn Revelry Prep",
+       "file": "zone200/Meadow_Autumn_Revelry_Prep.jpg"
+      },
+      {
+       "id": "zone200~Meadow_Autumn_Revelry_Begin",
+       "label": "Autumn Revelry Begin",
+       "file": "zone200/Meadow_Autumn_Revelry_Begin.jpg"
+      },
+      {
+       "id": "zone200~Meadow_Fairy_Feast",
+       "label": "Fairy Feast",
+       "file": "zone200/Meadow_Fairy_Feast.jpg"
+      },
+      {
+       "id": "zone200~Meadow_Winter_Lightup",
+       "label": "Winter Lightup",
+       "file": "zone200/Meadow_Winter_Lightup.jpg"
+      },
+      {
+       "id": "zone200~Meadow_GreatGames",
+       "label": "Great Games",
+       "file": "zone200/Meadow_GreatGames.jpg"
+      },
+      {
+       "id": "zone200~Meadow_FairyFeast2010",
+       "label": "Fairy Feast 2010",
+       "file": "zone200/Meadow_FairyFeast2010.jpg"
+      },
+      {
+       "id": "zone200~Meadow_ChangingLeaves2010",
+       "label": "Changing Leaves 2010",
+       "file": "zone200/Meadow_ChangingLeaves2010.jpg"
+      },
+      {
+       "id": "zone200~Meadow_WelcomeBack",
+       "label": "Welcome Back",
+       "file": "zone200/Meadow_WelcomeBack.jpg"
+      },
+      {
+       "id": "zone200~Meadow_AnimalMasq2010",
+       "label": "Animal Masq 2010",
+       "file": "zone200/Meadow_AnimalMasq2010.jpg"
+      },
+      {
+       "id": "zone200~Meadow_Friendship2011",
+       "label": "Friendship 2011",
+       "file": "zone200/Meadow_Friendship2011.jpg"
+      },
+      {
+       "id": "zone200~Meadow_Autumn_Equinox_2011",
+       "label": "Autumn Equinox 2011",
+       "file": "zone200/Meadow_Autumn_Equinox_2011.jpg"
+      },
+      {
+       "id": "zone200~Meadow_Fairy_Friendship_2012",
+       "label": "Fairy Friendship 2012",
+       "file": "zone200/Meadow_Fairy_Friendship_2012.jpg"
+      },
+      {
+       "id": "zone200~Meadow_FairyFeast2012",
+       "label": "Fairy Feast 2012",
+       "file": "zone200/Meadow_FairyFeast2012.jpg"
+      },
+      {
+       "id": "zone200~Meadow_ChangeLeaves2012",
+       "label": "Change Leaves 2012",
+       "file": "zone200/Meadow_ChangeLeaves2012.jpg"
+      },
+      {
+       "id": "zone200~Meadow_Masquerade2012",
+       "label": "Masquerade 2012",
+       "file": "zone200/Meadow_Masquerade2012.jpg"
+      }
+     ]
+    },
+    {
+     "id": "zone201",
+     "name": "Cottonpuff Field",
+     "parent": null,
+     "variants": [
+      {
+       "id": "zone201",
+       "label": "Usual",
+       "file": "zone201/usual.jpg"
+      },
+      {
+       "id": "zone201~Tinker_Bell_Party",
+       "label": "Tinker Bell Party",
+       "file": "zone201/Tinker_Bell_Party.jpg"
+      },
+      {
+       "id": "zone201~Great_Games_Days_Tinker_Toss",
+       "label": "Great Games Days Tinker Toss",
+       "file": "zone201/Great_Games_Days_Tinker_Toss.jpg"
+      },
+      {
+       "id": "zone201~Meadow_Decorations_Changing_Leaves_Berry_Harvest",
+       "label": "Decorations Changing Leaves Berry Harvest",
+       "file": "zone201/Meadow_Decorations_Changing_Leaves_Berry_Harvest.jpg"
+      },
+      {
+       "id": "zone201~Meadow_Decorations_Changing_Leaves_End",
+       "label": "Decorations Changing Leaves End",
+       "file": "zone201/Meadow_Decorations_Changing_Leaves_End.jpg"
+      },
+      {
+       "id": "zone201~Meadow_Decorations_Changing_Leaves_Begin",
+       "label": "Decorations Changing Leaves Begin",
+       "file": "zone201/Meadow_Decorations_Changing_Leaves_Begin.jpg"
+      },
+      {
+       "id": "zone201~Meadow_Autumn_Revelry_Prep",
+       "label": "Autumn Revelry Prep",
+       "file": "zone201/Meadow_Autumn_Revelry_Prep.jpg"
+      },
+      {
+       "id": "zone201~Meadow_Autumn_Revelry_Begin",
+       "label": "Autumn Revelry Begin",
+       "file": "zone201/Meadow_Autumn_Revelry_Begin.jpg"
+      },
+      {
+       "id": "zone201~Meadow_Winter_Wonderland",
+       "label": "Winter Wonderland",
+       "file": "zone201/Meadow_Winter_Wonderland.jpg"
+      },
+      {
+       "id": "zone201~Meadow_GreatGames2010",
+       "label": "Great Games 2010",
+       "file": "zone201/Meadow_GreatGames2010.jpg"
+      },
+      {
+       "id": "zone201~Meadow_GGAutumn",
+       "label": "GGAutumn",
+       "file": "zone201/Meadow_GGAutumn.jpg"
+      },
+      {
+       "id": "zone201~Meadow_CampAutumn",
+       "label": "Camp Autumn",
+       "file": "zone201/Meadow_CampAutumn.jpg"
+      },
+      {
+       "id": "zone201~Meadow_ChangingLeaves2010",
+       "label": "Changing Leaves 2010",
+       "file": "zone201/Meadow_ChangingLeaves2010.jpg"
+      },
+      {
+       "id": "zone201~Meadow_FairyFeast2010",
+       "label": "Fairy Feast 2010",
+       "file": "zone201/Meadow_FairyFeast2010.jpg"
+      },
+      {
+       "id": "zone201~Meadow_WelcomeBack",
+       "label": "Welcome Back",
+       "file": "zone201/Meadow_WelcomeBack.jpg"
+      },
+      {
+       "id": "zone201~Meadow_SillyDays2011",
+       "label": "Silly Days 2011",
+       "file": "zone201/Meadow_SillyDays2011.jpg"
+      },
+      {
+       "id": "zone201~Meadow_NeverDove2011",
+       "label": "Never Dove 2011",
+       "file": "zone201/Meadow_NeverDove2011.jpg"
+      },
+      {
+       "id": "zone201~Meadow_Tinker_Games",
+       "label": "Tinker Games",
+       "file": "zone201/Meadow_Tinker_Games.jpg"
+      },
+      {
+       "id": "zone201~Meadow_Autumn_Equinox_2011",
+       "label": "Autumn Equinox 2011",
+       "file": "zone201/Meadow_Autumn_Equinox_2011.jpg"
+      },
+      {
+       "id": "zone201~Meadow_PHG2011_Prep",
+       "label": "PHG2011 Prep",
+       "file": "zone201/Meadow_PHG2011_Prep.jpg"
+      },
+      {
+       "id": "zone201~Meadow_PGH2011",
+       "label": "PGH2011",
+       "file": "zone201/Meadow_PGH2011.jpg"
+      },
+      {
+       "id": "zone201~Meadow_FairyFeast2012",
+       "label": "Fairy Feast 2012",
+       "file": "zone201/Meadow_FairyFeast2012.jpg"
+      },
+      {
+       "id": "zone201~Meadow_ChangeLeaves",
+       "label": "Change Leaves",
+       "file": "zone201/Meadow_ChangeLeaves.jpg"
+      },
+      {
+       "id": "zone201~Meadow_Theater_Camp",
+       "label": "Theater Camp",
+       "file": "zone201/Meadow_Theater_Camp.jpg"
+      }
+     ]
+    },
+    {
+     "id": "zone202",
+     "name": "Maple Tree Hill",
+     "parent": null,
+     "variants": [
+      {
+       "id": "zone202",
+       "label": "Usual",
+       "file": "zone202/usual.jpg"
+      },
+      {
+       "id": "zone202~Meadow_Decorations_Changing_Leaves_Berry_Harvest",
+       "label": "Decorations Changing Leaves Berry Harvest",
+       "file": "zone202/Meadow_Decorations_Changing_Leaves_Berry_Harvest.jpg"
+      },
+      {
+       "id": "zone202~Meadow_Decorations_Changing_Leaves_End",
+       "label": "Decorations Changing Leaves End",
+       "file": "zone202/Meadow_Decorations_Changing_Leaves_End.jpg"
+      },
+      {
+       "id": "zone202~Meadow_Autumn_Revelry_Begin",
+       "label": "Autumn Revelry Begin",
+       "file": "zone202/Meadow_Autumn_Revelry_Begin.jpg"
+      },
+      {
+       "id": "zone202~Meadow_Autumn_Revelry_Prep",
+       "label": "Autumn Revelry Prep",
+       "file": "zone202/Meadow_Autumn_Revelry_Prep.jpg"
+      },
+      {
+       "id": "zone202~Meadow_ChangingLeaves2010",
+       "label": "Changing Leaves 2010",
+       "file": "zone202/Meadow_ChangingLeaves2010.jpg"
+      },
+      {
+       "id": "zone202~Meadow_AnimalMothers2011",
+       "label": "Animal Mothers 2011",
+       "file": "zone202/Meadow_AnimalMothers2011.jpg"
+      },
+      {
+       "id": "zone202~Meadow_Autumn_Equinox_2011",
+       "label": "Autumn Equinox 2011",
+       "file": "zone202/Meadow_Autumn_Equinox_2011.jpg"
+      },
+      {
+       "id": "zone202~Meadow_PHG2011_Prep",
+       "label": "PHG2011 Prep",
+       "file": "zone202/Meadow_PHG2011_Prep.jpg"
+      },
+      {
+       "id": "zone202~Meadow_PGH2011",
+       "label": "PGH2011",
+       "file": "zone202/Meadow_PGH2011.jpg"
+      },
+      {
+       "id": "zone202~Meadow_Theater_TroopRabbit2012",
+       "label": "Theater Troop Rabbit 2012",
+       "file": "zone202/Meadow_Theater_TroopRabbit2012.jpg"
+      },
+      {
+       "id": "zone202~Meadow_FairyFeast2012",
+       "label": "Fairy Feast 2012",
+       "file": "zone202/Meadow_FairyFeast2012.jpg"
+      },
+      {
+       "id": "zone202~Meadow_ChangeLeaves",
+       "label": "Change Leaves",
+       "file": "zone202/Meadow_ChangeLeaves.jpg"
+      },
+      {
+       "id": "zone202~Meadow_Camp2013",
+       "label": "Camp 2013",
+       "file": "zone202/Meadow_Camp2013.jpg"
+      }
+     ]
+    },
+    {
+     "id": "zone203",
+     "name": "Pumpkin Patch",
+     "parent": null,
+     "variants": [
+      {
+       "id": "zone203",
+       "label": "Usual",
+       "file": "zone203/usual.jpg"
+      },
+      {
+       "id": "zone203~Great_Games_Days",
+       "label": "Great Games Days",
+       "file": "zone203/Great_Games_Days.jpg"
+      },
+      {
+       "id": "zone203~Meadow_Decorations_Changing_Leaves_Berry_Harvest",
+       "label": "Decorations Changing Leaves Berry Harvest",
+       "file": "zone203/Meadow_Decorations_Changing_Leaves_Berry_Harvest.jpg"
+      },
+      {
+       "id": "zone203~Meadow_Decorations_Changing_Leaves_End",
+       "label": "Decorations Changing Leaves End",
+       "file": "zone203/Meadow_Decorations_Changing_Leaves_End.jpg"
+      },
+      {
+       "id": "zone203~Meadow_Autumn_Revelry_Prep",
+       "label": "Autumn Revelry Prep",
+       "file": "zone203/Meadow_Autumn_Revelry_Prep.jpg"
+      },
+      {
+       "id": "zone203~Meadow_Autumn_Revelry_Begin",
+       "label": "Autumn Revelry Begin",
+       "file": "zone203/Meadow_Autumn_Revelry_Begin.jpg"
+      },
+      {
+       "id": "zone203~Meadow_Cornucopia_Half",
+       "label": "Cornucopia Half",
+       "file": "zone203/Meadow_Cornucopia_Half.jpg"
+      },
+      {
+       "id": "zone203~Meadow_Cornucopia_Full",
+       "label": "Cornucopia Full",
+       "file": "zone203/Meadow_Cornucopia_Full.jpg"
+      },
+      {
+       "id": "zone203~Meadow_Cornucopia_Empty",
+       "label": "Cornucopia Empty",
+       "file": "zone203/Meadow_Cornucopia_Empty.jpg"
+      },
+      {
+       "id": "zone203~Meadow_GreatGames2010",
+       "label": "Great Games 2010",
+       "file": "zone203/Meadow_GreatGames2010.jpg"
+      },
+      {
+       "id": "zone203~Meadow_AutumnAll",
+       "label": "Autumn All",
+       "file": "zone203/Meadow_AutumnAll.jpg"
+      },
+      {
+       "id": "zone203~Meadow_GGAutumn",
+       "label": "GGAutumn",
+       "file": "zone203/Meadow_GGAutumn.jpg"
+      },
+      {
+       "id": "zone203~Meadow_CampAutumn",
+       "label": "Camp Autumn",
+       "file": "zone203/Meadow_CampAutumn.jpg"
+      },
+      {
+       "id": "zone203~Meadow_AnimalMasq2010",
+       "label": "Animal Masq 2010",
+       "file": "zone203/Meadow_AnimalMasq2010.jpg"
+      },
+      {
+       "id": "zone203~Meadow_ChangingLeaves2010",
+       "label": "Changing Leaves 2010",
+       "file": "zone203/Meadow_ChangingLeaves2010.jpg"
+      },
+      {
+       "id": "zone203~Meadow_FairyFeast2010",
+       "label": "Fairy Feast 2010",
+       "file": "zone203/Meadow_FairyFeast2010.jpg"
+      },
+      {
+       "id": "zone203~Meadow_AnimalMothers2011",
+       "label": "Animal Mothers 2011",
+       "file": "zone203/Meadow_AnimalMothers2011.jpg"
+      },
+      {
+       "id": "zone203~Meadow_Animal_Games",
+       "label": "Animal Games",
+       "file": "zone203/Meadow_Animal_Games.jpg"
+      },
+      {
+       "id": "zone203~Meadow_Autumn_Equinox_2011",
+       "label": "Autumn Equinox 2011",
+       "file": "zone203/Meadow_Autumn_Equinox_2011.jpg"
+      },
+      {
+       "id": "zone203~Meadow_FairyFeast2012",
+       "label": "Fairy Feast 2012",
+       "file": "zone203/Meadow_FairyFeast2012.jpg"
+      },
+      {
+       "id": "zone203~Meadow_ChangeLeaves",
+       "label": "Change Leaves",
+       "file": "zone203/Meadow_ChangeLeaves.jpg"
+      },
+      {
+       "id": "zone203~Meadow_Masquerade2012",
+       "label": "Masquerade 2012",
+       "file": "zone203/Meadow_Masquerade2012.jpg"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Winter Meadows",
+   "zones": [
+    {
+     "id": "zone300",
+     "name": "Evergreen Overlook",
+     "parent": null,
+     "variants": [
+      {
+       "id": "zone300",
+       "label": "Usual",
+       "file": "zone300/usual.jpg"
+      },
+      {
+       "id": "zone300~Meadow_Winter_Wonderland",
+       "label": "Winter Wonderland",
+       "file": "zone300/Meadow_Winter_Wonderland.jpg"
+      },
+      {
+       "id": "zone300~Meadow_Winter_Lightup",
+       "label": "Winter Lightup",
+       "file": "zone300/Meadow_Winter_Lightup.jpg"
+      },
+      {
+       "id": "zone300~Meadow_LightUp2010",
+       "label": "Light Up 2010",
+       "file": "zone300/Meadow_LightUp2010.jpg"
+      },
+      {
+       "id": "zone300~Meadow_LightUpCrisis",
+       "label": "Light Up Crisis",
+       "file": "zone300/Meadow_LightUpCrisis.jpg"
+      },
+      {
+       "id": "zone300~Meadow_WinterWonder2010",
+       "label": "Winter Wonder 2010",
+       "file": "zone300/Meadow_WinterWonder2010.jpg"
+      },
+      {
+       "id": "zone300~Meadow_WinterWonder2012",
+       "label": "Winter Wonder 2012",
+       "file": "zone300/Meadow_WinterWonder2012.jpg"
+      },
+      {
+       "id": "zone300~Meadow_WinterLightup2012",
+       "label": "Winter Lightup 2012",
+       "file": "zone300/Meadow_WinterLightup2012.jpg"
+      },
+      {
+       "id": "zone300~Friendship_Festival",
+       "label": "Friendship Festival",
+       "file": "zone300/Friendship_Festival.jpg"
+      },
+      {
+       "id": "zone300~Great_Games_Days",
+       "label": "Great Games Days",
+       "file": "zone300/Great_Games_Days.jpg"
+      },
+      {
+       "id": "zone300~Meadow_GreatGames2010",
+       "label": "Great Games 2010",
+       "file": "zone300/Meadow_GreatGames2010.jpg"
+      },
+      {
+       "id": "zone300~Meadow_AnimalMasq2010",
+       "label": "Animal Masq 2010",
+       "file": "zone300/Meadow_AnimalMasq2010.jpg"
+      },
+      {
+       "id": "zone300~Meadow_Friendship2011",
+       "label": "Friendship 2011",
+       "file": "zone300/Meadow_Friendship2011.jpg"
+      },
+      {
+       "id": "zone300~Meadow_Fairy_Friendship_2012",
+       "label": "Fairy Friendship 2012",
+       "file": "zone300/Meadow_Fairy_Friendship_2012.jpg"
+      },
+      {
+       "id": "zone300~Meadow_Masquerade2012",
+       "label": "Masquerade 2012",
+       "file": "zone300/Meadow_Masquerade2012.jpg"
+      },
+      {
+       "id": "zone300~Meadow_FairyFriendship",
+       "label": "Fairy Friendship",
+       "file": "zone300/Meadow_FairyFriendship.jpg"
+      },
+      {
+       "id": "zone300~Meadow_EndofDays",
+       "label": "Endof Days",
+       "file": "zone300/Meadow_EndofDays.jpg"
+      }
+     ]
+    },
+    {
+     "id": "zone301",
+     "name": "Snowcap Glade",
+     "parent": null,
+     "variants": [
+      {
+       "id": "zone301",
+       "label": "Usual",
+       "file": "zone301/usual.jpg"
+      },
+      {
+       "id": "zone301~Winter_Wonderland",
+       "label": "Winter Wonderland",
+       "file": "zone301/Winter_Wonderland.jpg"
+      },
+      {
+       "id": "zone301~Meadow_Winter_Lightup",
+       "label": "Winter Lightup",
+       "file": "zone301/Meadow_Winter_Lightup.jpg"
+      },
+      {
+       "id": "zone301~Meadow_Winter_Wonderland",
+       "label": "Winter Wonderland",
+       "file": "zone301/Meadow_Winter_Wonderland.jpg"
+      },
+      {
+       "id": "zone301~Meadow_WinterWonder2010",
+       "label": "Winter Wonder 2010",
+       "file": "zone301/Meadow_WinterWonder2010.jpg"
+      },
+      {
+       "id": "zone301~Meadow_LightUp2010",
+       "label": "Light Up 2010",
+       "file": "zone301/Meadow_LightUp2010.jpg"
+      },
+      {
+       "id": "zone301~Meadow_LightUpCrisis",
+       "label": "Light Up Crisis",
+       "file": "zone301/Meadow_LightUpCrisis.jpg"
+      },
+      {
+       "id": "zone301~Meadow_WinterLightup2012",
+       "label": "Winter Lightup 2012",
+       "file": "zone301/Meadow_WinterLightup2012.jpg"
+      },
+      {
+       "id": "zone301~Meadow_WinterWonder2012",
+       "label": "Winter Wonder 2012",
+       "file": "zone301/Meadow_WinterWonder2012.jpg"
+      },
+      {
+       "id": "zone301~Meadow_GreatGames2010",
+       "label": "Great Games 2010",
+       "file": "zone301/Meadow_GreatGames2010.jpg"
+      },
+      {
+       "id": "zone301~Meadow_GGWinter",
+       "label": "GGWinter",
+       "file": "zone301/Meadow_GGWinter.jpg"
+      },
+      {
+       "id": "zone301~Meadow_WinterAll",
+       "label": "Winter All",
+       "file": "zone301/Meadow_WinterAll.jpg"
+      },
+      {
+       "id": "zone301~Meadow_CampWinter",
+       "label": "Camp Winter",
+       "file": "zone301/Meadow_CampWinter.jpg"
+      },
+      {
+       "id": "zone301~Meadow_AnimalMasq2010",
+       "label": "Animal Masq 2010",
+       "file": "zone301/Meadow_AnimalMasq2010.jpg"
+      },
+      {
+       "id": "zone301~Meadow_Silly_Pinecone",
+       "label": "Silly Pinecone",
+       "file": "zone301/Meadow_Silly_Pinecone.jpg"
+      },
+      {
+       "id": "zone301~Meadow_AnimalMothers2011",
+       "label": "Animal Mothers 2011",
+       "file": "zone301/Meadow_AnimalMothers2011.jpg"
+      },
+      {
+       "id": "zone301~Meadow_Garden_Games",
+       "label": "Garden Games",
+       "file": "zone301/Meadow_Garden_Games.jpg"
+      },
+      {
+       "id": "zone301~Meadow_Animal_Games",
+       "label": "Animal Games",
+       "file": "zone301/Meadow_Animal_Games.jpg"
+      },
+      {
+       "id": "zone301~Meadow_Theater_Camp",
+       "label": "Theater Camp",
+       "file": "zone301/Meadow_Theater_Camp.jpg"
+      },
+      {
+       "id": "zone301~Meadow_Masquerade2012",
+       "label": "Masquerade 2012",
+       "file": "zone301/Meadow_Masquerade2012.jpg"
+      },
+      {
+       "id": "zone301~Meadow_MothersDay",
+       "label": "Mothers Day",
+       "file": "zone301/Meadow_MothersDay.jpg"
+      }
+     ]
+    },
+    {
+     "id": "zone302",
+     "name": "Chilly Falls",
+     "parent": null,
+     "variants": [
+      {
+       "id": "zone302",
+       "label": "Usual",
+       "file": "zone302/usual.jpg"
+      },
+      {
+       "id": "zone302~Meadow_Winter_Wonderland",
+       "label": "Winter Wonderland",
+       "file": "zone302/Meadow_Winter_Wonderland.jpg"
+      },
+      {
+       "id": "zone302~Meadow_Winter_Lightup",
+       "label": "Winter Lightup",
+       "file": "zone302/Meadow_Winter_Lightup.jpg"
+      },
+      {
+       "id": "zone302~Meadow_LightUp2010",
+       "label": "Light Up 2010",
+       "file": "zone302/Meadow_LightUp2010.jpg"
+      },
+      {
+       "id": "zone302~Meadow_LightUpCrisis",
+       "label": "Light Up Crisis",
+       "file": "zone302/Meadow_LightUpCrisis.jpg"
+      },
+      {
+       "id": "zone302~Meadow_WinterWonder2012",
+       "label": "Winter Wonder 2012",
+       "file": "zone302/Meadow_WinterWonder2012.jpg"
+      },
+      {
+       "id": "zone302~Meadow_WinterLightup2012",
+       "label": "Winter Lightup 2012",
+       "file": "zone302/Meadow_WinterLightup2012.jpg"
+      },
+      {
+       "id": "zone302~Meadow_WinterWonder2010",
+       "label": "Winter Wonder 2010",
+       "file": "zone302/Meadow_WinterWonder2010.jpg"
+      },
+      {
+       "id": "zone302~Meadow_AnimalMasq2010",
+       "label": "Animal Masq 2010",
+       "file": "zone302/Meadow_AnimalMasq2010.jpg"
+      },
+      {
+       "id": "zone302~Meadow_NeverDove2011",
+       "label": "Never Dove 2011",
+       "file": "zone302/Meadow_NeverDove2011.jpg"
+      },
+      {
+       "id": "zone302~Meadow_AnimalMothers2011",
+       "label": "Animal Mothers 2011",
+       "file": "zone302/Meadow_AnimalMothers2011.jpg"
+      },
+      {
+       "id": "zone302~Meadow_Light_Games",
+       "label": "Light Games",
+       "file": "zone302/Meadow_Light_Games.jpg"
+      },
+      {
+       "id": "zone302~Meadow_Theater_TroopGlowworm2012",
+       "label": "Theater Troop Glowworm 2012",
+       "file": "zone302/Meadow_Theater_TroopGlowworm2012.jpg"
+      },
+      {
+       "id": "zone302~Meadow_Masquerade2012",
+       "label": "Masquerade 2012",
+       "file": "zone302/Meadow_Masquerade2012.jpg"
+      }
+     ]
+    },
+    {
+     "id": "zone303",
+     "name": "Ice Palace",
+     "parent": null,
+     "variants": [
+      {
+       "id": "zone303",
+       "label": "Usual",
+       "file": "zone303/usual.jpg"
+      }
+     ]
+    },
+    {
+     "id": "zone304",
+     "name": "Frosted Forest",
+     "parent": null,
+     "variants": [
+      {
+       "id": "zone304",
+       "label": "Usual",
+       "file": "zone304/usual.jpg"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Havendish",
+   "zones": [
+    {
+     "id": "zone500",
+     "name": "Havendish Square",
+     "parent": null,
+     "variants": [
+      {
+       "id": "zone500",
+       "label": "Usual",
+       "file": "zone500/usual.jpg"
+      },
+      {
+       "id": "zone500~Meadow_WinterLightup2012",
+       "label": "Winter Lightup 2012",
+       "file": "zone500/Meadow_WinterLightup2012.jpg"
+      },
+      {
+       "id": "zone500~Meadow_Friendship_Festival",
+       "label": "Friendship Festival",
+       "file": "zone500/Meadow_Friendship_Festival.jpg"
+      },
+      {
+       "id": "zone500~Meadow_NeverDove2010",
+       "label": "Never Dove 2010",
+       "file": "zone500/Meadow_NeverDove2010.jpg"
+      },
+      {
+       "id": "zone500~Meadow_Spring_Celebration",
+       "label": "Spring Celebration",
+       "file": "zone500/Meadow_Spring_Celebration.jpg"
+      },
+      {
+       "id": "zone500~Meadow_CampHavendish",
+       "label": "Camp Havendish",
+       "file": "zone500/Meadow_CampHavendish.jpg"
+      },
+      {
+       "id": "zone500~Meadow_WelcomeBack",
+       "label": "Welcome Back",
+       "file": "zone500/Meadow_WelcomeBack.jpg"
+      },
+      {
+       "id": "zone500~Meadow_AnimalMasq2010",
+       "label": "Animal Masq 2010",
+       "file": "zone500/Meadow_AnimalMasq2010.jpg"
+      },
+      {
+       "id": "zone500~Meadow_WinterWonder2010",
+       "label": "Winter Wonder 2010",
+       "file": "zone500/Meadow_WinterWonder2010.jpg"
+      },
+      {
+       "id": "zone500~Meadow_Friendship2011",
+       "label": "Friendship 2011",
+       "file": "zone500/Meadow_Friendship2011.jpg"
+      },
+      {
+       "id": "zone500~Meadow_SpringCelebration",
+       "label": "Spring Celebration",
+       "file": "zone500/Meadow_SpringCelebration.jpg"
+      },
+      {
+       "id": "zone500~Meadow_SillyDays2011",
+       "label": "Silly Days 2011",
+       "file": "zone500/Meadow_SillyDays2011.jpg"
+      },
+      {
+       "id": "zone500~Meadow_Summer2011",
+       "label": "Summer 2011",
+       "file": "zone500/Meadow_Summer2011.jpg"
+      },
+      {
+       "id": "zone500~Meadow_NeverDove2011",
+       "label": "Never Dove 2011",
+       "file": "zone500/Meadow_NeverDove2011.jpg"
+      },
+      {
+       "id": "zone500~Meadow_Tinker_Games",
+       "label": "Tinker Games",
+       "file": "zone500/Meadow_Tinker_Games.jpg"
+      },
+      {
+       "id": "zone500~Meadow_Water_Games",
+       "label": "Water Games",
+       "file": "zone500/Meadow_Water_Games.jpg"
+      },
+      {
+       "id": "zone500~Meadow_Garden_Games",
+       "label": "Garden Games",
+       "file": "zone500/Meadow_Garden_Games.jpg"
+      },
+      {
+       "id": "zone500~Meadow_Animal_Games",
+       "label": "Animal Games",
+       "file": "zone500/Meadow_Animal_Games.jpg"
+      },
+      {
+       "id": "zone500~Meadow_Light_Games",
+       "label": "Light Games",
+       "file": "zone500/Meadow_Light_Games.jpg"
+      },
+      {
+       "id": "zone500~Meadow_ChangingLeaves2011",
+       "label": "Changing Leaves 2011",
+       "file": "zone500/Meadow_ChangingLeaves2011.jpg"
+      },
+      {
+       "id": "zone500~Meadow_WWL2011",
+       "label": "WWL2011",
+       "file": "zone500/Meadow_WWL2011.jpg"
+      },
+      {
+       "id": "zone500~Meadow_Autumn_Equinox_2011",
+       "label": "Autumn Equinox 2011",
+       "file": "zone500/Meadow_Autumn_Equinox_2011.jpg"
+      },
+      {
+       "id": "zone500~Meadow_PHG2011_Prep",
+       "label": "PHG2011 Prep",
+       "file": "zone500/Meadow_PHG2011_Prep.jpg"
+      },
+      {
+       "id": "zone500~Meadow_Stadium",
+       "label": "Stadium",
+       "file": "zone500/Meadow_Stadium.jpg"
+      },
+      {
+       "id": "zone500~Meadow_WinterLightUp2011",
+       "label": "Winter Light Up 2011",
+       "file": "zone500/Meadow_WinterLightUp2011.jpg"
+      },
+      {
+       "id": "zone500~Meadow_Spring_Prep_2012_Closed",
+       "label": "Spring Prep 2012 Closed",
+       "file": "zone500/Meadow_Spring_Prep_2012_Closed.jpg"
+      },
+      {
+       "id": "zone500~Meadow_SpringCrisis_2012_Closed",
+       "label": "Spring Crisis 2012 Closed",
+       "file": "zone500/Meadow_SpringCrisis_2012_Closed.jpg"
+      },
+      {
+       "id": "zone500~Meadow_SpringEquinox_2012_Open",
+       "label": "Spring Equinox 2012 Open",
+       "file": "zone500/Meadow_SpringEquinox_2012_Open.jpg"
+      },
+      {
+       "id": "zone500~Meadow_NeverDove_2012_Open",
+       "label": "Never Dove 2012 Open",
+       "file": "zone500/Meadow_NeverDove_2012_Open.jpg"
+      },
+      {
+       "id": "zone500~Meadow_SillyDays_2012_Closed",
+       "label": "Silly Days 2012 Closed",
+       "file": "zone500/Meadow_SillyDays_2012_Closed.jpg"
+      },
+      {
+       "id": "zone500~Meadow_MothersDay2012",
+       "label": "Mothers Day 2012",
+       "file": "zone500/Meadow_MothersDay2012.jpg"
+      },
+      {
+       "id": "zone500~Meadow_TeaParty2012",
+       "label": "Tea Party 2012",
+       "file": "zone500/Meadow_TeaParty2012.jpg"
+      },
+      {
+       "id": "zone500~Meadow_Theater_Camp",
+       "label": "Theater Camp",
+       "file": "zone500/Meadow_Theater_Camp.jpg"
+      },
+      {
+       "id": "zone500~Meadow_AutumnEquinox2012",
+       "label": "Autumn Equinox 2012",
+       "file": "zone500/Meadow_AutumnEquinox2012.jpg"
+      },
+      {
+       "id": "zone500~Meadow_Masquerade2012",
+       "label": "Masquerade 2012",
+       "file": "zone500/Meadow_Masquerade2012.jpg"
+      },
+      {
+       "id": "zone500~Meadow_FairyFeast2012",
+       "label": "Fairy Feast 2012",
+       "file": "zone500/Meadow_FairyFeast2012.jpg"
+      },
+      {
+       "id": "zone500~Meadow_FloodPrep",
+       "label": "Flood Prep",
+       "file": "zone500/Meadow_FloodPrep.jpg"
+      },
+      {
+       "id": "zone500~Meadow_MermaidParty",
+       "label": "Mermaid Party",
+       "file": "zone500/Meadow_MermaidParty.jpg"
+      },
+      {
+       "id": "zone500~Meadow_SpringFlood",
+       "label": "Spring Flood",
+       "file": "zone500/Meadow_SpringFlood.jpg"
+      },
+      {
+       "id": "zone500~Meadow_NeverDove",
+       "label": "Never Dove",
+       "file": "zone500/Meadow_NeverDove.jpg"
+      },
+      {
+       "id": "zone500~Meadow_SpringEquinox",
+       "label": "Spring Equinox",
+       "file": "zone500/Meadow_SpringEquinox.jpg"
+      }
+     ]
+    },
+    {
+     "id": "zone501",
+     "name": "Fairy Tale Theater",
+     "parent": "zone500",
+     "variants": [
+      {
+       "id": "zone501",
+       "label": "Usual",
+       "file": "zone501/usual.jpg"
+      },
+      {
+       "id": "zone501~Meadow_Theater_CampAwards",
+       "label": "Theater Camp Awards",
+       "file": "zone501/Meadow_Theater_CampAwards.jpg"
+      },
+      {
+       "id": "zone501~Meadow_SillyDays_2012_Closed",
+       "label": "Silly Days 2012 Closed",
+       "file": "zone501/Meadow_SillyDays_2012_Closed.jpg"
+      },
+      {
+       "id": "zone501~Meadow_Theater_PHGames",
+       "label": "Theater PHGames",
+       "file": "zone501/Meadow_Theater_PHGames.jpg"
+      },
+      {
+       "id": "zone501~Meadow_Theater_Mermaid",
+       "label": "Theater Mermaid",
+       "file": "zone501/Meadow_Theater_Mermaid.jpg"
+      },
+      {
+       "id": "zone501~Meadow_Theater_CheerZone",
+       "label": "Theater Cheer Zone",
+       "file": "zone501/Meadow_Theater_CheerZone.jpg"
+      },
+      {
+       "id": "zone501~Meadow_Theater_CheerZone_Dark",
+       "label": "Theater Cheer Zone Dark",
+       "file": "zone501/Meadow_Theater_CheerZone_Dark.jpg"
+      },
+      {
+       "id": "zone501~Meadow_Theater_Fairy_Mary",
+       "label": "Theater Fairy Mary",
+       "file": "zone501/Meadow_Theater_Fairy_Mary.jpg"
+      },
+      {
+       "id": "zone501~Meadow_Theater_FastFlyer",
+       "label": "Theater Fast Flyer",
+       "file": "zone501/Meadow_Theater_FastFlyer.jpg"
+      },
+      {
+       "id": "zone501~Meadow_Theater_PurpleGem",
+       "label": "Theater Purple Gem",
+       "file": "zone501/Meadow_Theater_PurpleGem.jpg"
+      },
+      {
+       "id": "zone501~Meadow_Theater_BadDayPirate",
+       "label": "Theater Bad Day Pirate",
+       "file": "zone501/Meadow_Theater_BadDayPirate.jpg"
+      },
+      {
+       "id": "zone501~Meadow_CampPixie2012",
+       "label": "Camp Pixie 2012",
+       "file": "zone501/Meadow_CampPixie2012.jpg"
+      },
+      {
+       "id": "zone501~Meadow_Theater_Cheese",
+       "label": "Theater Cheese",
+       "file": "zone501/Meadow_Theater_Cheese.jpg"
+      },
+      {
+       "id": "zone501~Meadow_Theater_Dollhouse",
+       "label": "Theater Dollhouse",
+       "file": "zone501/Meadow_Theater_Dollhouse.jpg"
+      },
+      {
+       "id": "zone501~Meadow_Theater_HolidayKitchen",
+       "label": "Theater Holiday Kitchen",
+       "file": "zone501/Meadow_Theater_HolidayKitchen.jpg"
+      },
+      {
+       "id": "zone501~Meadow_Theater_Tea",
+       "label": "Theater Tea",
+       "file": "zone501/Meadow_Theater_Tea.jpg"
+      },
+      {
+       "id": "zone501~Meadow_Theater_ConcertStage",
+       "label": "Theater Concert Stage",
+       "file": "zone501/Meadow_Theater_ConcertStage.jpg"
+      },
+      {
+       "id": "zone501~Meadow_MermaidParty",
+       "label": "Mermaid Party",
+       "file": "zone501/Meadow_MermaidParty.jpg"
+      },
+      {
+       "id": "zone501~Meadow_Camp2013",
+       "label": "Camp 2013",
+       "file": "zone501/Meadow_Camp2013.jpg"
+      }
+     ]
+    },
+    {
+     "id": "zone502",
+     "name": "The Ballroom",
+     "parent": "zone500",
+     "variants": [
+      {
+       "id": "zone502",
+       "label": "Usual",
+       "file": "zone502/usual.jpg"
+      },
+      {
+       "id": "zone502~Meadow_WinterWonder2012",
+       "label": "Winter Wonder 2012",
+       "file": "zone502/Meadow_WinterWonder2012.jpg"
+      },
+      {
+       "id": "zone502~Meadow_Spring_Celebration",
+       "label": "Spring Celebration",
+       "file": "zone502/Meadow_Spring_Celebration.jpg"
+      },
+      {
+       "id": "zone502~Meadow_FairyFeast2010",
+       "label": "Fairy Feast 2010",
+       "file": "zone502/Meadow_FairyFeast2010.jpg"
+      },
+      {
+       "id": "zone502~Meadow_AnimalMasq2010",
+       "label": "Animal Masq 2010",
+       "file": "zone502/Meadow_AnimalMasq2010.jpg"
+      },
+      {
+       "id": "zone502~Meadow_Lizzy_Ballroom",
+       "label": "Lizzy Ballroom",
+       "file": "zone502/Meadow_Lizzy_Ballroom.jpg"
+      },
+      {
+       "id": "zone502~Meadow_WinterWonder2010",
+       "label": "Winter Wonder 2010",
+       "file": "zone502/Meadow_WinterWonder2010.jpg"
+      },
+      {
+       "id": "zone502~Meadow_Friendship2011",
+       "label": "Friendship 2011",
+       "file": "zone502/Meadow_Friendship2011.jpg"
+      },
+      {
+       "id": "zone502~Meadow_SpringCelebration",
+       "label": "Spring Celebration",
+       "file": "zone502/Meadow_SpringCelebration.jpg"
+      },
+      {
+       "id": "zone502~Meadow_Ball_NeverDove",
+       "label": "Ball Never Dove",
+       "file": "zone502/Meadow_Ball_NeverDove.jpg"
+      },
+      {
+       "id": "zone502~Meadow_Summer2011",
+       "label": "Summer 2011",
+       "file": "zone502/Meadow_Summer2011.jpg"
+      },
+      {
+       "id": "zone502~Meadow_AnimalMothers2011",
+       "label": "Animal Mothers 2011",
+       "file": "zone502/Meadow_AnimalMothers2011.jpg"
+      },
+      {
+       "id": "zone502~Meadow_Animal_Games",
+       "label": "Animal Games",
+       "file": "zone502/Meadow_Animal_Games.jpg"
+      },
+      {
+       "id": "zone502~Meadow_Light_Games",
+       "label": "Light Games",
+       "file": "zone502/Meadow_Light_Games.jpg"
+      },
+      {
+       "id": "zone502~Meadow_Garden_Games",
+       "label": "Garden Games",
+       "file": "zone502/Meadow_Garden_Games.jpg"
+      },
+      {
+       "id": "zone502~Meadow_Water_Games",
+       "label": "Water Games",
+       "file": "zone502/Meadow_Water_Games.jpg"
+      },
+      {
+       "id": "zone502~Ballroom_FairyFeast2011",
+       "label": "Ballroom Fairy Feast 2011",
+       "file": "zone502/Ballroom_FairyFeast2011.jpg"
+      },
+      {
+       "id": "zone502~Meadow_SpringEquinox_2012_Open",
+       "label": "Spring Equinox 2012 Open",
+       "file": "zone502/Meadow_SpringEquinox_2012_Open.jpg"
+      },
+      {
+       "id": "zone502~Meadow_NeverDove_2012_Open",
+       "label": "Never Dove 2012 Open",
+       "file": "zone502/Meadow_NeverDove_2012_Open.jpg"
+      },
+      {
+       "id": "zone502~Meadow_Fairy_Friendship_2012",
+       "label": "Fairy Friendship 2012",
+       "file": "zone502/Meadow_Fairy_Friendship_2012.jpg"
+      },
+      {
+       "id": "zone502~Meadow_MothersDay2012",
+       "label": "Mothers Day 2012",
+       "file": "zone502/Meadow_MothersDay2012.jpg"
+      },
+      {
+       "id": "zone502~Meadow_Tinker_Games",
+       "label": "Tinker Games",
+       "file": "zone502/Meadow_Tinker_Games.jpg"
+      },
+      {
+       "id": "zone502~Meadow_Masquerade2012",
+       "label": "Masquerade 2012",
+       "file": "zone502/Meadow_Masquerade2012.jpg"
+      },
+      {
+       "id": "zone502~Meadow_FairyFeast2012",
+       "label": "Fairy Feast 2012",
+       "file": "zone502/Meadow_FairyFeast2012.jpg"
+      },
+      {
+       "id": "zone502~Meadow_Sister2012",
+       "label": "Sister 2012",
+       "file": "zone502/Meadow_Sister2012.jpg"
+      },
+      {
+       "id": "zone502~Meadow_WinterLightup2012",
+       "label": "Winter Lightup 2012",
+       "file": "zone502/Meadow_WinterLightup2012.jpg"
+      },
+      {
+       "id": "zone502~Meadow_AutumnEquinox2012",
+       "label": "Autumn Equinox 2012",
+       "file": "zone502/Meadow_AutumnEquinox2012.jpg"
+      },
+      {
+       "id": "zone502~Meadow_SpringPrep",
+       "label": "Spring Prep",
+       "file": "zone502/Meadow_SpringPrep.jpg"
+      },
+      {
+       "id": "zone502~Meadow_MothersDay",
+       "label": "Mothers Day",
+       "file": "zone502/Meadow_MothersDay.jpg"
+      },
+      {
+       "id": "zone502~Meadow_SpringFlood",
+       "label": "Spring Flood",
+       "file": "zone502/Meadow_SpringFlood.jpg"
+      },
+      {
+       "id": "zone502~Meadow_Theater_Camp",
+       "label": "Theater Camp",
+       "file": "zone502/Meadow_Theater_Camp.jpg"
+      }
+     ]
+    },
+    {
+     "id": "zone503",
+     "name": "The Tearoom",
+     "parent": "zone500",
+     "variants": [
+      {
+       "id": "zone503",
+       "label": "Usual",
+       "file": "zone503/usual.jpg"
+      },
+      {
+       "id": "zone503~Meadow_TeaRoomBannerNo8s",
+       "label": "Tea Room Banner No 8 s",
+       "file": "zone503/Meadow_TeaRoomBannerNo8s.jpg"
+      },
+      {
+       "id": "zone503~Meadow_Crazy8s_Camp",
+       "label": "Crazy 8 s Camp",
+       "file": "zone503/Meadow_Crazy8s_Camp.jpg"
+      },
+      {
+       "id": "zone503~Meadow_Tearoom_Animation",
+       "label": "Tearoom Animation",
+       "file": "zone503/Meadow_Tearoom_Animation.jpg"
+      },
+      {
+       "id": "zone503~Meadow_Tearoom_MemoryAnimation",
+       "label": "Tearoom Memory Animation",
+       "file": "zone503/Meadow_Tearoom_MemoryAnimation.jpg"
+      },
+      {
+       "id": "zone503~Meadow_Tearoom_Memory",
+       "label": "Tearoom Memory",
+       "file": "zone503/Meadow_Tearoom_Memory.jpg"
+      },
+      {
+       "id": "zone503~Meadow_Theater_Camp",
+       "label": "Theater Camp",
+       "file": "zone503/Meadow_Theater_Camp.jpg"
+      },
+      {
+       "id": "zone503~Meadow_TeaParty",
+       "label": "Tea Party",
+       "file": "zone503/Meadow_TeaParty.jpg"
+      }
+     ]
+    },
+    {
+     "id": "zone504",
+     "name": "Lizzy's Home",
+     "parent": "zone500",
+     "variants": [
+      {
+       "id": "zone504",
+       "label": "Usual",
+       "file": "zone504/usual.jpg"
+      }
+     ]
+    },
+    {
+     "id": "zone505",
+     "name": "Fairy Coliseum",
+     "parent": "zone500",
+     "variants": [
+      {
+       "id": "zone505",
+       "label": "Usual",
+       "file": "zone505/usual.jpg"
+      },
+      {
+       "id": "zone505~Meadow_Theater_TroopRabbit2012",
+       "label": "Theater Troop Rabbit 2012",
+       "file": "zone505/Meadow_Theater_TroopRabbit2012.jpg"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Troop Hideouts",
+   "zones": [
+    {
+     "id": "zone105",
+     "name": "Troop Butterfly Hideout",
+     "parent": null,
+     "variants": [
+      {
+       "id": "zone105",
+       "label": "Usual",
+       "file": "zone105/usual.jpg"
+      }
+     ]
+    },
+    {
+     "id": "zone106",
+     "name": "Troop Otter Hideout",
+     "parent": null,
+     "variants": [
+      {
+       "id": "zone106",
+       "label": "Usual",
+       "file": "zone106/usual.jpg"
+      }
+     ]
+    },
+    {
+     "id": "zone204",
+     "name": "Troop Rabbit Hideout",
+     "parent": null,
+     "variants": [
+      {
+       "id": "zone204",
+       "label": "Usual",
+       "file": "zone204/usual.jpg"
+      }
+     ]
+    },
+    {
+     "id": "zone205",
+     "name": "Troop Turtle Hideout",
+     "parent": null,
+     "variants": [
+      {
+       "id": "zone205",
+       "label": "Usual",
+       "file": "zone205/usual.jpg"
+      }
+     ]
+    },
+    {
+     "id": "zone404",
+     "name": "Troop Glowworm Hideout",
+     "parent": null,
+     "variants": [
+      {
+       "id": "zone404",
+       "label": "Usual",
+       "file": "zone404/usual.jpg"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Fairy Homes",
+   "zones": [
+    {
+     "id": "zone701",
+     "name": "Knothole Nest",
+     "parent": null,
+     "variants": [
+      {
+       "id": "zone701",
+       "label": "Usual",
+       "file": "zone701/usual.jpg"
+      }
+     ]
+    },
+    {
+     "id": "zone702",
+     "name": "Blossom Bungalow",
+     "parent": null,
+     "variants": [
+      {
+       "id": "zone702",
+       "label": "Usual",
+       "file": "zone702/usual.jpg"
+      }
+     ]
+    },
+    {
+     "id": "zone703",
+     "name": "Sunflower Studio",
+     "parent": null,
+     "variants": [
+      {
+       "id": "zone703",
+       "label": "Usual",
+       "file": "zone703/usual.jpg"
+      }
+     ]
+    },
+    {
+     "id": "zone704",
+     "name": "Lotus Loft",
+     "parent": null,
+     "variants": [
+      {
+       "id": "zone704",
+       "label": "Usual",
+       "file": "zone704/usual.jpg"
+      }
+     ]
+    },
+    {
+     "id": "zone705",
+     "name": "Mosswall Cottage",
+     "parent": null,
+     "variants": [
+      {
+       "id": "zone705",
+       "label": "Usual",
+       "file": "zone705/usual.jpg"
+      }
+     ]
+    },
+    {
+     "id": "zone721",
+     "name": "Hollow Tree Heights",
+     "parent": null,
+     "variants": [
+      {
+       "id": "zone721",
+       "label": "Usual",
+       "file": "zone721/usual.jpg"
+      }
+     ]
+    },
+    {
+     "id": "zone722",
+     "name": "Petalstem Palace",
+     "parent": null,
+     "variants": [
+      {
+       "id": "zone722",
+       "label": "Usual",
+       "file": "zone722/usual.jpg"
+      }
+     ]
+    },
+    {
+     "id": "zone723",
+     "name": "Sunglow Spire",
+     "parent": null,
+     "variants": [
+      {
+       "id": "zone723",
+       "label": "Usual",
+       "file": "zone723/usual.jpg"
+      }
+     ]
+    },
+    {
+     "id": "zone724",
+     "name": "Streamside Suite",
+     "parent": null,
+     "variants": [
+      {
+       "id": "zone724",
+       "label": "Usual",
+       "file": "zone724/usual.jpg"
+      }
+     ]
+    },
+    {
+     "id": "zone725",
+     "name": "Greenleaf Tower",
+     "parent": null,
+     "variants": [
+      {
+       "id": "zone725",
+       "label": "Usual",
+       "file": "zone725/usual.jpg"
+      }
+     ]
+    },
+    {
+     "id": "zone726",
+     "name": "Ice Theme",
+     "parent": null,
+     "variants": [
+      {
+       "id": "zone726",
+       "label": "Usual",
+       "file": "zone726/usual.jpg"
+      }
+     ]
+    },
+    {
+     "id": "animalTalent",
+     "name": "Knothole Nest",
+     "parent": null,
+     "variants": [
+      {
+       "id": "animalTalent",
+       "label": "Usual",
+       "file": "animalTalent/usual.jpg"
+      }
+     ]
+    },
+    {
+     "id": "gardenTalent",
+     "name": "Blossom Bungalow",
+     "parent": null,
+     "variants": [
+      {
+       "id": "gardenTalent",
+       "label": "Usual",
+       "file": "gardenTalent/usual.jpg"
+      }
+     ]
+    },
+    {
+     "id": "lightTalent",
+     "name": "Sunflower Studio",
+     "parent": null,
+     "variants": [
+      {
+       "id": "lightTalent",
+       "label": "Usual",
+       "file": "lightTalent/usual.jpg"
+      }
+     ]
+    },
+    {
+     "id": "tinkerTalent",
+     "name": "Mosswall Cottage",
+     "parent": null,
+     "variants": [
+      {
+       "id": "tinkerTalent",
+       "label": "Usual",
+       "file": "tinkerTalent/usual.jpg"
+      }
+     ]
+    },
+    {
+     "id": "waterTalent",
+     "name": "Lotus Loft",
+     "parent": null,
+     "variants": [
+      {
+       "id": "waterTalent",
+       "label": "Usual",
+       "file": "waterTalent/usual.jpg"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Shops",
+   "zones": [
+    {
+     "id": "zone110001",
+     "name": "Garden Supply",
+     "parent": null,
+     "variants": [
+      {
+       "id": "zone110001",
+       "label": "Usual",
+       "file": "zone110001/usual.jpg"
+      }
+     ]
+    },
+    {
+     "id": "zone110004",
+     "name": "Cassie's Costume Shop",
+     "parent": null,
+     "variants": [
+      {
+       "id": "zone110004",
+       "label": "Usual",
+       "file": "zone110004/usual.jpg"
+      },
+      {
+       "id": "zone110004~Meadow_Theater_Camp",
+       "label": "Theater Camp",
+       "file": "zone110004/Meadow_Theater_Camp.jpg"
+      }
+     ]
+    },
+    {
+     "id": "zone110005",
+     "name": "Coal's Clothiers",
+     "parent": null,
+     "variants": [
+      {
+       "id": "zone110005",
+       "label": "Usual",
+       "file": "zone110005/usual.jpg"
+      }
+     ]
+    },
+    {
+     "id": "zone110006",
+     "name": "Gavin's Gear",
+     "parent": null,
+     "variants": [
+      {
+       "id": "zone110006",
+       "label": "Usual",
+       "file": "zone110006/usual.jpg"
+      }
+     ]
+    },
+    {
+     "id": "zone110007",
+     "name": "Coliseum Shop",
+     "parent": null,
+     "variants": [
+      {
+       "id": "zone110007",
+       "label": "Usual",
+       "file": "zone110007/usual.jpg"
+      }
+     ]
+    },
+    {
+     "id": "zone110008",
+     "name": "Pixie Post Office",
+     "parent": null,
+     "variants": [
+      {
+       "id": "zone110008",
+       "label": "Usual",
+       "file": "zone110008/usual.jpg"
+      }
+     ]
+    },
+    {
+     "id": "zone110009",
+     "name": "Queen's Boutique",
+     "parent": null,
+     "variants": [
+      {
+       "id": "zone110009",
+       "label": "Usual",
+       "file": "zone110009/usual.jpg"
+      }
+     ]
+    },
+    {
+     "id": "zone110010",
+     "name": "Harmony's Sweet Shop",
+     "parent": null,
+     "variants": [
+      {
+       "id": "zone110010",
+       "label": "Usual",
+       "file": "zone110010/usual.jpg"
+      }
+     ]
+    },
+    {
+     "id": "zone110011",
+     "name": "Spike's Sweet Shop",
+     "parent": null,
+     "variants": [
+      {
+       "id": "zone110011",
+       "label": "Usual",
+       "file": "zone110011/usual.jpg"
+      }
+     ]
+    },
+    {
+     "id": "zone112000",
+     "name": "Daisy's Dyes",
+     "parent": null,
+     "variants": [
+      {
+       "id": "zone112000",
+       "label": "Usual",
+       "file": "zone112000/usual.jpg"
+      }
+     ]
+    },
+    {
+     "id": "zone115000",
+     "name": "Beck's Animal Nursery",
+     "parent": null,
+     "variants": [
+      {
+       "id": "zone115000",
+       "label": "Usual",
+       "file": "zone115000/usual.jpg"
+      },
+      {
+       "id": "zone115000~Meadow_Becks_PreBee",
+       "label": "Becks Pre Bee",
+       "file": "zone115000/Meadow_Becks_PreBee.jpg"
+      },
+      {
+       "id": "zone115000~Meadow_SpringCrisis_2012_Closed",
+       "label": "Spring Crisis 2012 Closed",
+       "file": "zone115000/Meadow_SpringCrisis_2012_Closed.jpg"
+      }
+     ]
+    },
+    {
+     "id": "zone117000",
+     "name": "Prism's Pixie Spa",
+     "parent": null,
+     "variants": [
+      {
+       "id": "zone117000",
+       "label": "Usual",
+       "file": "zone117000/usual.jpg"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Quest Zones",
+   "zones": [
+    {
+     "id": "zone800",
+     "name": "Fawn's Quest Zone",
+     "parent": null,
+     "variants": [
+      {
+       "id": "zone800",
+       "label": "Usual",
+       "file": "zone800/usual.jpg"
+      }
+     ]
+    },
+    {
+     "id": "zone801",
+     "name": "Iridessa's Quest Zone",
+     "parent": null,
+     "variants": [
+      {
+       "id": "zone801",
+       "label": "Usual",
+       "file": "zone801/usual.jpg"
+      }
+     ]
+    },
+    {
+     "id": "zone802",
+     "name": "Rosetta's Quest Zone",
+     "parent": null,
+     "variants": [
+      {
+       "id": "zone802",
+       "label": "Usual",
+       "file": "zone802/usual.jpg"
+      }
+     ]
+    },
+    {
+     "id": "zone803",
+     "name": "Silvermist's Quest Zone",
+     "parent": null,
+     "variants": [
+      {
+       "id": "zone803",
+       "label": "Usual",
+       "file": "zone803/usual.jpg"
+      }
+     ]
+    },
+    {
+     "id": "zone804",
+     "name": "Tinker Bell's Quest Zone",
+     "parent": null,
+     "variants": [
+      {
+       "id": "zone804",
+       "label": "Usual",
+       "file": "zone804/usual.jpg"
+      }
+     ]
+    },
+    {
+     "id": "zone805",
+     "name": "Kit's Place",
+     "parent": null,
+     "variants": [
+      {
+       "id": "zone805",
+       "label": "Usual",
+       "file": "zone805/usual.jpg"
+      }
+     ]
+    },
+    {
+     "id": "zone806",
+     "name": "Elixa's Hospital",
+     "parent": null,
+     "variants": [
+      {
+       "id": "zone806",
+       "label": "Usual",
+       "file": "zone806/usual.jpg"
+      }
+     ]
+    },
+    {
+     "id": "zone807",
+     "name": "Pixie Dust Mill",
+     "parent": null,
+     "variants": [
+      {
+       "id": "zone807",
+       "label": "Usual",
+       "file": "zone807/usual.jpg"
+      }
+     ]
+    },
+    {
+     "id": "zone808",
+     "name": "Marina's Place",
+     "parent": null,
+     "variants": [
+      {
+       "id": "zone808",
+       "label": "Usual",
+       "file": "zone808/usual.jpg"
+      },
+      {
+       "id": "zone808~Meadow_PGH2011_Stadium",
+       "label": "PGH2011 Stadium",
+       "file": "zone808/Meadow_PGH2011_Stadium.jpg"
+      }
+     ]
+    },
+    {
+     "id": "zone809",
+     "name": "Queen's Boutique",
+     "parent": null,
+     "variants": [
+      {
+       "id": "zone809",
+       "label": "Usual",
+       "file": "zone809/usual.jpg"
+      }
+     ]
+    },
+    {
+     "id": "zone810",
+     "name": "Spike's Sweets",
+     "parent": null,
+     "variants": [
+      {
+       "id": "zone810",
+       "label": "Usual",
+       "file": "zone810/usual.jpg"
+      }
+     ]
+    },
+    {
+     "id": "zone890",
+     "name": "Cottonpuff Field",
+     "parent": null,
+     "variants": [
+      {
+       "id": "zone890",
+       "label": "Usual",
+       "file": "zone890/usual.jpg"
+      }
+     ]
+    },
+    {
+     "id": "zone899",
+     "name": "Chiisai Heights",
+     "parent": null,
+     "variants": [
+      {
+       "id": "zone899",
+       "label": "Usual",
+       "file": "zone899/usual.jpg"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

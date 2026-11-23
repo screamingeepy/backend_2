@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GM Portal - Commands</title>
+  <meta name="description" content="Run staff commands and read the audit log." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" href="/wings.ico" type="image/x-icon" />
+  <link rel="preload" href="/site/nav.xml" as="fetch" />
+  <link rel="stylesheet" href="/site/nav/nav.css?v=20260927a" />
+  <link rel="stylesheet" href="/site/site.css?v=20260927a" />
+  <link rel="stylesheet" href="/site/account.css?v=20260927a" />
+  <link rel="stylesheet" href="/site/gm.css?v=20260929a" />
+  <link rel="stylesheet" href="/site/gmCommands.css?v=20260927a" />
+</head>
+<body>
+  <div class="siteWrap">
+    <nav id="mainNav" aria-label="Main"></nav>
+    <div class="memberBar" data-member-bar hidden></div>
+
+    <main class="pageFrame">
+      <div class="pageInner">
+        <div class="frameLogo"></div>
+        <p class="breadCrumbs"><a href="/">Pixie Hollow</a> &gt; <a href="/account">Account Manager</a> &gt; <span>GM Portal - Commands</span></p>
+        <h1 class="pageTitle">GM Portal - Commands</h1>
+
+        <h2 class="pageHeading">Pixie Hollow Staff</h2>
+        <p class="pageLead" id="gmLead">Please Log In to the GM Portal.</p>
+
+        <section id="gmLogin" class="acctBoxes" hidden>
+          <div class="acctBox">
+            <h3>Staff Log In</h3>
+            <p>Log in with a Moderator or Administrator account.</p>
+            <form class="acctForm" id="gmLoginForm" novalidate>
+              <div class="formRow">
+                <label for="gmLoginName">Account ID:</label>
+                <input class="textInput" id="gmLoginName" autocomplete="username" />
+              </div>
+              <div class="formRow">
+                <label for="gmLoginPassword">Password:</label>
+                <input class="textInput" id="gmLoginPassword" type="password" autocomplete="current-password" />
+              </div>
+              <p class="formMessage" id="gmLoginMessage" role="alert"></p>
+              <p class="center"><button class="btnGray" type="submit" id="gmLoginButton">Log In</button></p>
+            </form>
+          </div>
+        </section>
+
+        <section id="gmDenied" class="acctBoxes" hidden>
+          <div class="acctBox">
+            <h3>Staff Only</h3>
+            <p>This account isn't a Moderator or Administrator. <a href="#" id="gmSwitchAccount">Log in with a different account</a>.</p>
+          </div>
+        </section>
+
+        <section id="gmTools" class="gmBoxes" hidden>
+          <div class="acctBox">
+            <h3 class="quill">Commands</h3>
+
+            <div class="gmSwitchRow" id="gmModeRow" hidden>
+              <div class="gmSwitchText">
+                <p class="gmSwitchLabel">
+                  GM Mode <span class="gmSwitchState" id="gmModeState">…</span>
+                </p>
+                <p class="gmHint" id="gmModeHint"></p>
+              </div>
+              <button class="gmSwitch" id="gmModeSwitch" type="button" role="switch" aria-checked="false" aria-labelledby="gmModeState">
+                <span class="gmSwitchKnob"></span>
+              </button>
+            </div>
+            <p class="gmResult" id="gmModeResult" role="status" hidden></p>
+
+            <div class="gmTabs" role="tablist" aria-label="Command categories" id="categoryTabs"></div>
+            <form id="commandForm" novalidate>
+              <div class="gmCommandRow">
+                <label class="modalLabel" for="commandPick">Command</label>
+                <select class="selectInput wideSelect" id="commandPick"></select>
+                <p class="gmHint" id="commandHint"></p>
+              </div>
+              <div class="gmFields" id="commandFields"></div>
+              <details class="gmRaw" id="rawBox">
+                <summary>Type a command instead</summary>
+                <input class="textInput" id="commandInput" placeholder="whois Tinker Bell" autocomplete="off" aria-label="Full command" />
+              </details>
+              <p class="gmPreview" id="commandPreview"></p>
+              <p class="center"><button class="btnGold" type="submit" id="runButton">Run</button></p>
+              <pre class="gmResult" id="commandResult" role="status" hidden></pre>
+            </form>
+          </div>
+
+          <div class="acctBox">
+            <h3>Fairy / Account Lookup</h3>
+            <p class="gmHint">Part or all of a fairy name or an Account ID -- shows the other one, both ways. Press Enter to search.</p>
+            <div class="gmFilterRow">
+              <label class="modalLabel" for="lookupSearch">Search</label>
+              <input class="textInput" id="lookupSearch" type="search" placeholder="Tinker Bell, or an Account ID" autocomplete="off" />
+            </div>
+            <ul class="gmLookupList" id="lookupResults"></ul>
+          </div>
+
+          <div class="acctBox">
+            <h3>Chat Logs</h3>
+            <p class="gmHint">Download what a fairy or account typed, including whispers sent to them, as a text file. Leave the name empty for everyone. Every download is recorded in Recent Commands.</p>
+            <form class="acctForm" id="chatLogForm" novalidate>
+              <div class="formRow">
+                <label for="chatLogWho">Fairy or account:</label>
+                <input class="textInput" id="chatLogWho" placeholder="Tinker Bell, or an Account ID" autocomplete="off" />
+              </div>
+              <div class="formRow">
+                <label for="chatLogFrom">From:</label>
+                <input class="textInput" id="chatLogFrom" type="date" />
+              </div>
+              <div class="formRow">
+                <label for="chatLogTo">To:</label>
+                <input class="textInput" id="chatLogTo" type="date" />
+              </div>
+              <div class="formRow">
+                <label for="chatLogContains">Contains:</label>
+                <input class="textInput" id="chatLogContains" placeholder="optional word or phrase" autocomplete="off" />
+              </div>
+              <p class="center"><button class="btnGold" type="submit" id="chatLogButton">Download</button></p>
+              <p class="formMessage" id="chatLogMessage" role="status"></p>
+            </form>
+          </div>
+
+          <div class="acctBox">
+            <h3>Recent Commands</h3>
+            <div class="gmFilterRow">
+              <label class="modalLabel" for="commandLogSearch">Search</label>
+              <input class="textInput" id="commandLogSearch" type="search" placeholder="command or staff name" autocomplete="off" />
+            </div>
+            <ol class="gmLog" id="commandLog"></ol>
+            <div class="gmPager" id="commandLogPager"></div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script src="/site/site.js?v=20260927a"></script>
+  <script src="/site/nav.js?v=20260927a"></script>
+  <script src="/site/loginModal.js?v=20260927a"></script>
+  <script src="/site/tickets.js?v=20260927a"></script>
+  <script src="/site/gmPortal.js?v=20260927a"></script>
+  <script src="/site/gmCommands.js?v=20260927a"></script>
+</body>
+</html>

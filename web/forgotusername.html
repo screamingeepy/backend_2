@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Forgot Your Account ID</title>
+  <meta name="description" content="Get your Pixie Hollow Account ID by e-mail." />
+  <link rel="icon" href="/wings.ico" type="image/x-icon" />
+  <link rel="preload" href="/site/nav.xml" as="fetch" />
+  <link rel="stylesheet" href="/site/nav/nav.css?v=20260926m" />
+  <link rel="stylesheet" href="/site/site.css?v=20261028a" />
+  <link rel="stylesheet" href="/site/account.css?v=20261028a" />
+</head>
+<body class="interiorPage">
+  <div class="siteWrap">
+    <nav id="mainNav" aria-label="Main"></nav>
+    <div class="memberBar" data-member-bar hidden></div>
+
+    <main class="pageFrame">
+      <div class="pageInner">
+        <div class="frameLogo"></div>
+        <p class="breadCrumbs"><a href="/">Pixie Hollow</a> &gt; <span>Forgot Your Account ID</span></p>
+        <h1 class="pageTitle">Forgot Your Account ID</h1>
+
+        <div class="acctBoxes">
+          <div class="acctBox" id="inputBox">
+            <h2 class="quill">Forgot Your Account ID?</h2>
+            <p>Enter the e-mail address on your account. We will e-mail you every Account ID that uses it. For your safety we never show them on this page.</p>
+
+            <form id="forgotUsernameForm" novalidate>
+              <div class="formRow">
+                <label for="email">E-mail Address:</label>
+                <div>
+                  <input class="textInput" id="email" type="email" autocomplete="email" />
+                  <p class="fieldError" id="emailError"></p>
+                </div>
+              </div>
+              <p class="center"><button class="btnGold" type="submit" id="sendButton">E-mail My Account ID</button></p>
+              <p class="formMessage" id="message" role="alert"></p>
+            </form>
+
+            <p class="fieldTip">Need a new password instead? <a href="/forgot.html">Reset it here</a>.</p>
+            <p class="fieldTip">Stuck? <a href="/contactUs.html?issue=forgotCredentials">Contact Us for help</a>.</p>
+          </div>
+
+          <div class="acctBox" id="sentBox" hidden>
+            <h2 class="quill">Check Your E-mail</h2>
+            <p>We've sent an e-mail with your Account ID to that address.</p>
+            <p class="center"><a href="/" class="btnGold"><span>Back to Home</span></a></p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="/site/site.js?v=20261028a"></script>
+  <script src="/site/nav.js?v=20260926m"></script>
+  <script src="/site/loginModal.js?v=20260926m"></script>
+  <script src="/site/forgot.js?v=20260928a"></script>
+</body>
+</html>

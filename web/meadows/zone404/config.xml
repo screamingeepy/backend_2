@@ -1,0 +1,29 @@
+<zone>
+  <name>Troop Glowworm Hideout</name>
+  <zoneID>404</zoneID>
+  <assetURL/>
+  <audioLibrary>icePalace</audioLibrary>
+  <clientLayout>
+    <layers>
+      <layer type="ground" width="994" height="650">
+        <image x="0" y="0" type="merge">TH_Glowworm_action_03.swf</image>
+      </layer>
+      <layer type="normal" width="1100" height="660">
+        <image x="0" y="0" type="none">TH_foreground_02.swf</image>
+      </layer>
+    </layers>
+  </clientLayout>
+  <locations>
+    <location x="400" y="500">default</location>
+  </locations>
+  <bgms>
+    <bgm>
+      <id>icePalaceBG</id>
+      <loops>0</loops>
+      <volumeLow>0.5</volumeLow>
+      <volumeHigh>0.5</volumeHigh>
+      <delayLow>0</delayLow>
+      <delayHigh>0</delayHigh>
+    </bgm>
+  </bgms>
+</zone>

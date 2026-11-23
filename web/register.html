@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Registration</title>
+  <meta name="description" content="Sign up for a Pixie Hollow Account ID." />
+  <link rel="icon" href="/wings.ico" type="image/x-icon" />
+  <link rel="preload" href="/site/nav.xml" as="fetch" />
+  <link rel="stylesheet" href="/site/nav/nav.css?v=20260926m" />
+  <link rel="stylesheet" href="/site/site.css?v=20261028a" />
+  <link rel="stylesheet" href="/site/account.css?v=20261028a" />
+</head>
+<body class="interiorPage">
+  <div class="siteWrap">
+    <nav id="mainNav" aria-label="Main"></nav>
+    <div class="memberBar" data-member-bar hidden></div>
+
+    <main class="pageFrame">
+      <div class="pageInner">
+        <div class="frameLogo"></div>
+        <p class="breadCrumbs"><a href="/">Pixie Hollow</a> &gt; <a href="/account">Account Manager</a> &gt; <span>Registration</span></p>
+        <h1 class="pageTitle">Registration</h1>
+        <!-- waitlist loads first if enabled, enable through gm portal on website (admin only)-->
+        <section id="waitlistBox" aria-label="Join the waitlist" hidden>
+          <h2 class="pageHeading">Join the Waitlist</h2>
+          <p class="pageLead" id="waitlistLead">We're letting new fairies into Pixie Hollow a few at a time. Enter your e-mail address and we'll send you a link to make your account when it's your turn.</p>
+          <p class="regNote" id="waitlistInviteNote" hidden>That invitation link isn't working. It may have been used already. If you still need to sign up, join the waitlist below, or contact us.</p>
+
+          <form id="waitlistForm" novalidate>
+            <div class="formRows">
+              <div class="formRow">
+                <label for="waitlistEmail">Your E-mail Address:</label>
+                <div>
+                  <input class="textInput" id="waitlistEmail" type="email" autocomplete="email" maxlength="254" />
+                  <p class="fieldError" id="waitlistEmailError"></p>
+                </div>
+              </div>
+            </div>
+            <p class="regNote">If you're under 13, please use a parent or guardian's address. You'll only get one link for each address.</p>
+            <p class="formActions"><button type="submit" class="btnGold" id="waitlistButton">Join the Waitlist</button></p>
+            <p class="formMessage" id="waitlistMessage" role="alert"></p>
+          </form>
+
+          <div id="waitlistDone" hidden>
+            <p class="pageLead">You're on the list! We'll e-mail a link to <strong id="waitlistDoneEmail"></strong> when it's your turn. It can take a little while, so keep an eye on your inbox (and your spam folder).</p>
+          </div>
+        </section>
+        <!-- actual reg form, hidden when waitlist is active, anything here is changeable -->
+        <form id="regForm" novalidate hidden>
+          <section id="stepOne" aria-label="Create your Account ID">
+            <p class="regNote">If you already have an Account ID, you can <a href="#" data-login>log in here</a> with your existing Account ID and Password.</p>
+
+            <div class="formRows">
+              <div class="formRow">
+                <span class="rowLabel" id="birthdayLabel">Birthday:</span>
+                <div>
+                  <div class="fieldGroup" role="group" aria-labelledby="birthdayLabel">
+                    <select class="selectInput" id="birthMonth" aria-label="Month"><option value="">Month</option></select>
+                    <select class="selectInput" id="birthDay" aria-label="Day"><option value="">Day</option></select>
+                  </div>
+                  <p class="fieldError" id="birthdayError"></p>
+                </div>
+              </div>
+
+              <div class="formRow">
+                <label for="age">How old are you?</label>
+                <div>
+                  <select class="selectInput" id="age"><option value="">Age</option></select>
+                  <p class="fieldError" id="ageError"></p>
+                </div>
+              </div>
+
+              <div class="formRow">
+                <div class="rowLabelWrap">
+                  <label for="username">Create Account ID:</label>
+                  <button type="button" class="whatsThis" aria-controls="usernameTip" aria-expanded="false">What's this?</button>
+                </div>
+                <div>
+                  <input class="textInput" id="username" autocomplete="username" maxlength="20" />
+                  <p class="fieldTip" id="usernameTip" hidden>This is the name you use to log in. It is never shown to other Fairies, so don't use your real name. Use 3 to 20 letters or numbers.</p>
+                  <p class="fieldError" id="usernameError"></p>
+                </div>
+              </div>
+
+              <div class="formRow">
+                <div class="rowLabelWrap">
+                  <label for="password">Create Password:</label>
+                  <button type="button" class="whatsThis" aria-controls="passwordTip" aria-expanded="false">What's this?</button>
+                </div>
+                <div>
+                  <input class="textInput" id="password" type="password" autocomplete="new-password" />
+                  <p class="fieldTip" id="passwordTip" hidden>Pick something only you will know. It needs at least 6 characters and can't be your Account ID.</p>
+                  <p class="fieldError" id="passwordError"></p>
+                </div>
+              </div>
+
+              <div class="formRow">
+                <label for="passwordAgain">Type Password Again:</label>
+                <div>
+                  <input class="textInput" id="passwordAgain" type="password" autocomplete="new-password" />
+                  <p class="fieldError" id="passwordAgainError"></p>
+                </div>
+              </div>
+            </div>
+
+            <p class="formActions"><button type="button" class="btnGold" id="continueButton">Continue</button></p>
+          </section>
+
+          <section id="stepTwo" aria-label="Almost finished" hidden>
+            <p class="regNote blue" id="emailIntro">Almost finished! Please enter your e-mail address.</p>
+
+            <div class="formRows">
+              <div class="formRow">
+                <label for="firstName">Your First Name:</label>
+                <div>
+                  <input class="textInput" id="firstName" autocomplete="given-name" maxlength="30" />
+                  <p class="fieldError" id="firstNameError"></p>
+                </div>
+              </div>
+
+              <div class="formRow">
+                <label for="email" id="emailLabel">Your E-mail Address:</label>
+                <div>
+                  <input class="textInput" id="email" type="email" autocomplete="email" />
+                  <p class="fieldError" id="emailError"></p>
+                </div>
+              </div>
+            </div>
+
+            <p class="regNote blue" id="emailNote" hidden></p>
+
+            <p class="regTerms">By clicking the sign up button, you agree to our<br /><a href="/gamepolicies.html">Pixie Principles</a><a href="/termsofuse.html">Terms of Use</a></p>
+
+            <p class="formActions">
+              <button type="button" class="btnGray" id="backButton">Back</button>
+              <button type="submit" class="btnGold" id="signUpButton">Sign Up</button>
+            </p>
+            <p class="formMessage" id="signUpMessage" role="alert"></p>
+          </section>
+        </form>
+
+        <section id="stepDone" aria-label="Welcome" hidden>
+          <h2 class="pageHeading">Welcome to Pixie Hollow!</h2>
+          <p class="pageLead">Your Account ID <strong id="doneName"></strong> is ready. Now create your very own Fairy!</p>
+          <p class="pageLead" id="doneEmailNote"></p>
+          <p class="formActions"><a class="btnGold" href="/create.html">Create Your Fairy</a></p>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script src="/site/site.js?v=20261028a"></script>
+  <script src="/site/nav.js?v=20260926m"></script>
+  <script src="/site/loginModal.js?v=20260926m"></script>
+  <script src="/site/register.js?v=20260929a"></script>
+</body>
+</html>

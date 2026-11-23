@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GM Portal - Meet the Staff</title>
+  <meta name="description" content="Add and edit the pages on Meet the Staff." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" href="/wings.ico" type="image/x-icon" />
+  <link rel="preload" href="/site/nav.xml" as="fetch" />
+  <link rel="stylesheet" href="/site/nav/nav.css?v=20260927a" />
+  <link rel="stylesheet" href="/site/site.css?v=20260927a" />
+  <link rel="stylesheet" href="/site/account.css?v=20260927a" />
+  <link rel="stylesheet" href="/site/gm.css?v=20260929a" />
+</head>
+<body>
+  <div class="siteWrap">
+    <nav id="mainNav" aria-label="Main"></nav>
+    <div class="memberBar" data-member-bar hidden></div>
+
+    <main class="pageFrame">
+      <div class="pageInner">
+        <div class="frameLogo"></div>
+        <p class="breadCrumbs"><a href="/">Pixie Hollow</a> &gt; <a href="/account">Account Manager</a> &gt; <span>GM Portal - Meet the Staff</span></p>
+        <h1 class="pageTitle">GM Portal - Meet the Staff</h1>
+
+        <h2 class="pageHeading">Pixie Hollow Staff</h2>
+        <p class="pageLead" id="gmLead">Please Log In to the GM Portal.</p>
+
+        <section id="gmLogin" class="acctBoxes" hidden>
+          <div class="acctBox">
+            <h3>Staff Log In</h3>
+            <p>Log in with a Moderator or Administrator account.</p>
+            <form class="acctForm" id="gmLoginForm" novalidate>
+              <div class="formRow">
+                <label for="gmLoginName">Account ID:</label>
+                <input class="textInput" id="gmLoginName" autocomplete="username" />
+              </div>
+              <div class="formRow">
+                <label for="gmLoginPassword">Password:</label>
+                <input class="textInput" id="gmLoginPassword" type="password" autocomplete="current-password" />
+              </div>
+              <p class="formMessage" id="gmLoginMessage" role="alert"></p>
+              <p class="center"><button class="btnGray" type="submit" id="gmLoginButton">Log In</button></p>
+            </form>
+          </div>
+        </section>
+
+        <section id="gmDenied" class="acctBoxes" hidden>
+          <div class="acctBox">
+            <h3>Staff Only</h3>
+            <p>This account isn't a Moderator or Administrator. <a href="#" id="gmSwitchAccount">Log in with a different account</a>.</p>
+          </div>
+        </section>
+
+        <section id="gmTools" class="gmBoxes" hidden>
+          <div class="acctBox">
+            <h3 class="quill">Meet the Staff</h3>
+            <p class="gmHint">The pages on <a href="/staff.html" target="_blank" rel="noopener">Meet the Staff</a>. A page points at a fairy, so her picture, name and talent are always what she is wearing and called right now. Drafts are only visible here.</p>
+
+            <h4 class="newsEditorTitle">Pages <span class="gmCount" id="staffCount"></span></h4>
+            <ul class="removedList" id="staffList"></ul>
+          </div>
+
+          <div class="acctBox">
+            <h3 class="quill" id="staffFormTitle">Add a page</h3>
+
+            <form class="acctForm" id="staffForm" novalidate>
+              <div class="formRow">
+                <label for="staffFairy">Fairy:</label>
+                <input class="textInput" id="staffFairy" autocomplete="off" placeholder="fairy name, or doId" />
+                <span class="gmHint">The fairy this page is about. A name works, as does the doId.</span>
+              </div>
+              <div class="formRow">
+                <label for="staffSlug">Address:</label>
+                <input class="textInput" id="staffSlug" maxlength="40" autocomplete="off" placeholder="made from a name if left empty" />
+                <span class="gmHint">The page is at /staff.html?f=<span id="staffSlugPreview">address</span>. Letters, numbers and dashes.</span>
+              </div>
+              <div class="formRow">
+                <label for="staffRole">What they do:</label>
+                <input class="textInput" id="staffRole" maxlength="80" autocomplete="off" placeholder="Moderator, Community, Artist..." />
+              </div>
+              <div class="formRow">
+                <label for="staffKnow">Did you know?:</label>
+                <input class="textInput" id="staffKnow" maxlength="240" autocomplete="off" placeholder="the red ribbon on the card" />
+              </div>
+
+              <div class="formRow">
+                <label>Card lines:</label>
+                <div id="staffFacts"></div>
+                <span class="gmHint">Like Strengths, Weakness, Hobbies. You can add up to 8 lines.</span>
+                <p><button class="btnGray" type="button" id="staffAddFact">Add a line</button></p>
+              </div>
+
+              <div class="formRow">
+                <label for="staffBio">About them:</label>
+                <textarea class="textInput textArea" id="staffBio" rows="6" maxlength="4000" placeholder="Longer text under the card lines. A blank line starts a new paragraph."></textarea>
+              </div>
+              <div class="formRow">
+                <label for="staffBackground">Meadow:</label>
+                <select class="selectInput" id="staffBackground">
+                  <option value="">The usual meadow</option>
+                </select>
+                <span class="gmHint">The picture behind them on their page. All meadows are here.</span>
+                <img id="staffBackgroundPreview" alt="" hidden style="display:block;max-width:100%;width:360px;margin-top:8px;border:3px solid #355a10;border-radius:10px" />
+              </div>
+              <div class="formRow">
+                <label for="staffOrder">Position:</label>
+                <input class="textInput" id="staffOrder" inputmode="numeric" value="0" autocomplete="off" />
+                <span class="gmHint">Smaller numbers come first. Pages with the same number are in the order they were added.</span>
+              </div>
+              <div class="formRow">
+                <label for="staffStatus">Shown:</label>
+                <select class="selectInput" id="staffStatus">
+                  <option value="draft">Draft (only staff see it)</option>
+                  <option value="published">Published (on Meet the Staff)</option>
+                </select>
+              </div>
+
+              <p class="formMessage" id="staffMessage" role="alert"></p>
+              <p class="center">
+                <button class="btnGold" type="submit" id="staffSave">Add Page</button>
+                <button class="btnGray" type="button" id="staffCancel" hidden>Cancel</button>
+              </p>
+            </form>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script src="/site/site.js?v=20260927a"></script>
+  <script src="/site/nav.js?v=20260927a"></script>
+  <script src="/site/loginModal.js?v=20260927a"></script>
+  <script src="/site/tickets.js?v=20260927a"></script>
+  <script src="/site/gmPortal.js?v=20260929a"></script>
+  <script src="/site/gmStaff.js?v=20261109b"></script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+daemon:
+    name: Clefairy OTP Cluster
+
+general:
+    eventlogger: 127.0.0.1:4343
+    dc_files:
+        - dclass/otp.dc
+        - dclass/fairy.dc
+
+debug:
+    pprof: true
+
+messagedirector:
+    bind: 127.0.0.1:6666
+
+eventlogger:
+    bind: 127.0.0.1:4343
+    output: ../logs/events-%Y%m%d_%H%M%S.log
+
+uberdogs:
+    - class: CentralLogger
+      id: 4688
+
+    - class: HolidayManager
+      id: 4756
+
+    - class: FMPlayerFriendsManager
+      id: 4687
+
+    - class: FairiesBadgeManager
+      id: 4690
+
+    - class: PetMgr
+      id: 4691
+
+    - class: RealmGuardian
+      id: 4755
+
+    - class: FairyInventoryMgr
+      id: 4677
+
+    - class: LeaderBoardMgr
+      id: 4692
+
+roles:
+    - type: clientagent
+      # Clients connect in raw TCP.
+      bind: 0.0.0.0:8012
+      proxy: false
+      version: "0.0.1"
+      dc_hash: 3495383147
+      lua_file: "FairyClient.lua"
+      database: 4003
+      client:
+          relocate: true
+          add_interest: enabled
+          heartbeat_timeout: 120
+      channels:
+          min: 1000000000
+          max: 1009999999
+
+    - type: stateserver
+      control: 20100000
+      objects:
+          - class: DistributedDirectory
+            id: 4619
+
+          - class: CentralLogger
+            id: 4688
+
+    # The OTP database has been replaced in favor
+    # of the one hosting in the API server.
+    # GET_STORED_VALUES and SET_STORED_VALUES OTP messages
+    # are supported.
+    - type: lua
+      name: APIDatabase
+      lua_file: APIDatabase.lua
+
+    - type: dbss
+      database: 4003
+      ranges:
+          min: 1000000000
+          max: 1999999999
+
+    - type: eventlogger
+      bind: 127.0.0.1:4343
+      output: ../logs/events-%Y%m%d_%H%M%S.log
+
+    - type: lua
+      name: FMPlayerFriendsManager
+      lua_file: FMPlayerFriendsManager.lua
+
+    - type: lua
+      name: DiscordService
+      lua_file: DiscordService.lua

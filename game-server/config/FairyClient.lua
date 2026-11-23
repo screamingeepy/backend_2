@@ -1,0 +1,1119 @@
+-- Client messages
+CLIENT_GO_GET_LOST_RESP = 4 -- Sent by the server when it is dropping the connection deliberately.
+
+CLIENT_LOGIN_FAIRIES = 112
+CLIENT_LOGIN_FAIRIES_RESP = 113
+
+CLIENT_SET_INTEREST = 97
+CLIENT_REMOVE_INTEREST = 99
+
+CLIENT_CREATE_OBJECT_REQUIRED_OTHER_RESP = 35
+CLIENT_CREATE_OBJECT_REQUIRED_OTHER_OWNER_RESP = 36
+CLIENT_CREATE_OBJECT_REQUIRED_RESP = 34
+
+CLIENT_HEART_BEAT = 52
+
+CLIENT_SYSTEM_ALERT = 78
+CLIENT_SYSTEM_ALERT_WITHRESP = 123
+
+CLIENT_SET_LOCATION = 102
+
+CLIENT_OBJECT_UPDATE_FIELD = 24
+CLIENT_OBJECT_DISABLE_RESP = 25
+
+CLIENT_DONE_SET_ZONE_RESP = 48
+
+CLIENT_DISCONNECT_GENERIC                = 1
+LOGIN_DUP                                = 100
+CLIENT_DISCONNECT_OVERSIZED_DATAGRAM     = 106
+CLIENT_DISCONNECT_NO_HELLO               = 107
+CLIENT_DISCONNECT_CHAT_AUTH_ERROR        = 120
+CLIENT_DISCONNECT_ACCOUNT_ERROR          = 122
+CLIENT_DISCONNECT_NO_HEARTBEAT           = 345
+CLIENT_DISCONNECT_INVALID_MSGTYPE        = 108
+CLIENT_DISCONNECT_TRUNCATED_DATAGRAM     = 109
+CLIENT_DISCONNECT_ANONYMOUS_VIOLATION    = 113
+CLIENT_DISCONNECT_FORBIDDEN_INTEREST     = 115
+CLIENT_DISCONNECT_MISSING_OBJECT         = 117
+CLIENT_DISCONNECT_FORBIDDEN_FIELD        = 118
+CLIENT_DISCONNECT_FORBIDDEN_RELOCATE     = 119
+CLIENT_DISCONNECT_BAD_VERSION            = 125
+CLIENT_DISCONNECT_FIELD_CONSTRAINT       = 127
+CLIENT_DISCONNECT_SESSION_OBJECT_DELETED = 153
+
+LOGIN_BANNED = 152
+
+DATABASE_OBJECT_TYPE_ACCOUNT = 1
+DATABASE_OBJECT_TYPE_AVATAR  = 2
+
+-- Internal message types
+STATESERVER_OBJECT_UPDATE_FIELD = 2004
+STATESERVER_OBJECT_DELETE_RAM = 2007
+STATESERVER_OBJECT_SET_ZONE = 2008
+
+CLIENT_AGENT_EJECT = 3004
+
+CHANNEL_PUPPET_ACTION = 4004
+
+ACCOUNT_AVATAR_USAGE = 3005
+
+CENTRAL_LOGGER_REQUEST = 15000
+
+ALLOW_MODERATION_ACTIONS = 3007
+
+BROADCAST_MESSAGE_TO_ALL_AI = 4005
+
+ACCOUNT_SET_MUTE = 20040
+ACCOUNT_SET_IGNORED = 20041
+
+OTP_DO_ID_PLAYER_FRIENDS_MANAGER = 4687
+
+local inspect = require("inspect")
+
+-- Load the TalkFilter
+dofile("TalkFilter.lua")
+
+-- Converts a hexadecimal string to a string of bytes
+-- From: https://smherwig.blogspot.com/2013/05/a-simple-binascii-module-in-ruby-and-lua.html
+function unhexlify(s)
+    if #s % 2 ~= 0 then
+        error("unhexlify: hexstring must contain even number of digits")
+    end
+    local a = {}
+    for i=1,#s,2 do
+        local hs = string.sub(s, i, i+1)
+        local code = tonumber(hs, 16)
+        if not code then
+            error(string.format("unhexlify: '%s' is not avalid hex number", hs))
+        end
+        table.insert(a, string.char(code))
+    end
+    return table.concat(a)
+end
+
+-- Load the configuration varables (see config.example.lua)
+dofile("config.lua")
+
+local API_BASE
+
+local http = require("http")
+
+if PRODUCTION_ENABLED then
+    API_BASE = "https://fairies.sunrise.games/fairies/api/internal/"
+else
+    API_BASE = "http://127.0.0.1/fairies/api/internal/"
+end
+
+avatarSpeedChatPlusStates = {}
+
+-- TODO: These three functions should be moved to their own
+-- Lua role.
+
+function urlencode(str)
+  if not str then
+    return ""
+  end
+  str = string.gsub(str, "\n", "\r\n")
+  str = string.gsub(str, "([^%w %-%_%.~])", function(c)
+    return string.format("%%%02X", string.byte(c))
+  end)
+  str = string.gsub(str, " ", "+")
+  return str
+end
+
+function retrieveAccount(data)
+    -- TODO: Retries
+    local response, error_message = http.get(API_BASE .. "retrieveAccount", {
+        query=data,
+        headers={
+            ["Authorization"]=API_TOKEN
+        }
+    })
+
+    if error_message then
+        print(string.format("FairyClient: retrieveAccount returned an error! \"%s\"", error_message))
+        return "{}"
+    end
+    if response.status_code ~= 200 then
+        print(string.format("FairyClient: retrieveAccount returned %d!, \"%s\"", response.status_code, response.body))
+        return "{}"
+    end
+    return response.body
+end
+
+function retrieveFairy(client, data)
+    local connAttempts = 0
+
+    while (connAttempts < 3) do
+        local response, error_message = http.get(API_BASE .. "retrieveFairy", {
+            query=data,
+            headers={
+                ["User-Agent"]=USER_AGENT,
+                ["Authorization"]=API_TOKEN
+            }
+        })
+
+        if error_message then
+            print(string.format("FairyClient: retrieveFairy returned an error! \"%s\"", error_message))
+            connAttempts = connAttempts + 1
+            goto retry
+        end
+
+        if response.status_code ~= 200 then
+            print(string.format("FairyClient: retrieveFairy returned %d!, \"%s\"", response.status_code, response.body))
+            connAttempts = connAttempts + 1
+            goto retry
+        end
+
+        do
+            -- If we're here, then we can return the response body.
+            print(response.body)
+            return response.body
+        end
+
+        -- retry goto to iterate again if we failed to retrieve our fairy data.
+        ::retry::
+    end
+
+    -- If we're here, then we failed to get valid fairy data. Disconnect here
+    client:sendDisconnect(CLIENT_DISCONNECT_ACCOUNT_ERROR, "Failed to retrieveFairy.", false)
+end
+
+function setIgnoredList(userTable, ids)
+    local ignored = {}
+    if type(ids) == "table" then
+        for _, id in pairs(ids) do
+            local number = tonumber(id)
+            if number ~= nil then
+                ignored[number] = true
+            end
+        end
+    end
+    userTable.ignored = ignored
+end
+
+function isIgnoring(userTable, accountId)
+    return userTable.ignored ~= nil and userTable.ignored[tonumber(accountId)] == true
+end
+
+-- no open chat and no speedchat+, only the menu's phrases go in or out, staff see everything
+function isSpeedChatOnly(userTable)
+    if userTable.accountType == "Moderator" or userTable.accountType == "Administrator" then
+        return false
+    end
+
+    return not userTable.openChat and not userTable.speedChatPlus
+end
+
+-- a phrase arrives as its own text, same test filterWhitelist uses
+function isSpeedChatPhrase(message)
+    return SPEEDCHAT[message] ~= nil
+end
+
+function isMuted(userTable)
+    if not userTable.muted then
+        return false
+    end
+    if userTable.mutedUntil == nil or userTable.mutedUntil == 0 then
+        return true
+    end
+    return os.time() < userTable.mutedUntil
+end
+
+function sendMuteToClient(client, userTable)
+    if userTable.avatarId == nil then
+        return
+    end
+    local dg = datagram:new()
+    dg:addUint16(CLIENT_OBJECT_UPDATE_FIELD)
+    dg:addUint32(userTable.avatarId)
+    client:packFieldToDatagram(dg, "DistributedFairyPlayer", "setMute", {isMuted(userTable) and 1 or 0}, true)
+    client:sendDatagram(dg)
+end
+
+function handleDatagram(client, msgType, dgi)
+    -- Internal datagrams
+    if msgType == ACCOUNT_SET_MUTE then
+        local userTable = client:userTable()
+        userTable.muted = dgi:readUint8() == 1
+        userTable.mutedUntil = dgi:readUint32()
+        userTable.muteReason = dgi:readString()
+        client:userTable(userTable)
+        sendMuteToClient(client, userTable)
+        return
+    elseif msgType == ACCOUNT_SET_IGNORED then
+        local userTable = client:userTable()
+        local ids = {}
+        local count = dgi:readUint16()
+        for i = 1, count do
+            ids[i] = dgi:readUint32()
+        end
+        setIgnoredList(userTable, ids)
+        client:userTable(userTable)
+        return
+    end
+
+    client:warn(string.format("Received unknown server msgtype %d", msgType))
+end
+
+function addIgnoreRemote(client, accountId, ignoreId)
+    local json = require("json")
+    local body = json.encode({accountId = accountId, ignoreId = ignoreId})
+    local response, error_message = http.post(API_BASE .. "addIgnore", {
+        body=body,
+        headers={
+            ["Authorization"]=API_TOKEN,
+            ["Content-Type"]="application/json"
+        }
+    })
+    if error_message then
+        client:warn(string.format("addIgnore failed: %s", error_message))
+    end
+end
+
+function receiveDatagram(client, dgi)
+    -- Client received datagrams
+    msgType = dgi:readUint16()
+
+    if msgType == CLIENT_HEART_BEAT then
+        client:handleHeartbeat()
+    elseif msgType == CLIENT_DISCONNECT then
+        client:handleDisconnect()
+    elseif msgType == CLIENT_LOGIN_FAIRIES then
+        handleLogin(client, dgi)
+    -- We have reached the only message types unauthenticated clients can use.
+    elseif not client:authenticated() then
+        client:sendDisconnect(CLIENT_DISCONNECT_GENERIC, "First datagram is not CLIENT_LOGIN_FAIRIES", true)
+    elseif msgType == CLIENT_SET_INTEREST then
+        handleAddInterest(client, dgi)
+    elseif msgType == CLIENT_REMOVE_INTEREST then
+        client:handleRemoveInterest(dgi)
+    elseif msgType == CLIENT_OBJECT_UPDATE_FIELD then
+        client:handleUpdateField(dgi)
+    elseif msgType == CLIENT_SET_LOCATION then
+        client:setLocation(dgi)
+    else
+        client:sendDisconnect(CLIENT_DISCONNECT_GENERIC, string.format("Unknown message type: %d", msgType), true)
+    end
+
+    if dgi:getRemainingSize() ~= 0 then
+        client:sendDisconnect(CLIENT_DISCONNECT_OVERSIZED_DATAGRAM, string.format("Datagram contains excess data.\n%s", tostring(dgi)), true)
+    end
+
+    -- A successfully handled message doubles as a heartbeat.
+    -- This function processes incoming client heartbeat messages.
+    -- (Fairies automatically detects quiet periods and sends a standard heartbeat as well.)
+    client:handleHeartbeat()
+end
+
+function handleLogin(client, dgi)
+    local playToken = dgi:readString()
+    local version = dgi:readString()
+    local hash = dgi:readUint32()
+    local tokenType = dgi:readInt32()
+    dgi:readString()
+
+    if client:authenticated() then
+        client:sendDisconnect(LOGIN_DUP, "Authenticated client tried to login twice!", true)
+        return
+    end
+
+    -- Check if version and hash matches
+    if version ~= SERVER_VERSION then
+        client:sendDisconnect(CLIENT_DISCONNECT_BAD_VERSION, string.format("Client version mismatch: client=%s, server=%s", version, SERVER_VERSION), true)
+        return
+    end
+
+    -- Doesn't seem dcFile.getHash() matches the client.
+    -- We'll just hardcode the stock Pixie Hollow client hashVal.
+    -- This shouldn't change as we won't be adding new content anyways.
+    if hash ~= 3495383147 then
+        client:sendDisconnect(CLIENT_DISCONNECT_BAD_VERSION, string.format("Client DC hash mismatch: client=%d, server=%d", hash, DC_HASH), true)
+        return
+    end
+
+    local speedChatPlus
+    local openChat
+    local isPaid
+    local dislId
+    local linkedToParent
+    local accountDisabled
+    local accountType
+    if PRODUCTION_ENABLED then
+        local json = require("json")
+        local crypto = require("crypto")
+        local ok, err = pcall(function()
+            local decodedToken, err = crypto.base64_decode(playToken)
+            if err then
+                error(err)
+                return
+            end
+            local encrypted, err = json.decode(decodedToken)
+            if err then
+                error(err)
+                return
+            end
+            local encryptedData, err = crypto.base64_decode(encrypted.data)
+            if err then
+                error(err)
+                return
+            end
+            local iv, err = crypto.base64_decode(encrypted.iv)
+            if err then
+                error(err)
+                return
+            end
+
+            local data, err = crypto.decrypt(encryptedData, "aes-cbc", unhexlify(PLAY_TOKEN_KEY), crypto.RAW_DATA, iv)
+            if err then
+                error(err)
+                return
+            end
+            local jsonData, err = json.decode(data)
+            if err then
+                error(err)
+                return
+            end
+
+            -- Retrieve data from the API response.
+            playToken = jsonData.playToken
+            if tonumber(jsonData.OpenChat) == 1 then
+                openChat = true
+            else
+                openChat = false
+            end
+
+            if tonumber(jsonData.Member) == 1 then
+                isPaid = true
+            else
+                isPaid = false
+            end
+
+            local timestamp = jsonData.Timestamp
+            dislId = tonumber(jsonData.dislId)
+            accountType = jsonData.accountType
+            linkedToParent = jsonData.LinkedToParent
+
+            if tonumber(jsonData.SpeedChatPlus) == 1 then
+                speedChatPlus = true
+            else
+                speedChatPlus = false
+            end
+
+            if tonumber(jsonData.Banned) == 1 or tonumber(jsonData.Terminated) == 1 then
+                accountDisabled = true
+            else
+                accountDisabled = false
+            end
+
+            if WANT_TOKEN_EXPIRATIONS and timestamp < os.time() then
+                client:sendDisconnect(CLIENT_DISCONNECT_ACCOUNT_ERROR, "Token has expired.", true)
+                return
+            end
+        end)
+
+        if not ok then
+            -- Bad play token
+            client:warn(string.format("FairyClient: Error when decrypting play token: %s", err))
+            client:sendDisconnect(CLIENT_DISCONNECT_ACCOUNT_ERROR, "Invalid play token", true)
+            return
+        end
+        -- TODO: Send discord webhook.
+    else
+        -- Production is not enabled
+        -- We need these dummy values
+        openChat = false
+        if WANT_OPEN_CHAT then
+            openChat = true
+        end
+        isPaid = false
+        if WANT_MEMBERSHIP then
+            isPaid = true
+        end
+        dislId = 1
+        linkedToParent = false
+        accountType = "Administrator" -- Administrator/Player
+        speedChatPlus = false
+        if WANT_SPEEDCHAT_PLUS then
+            speedChatPlus = true
+        end
+        accountDisabled = false
+    end
+
+    local json = require("json")
+    local account = json.decode(retrieveAccount("userName=" .. urlencode(playToken)))
+    local accountId = account._id
+
+    -- The local Mongo document is authoritative for staff status, not the play
+    -- token (production) or the dev-mode hardcode above: a missing or garbled
+    -- value here reads as "Player", never as GM.
+    accountType = account.accountType or "Player"
+    speedChatPlus = account.speedChatPlus == true
+
+    if account.deleted == true then
+        client:sendDisconnect(CLIENT_DISCONNECT_ACCOUNT_ERROR, "This account has been deleted.", true)
+        return
+    end
+
+    -- set from /gm/admin, never true for staff
+    if account.loginLocked == true then
+        client:sendDisconnect(CLIENT_DISCONNECT_ACCOUNT_ERROR, "Logging in is closed for now. Please try again later.", true)
+        return
+    end
+
+    if tonumber(account.banned) == 1 or tonumber(account.terminated) == 1 then
+        accountDisabled = true
+    end
+
+    if accountDisabled then
+        client:sendDisconnect(LOGIN_BANNED, "There has been a reported violation of our Terms of Use connected to this account. For safety purposes, we have placed a temporary hold on the account. For more details, please review the messages sent to the e-mail address associated with this account.", false)
+        return
+    end
+
+    -- Query the account object
+    client:getDatabaseValues(accountId, "Account", {"ACCOUNT_AV_SET"}, function (doId, success, fields)
+        if not success then
+            client:sendDisconnect(CLIENT_DISCONNECT_ACCOUNT_ERROR, "The Account object was unable to be queried.", true)
+            return
+        end
+
+        client:setDatabaseValues(accountId, "Account", {
+            LAST_LOGIN = os.date("%a %b %d %H:%M:%S %Y"),
+        })
+
+        loginAccount(client, fields, accountId, playToken, openChat, isPaid, dislId, linkedToParent, accountType, speedChatPlus, {
+            muted = tonumber(account.muted) == 1,
+            mutedUntil = tonumber(account.mutedUntilEpoch) or 0,
+            muteReason = account.muteReason or ""
+        })
+    end)
+end
+
+function loginAccount(client, account, accountId, playToken, openChat, isPaid, dislId, linkedToParent, accountType, speedChatPlus, moderation)
+    -- Eject other client if already logged in.
+    local ejectDg = datagram:new()
+    client:addServerHeaderWithAccountId(ejectDg, accountId, CLIENT_AGENT_EJECT)
+    ejectDg:addUint16(LOGIN_DUP)
+    ejectDg:addString("You have been disconnected because someone else just logged in using your account on another computer.")
+    client:routeDatagram(ejectDg)
+
+    -- Subscribe to our puppet channel.
+    client:subscribePuppetChannel(accountId, 3)
+
+    -- Set our channel containing our account id
+    client:setChannel(accountId, 0)
+
+    client:authenticated(true)
+
+    -- Store the account id and avatar list into our client's user table:
+    local userTable = client:userTable()
+    userTable.accountId = accountId
+    userTable.avatars = account.ACCOUNT_AV_SET
+    userTable.playToken = playToken
+    userTable.isPaid = isPaid
+    userTable.speedChatPlus = speedChatPlus
+    userTable.openChat = openChat
+    userTable.accountType = accountType
+    userTable.muted = moderation ~= nil and moderation.muted or false
+    userTable.mutedUntil = moderation ~= nil and moderation.mutedUntil or 0
+    userTable.muteReason = moderation ~= nil and moderation.muteReason or ""
+    client:userTable(userTable)
+
+    -- Log the event
+    client:writeServerEvent("account-login", "FairyClient", string.format("%d", accountId))
+
+   -- Moderation handler
+    if accountType == "Moderator" or accountType == "Administrator" then
+        -- This account is allowed to perform moderation actions.
+        local dg = datagram:new()
+        dg:addServerHeader(BROADCAST_MESSAGE_TO_ALL_AI, accountId, ALLOW_MODERATION_ACTIONS)
+        dg:addUint32(accountId)
+        dg:addString(accountType)
+        client:routeDatagram(dg)
+    end
+
+    -- Prepare the login response.
+    local avatarId = userTable.avatars[1]
+
+    local json = require("json")
+    local fairy = json.decode(retrieveFairy(client, "playToken=" .. urlencode(playToken)))
+
+    if fairy.puppetActive then
+        client:sendDisconnect(CLIENT_DISCONNECT_ACCOUNT_ERROR, fairy.name .. " is out as a puppet right now. Dismiss the puppet in the GM portal, then log in again.", false)
+        return
+    end
+
+    userTable.avatarName = fairy.name
+    setIgnoredList(userTable, fairy.ignored)
+    client:userTable(userTable)
+
+    local resp = datagram:new()
+    resp:addUint16(CLIENT_LOGIN_FAIRIES_RESP)
+    resp:addUint8(0) -- Return code
+    resp:addString("All Ok") -- errorString
+    resp:addUint32(avatarId) -- avatarId
+    resp:addUint32(dislId) -- accountId
+    resp:addString(playToken) -- playToken
+    resp:addUint8(1) -- accountNameApproved
+
+    if openChat then
+        resp:addString("YES") -- openChatEnabled
+        resp:addString('CODE') -- createFriendsWithChat
+        resp:addString('YES') -- chatCodeCreationRule
+    else
+        resp:addString("NO") -- openChatEnabled
+        resp:addString('NO') -- createFriendsWithChat
+        resp:addString('NO') -- chatCodeCreationRule
+    end
+
+    if isPaid then
+        resp:addString("FULL") -- access
+    else
+        resp:addString("VELVET") -- access
+    end
+
+    if speedChatPlus then
+        resp:addString("YES") -- WhiteListResponse
+    else
+        resp:addString("NO") -- WhiteListResponse
+    end
+
+    -- Dispatch the response to the client.
+    client:sendDatagram(resp)
+
+    -- Activate DistributedFairyPlayer
+    userTable.avatarId = avatarId
+    client:userTable(userTable)
+
+    client:setChannel(accountId, avatarId)
+    client:subscribePuppetChannel(avatarId, 1)
+
+    local setAccess = 1
+    if userTable.isPaid then
+        setAccess = 2
+    end
+
+    local chatLevel = 0
+    if userTable.speedChatPlus then
+        chatLevel = 1
+    end
+
+    local playerFields = {
+        setAccess = {setAccess},
+        setDISLname = {playToken},
+        setDISLid = {accountId}
+    }
+
+    local isStaff = accountType == "Moderator" or accountType == "Administrator"
+    if isStaff and fairy.famousFairy and tonumber(fairy._id) == tonumber(avatarId) then
+        playerFields.setFamousFairyId = {avatarId}
+        client:sendActivateObject(avatarId, "DistributedFamousFairyGM", playerFields)
+    elseif isStaff and fairy.gmVisible then
+        client:sendActivateObject(avatarId, "DistributedFairyGM", playerFields)
+    else
+        client:sendActivateObject(avatarId, "DistributedFairyPlayer", playerFields)
+    end
+    client:objectSetOwner(avatarId, true)
+
+    if isMuted(userTable) then
+        sendMuteToClient(client, userTable)
+    end
+
+    -- Let the UberDog know about our avatar usage.
+    sendUsage(client, userTable.playToken, userTable.openChat, 0, avatarId, accountId, userTable.isPaid, false)
+
+    -- Let the UberDog know about our avatar usage (going offline post remove).
+    sendUsage(client, userTable.playToken, userTable.openChat, avatarId, 0, accountId, userTable.isPaid, true)
+
+    avatarSpeedChatPlusStates[avatarId] = userTable.speedChatPlus
+end
+
+function handleAddInterest(client, dgi)
+    local handle = dgi:readInt16()
+    local context = dgi:readUint32()
+    local parent = dgi:readUint32()
+    local zones = {}
+    table.insert(zones, dgi:readUint32())
+    client:handleAddInterest(handle, context, parent, zones)
+end
+
+function sendUsage(client, playToken, openChat, priorAvatar, newAvatar, accountId, isPaid, postRemove)
+    -- Log avatar usage
+    local playerName = playToken
+    local playerNameApproved = 1
+    local openChatEnabled = "NO"
+    local createFriendsWithChat = "NO"
+    local chatCodeCreation = "NO"
+
+    if openChat then
+        openChatEnabled = "YES"
+        createFriendsWithChat = "CODE"
+        chatCodeCreation = "YES"
+    end
+
+    local avatarId
+
+    if priorAvatar ~= 0 then
+        avatarId = priorAvatar
+    else
+        avatarId = newAvatar
+    end
+
+    local dg = datagram:new()
+    dg:addServerHeader(CHANNEL_PUPPET_ACTION, avatarId, ACCOUNT_AVATAR_USAGE)
+
+    dg:addUint32(priorAvatar) -- priorAvatar
+    dg:addUint32(newAvatar) -- newAvatar
+    dg:addUint16(0) -- newAvatarType
+    dg:addUint32(accountId) -- accountId
+    dg:addString(openChatEnabled) -- openChatEnabled
+    dg:addString(createFriendsWithChat) -- createFriendsWithChat
+    dg:addString(chatCodeCreation) -- chatCodeCreation
+
+    if isPaid then
+        dg:addString("FULL") -- piratesAccess
+    else
+        dg:addString("VELVET") -- piratesAccess
+    end
+
+    dg:addInt32(0) -- familyAccountId
+    dg:addInt32(accountId) -- playerAccountId
+
+    dg:addString(playerName) -- playerName
+    dg:addInt8(playerNameApproved) -- playerNameApproved
+
+    -- maxAvatars
+    -- Three, as it was before November 10, 2011, when Disney cut it to one
+    -- fairy per account. The client always kept the ability. Sunrise chose one
+    -- for accuracy to the game's final state; we would rather have the earlier
+    -- one. web-api enforces the same number when a fairy is created, and serves
+    -- the login the fairy the website last chose (account.playerId), rather
+    -- than whichever happens to be found first.
+    local maxAvatars = 3
+
+    dg:addInt32(maxAvatars) -- maxAvatars
+
+    dg:addInt16(0) -- numFamilyMembers
+
+    if postRemove then
+        client:addPostRemove(dg)
+    else
+        client:routeDatagram(dg)
+    end
+end
+
+local OWNER_GENERATE_SKIP_FIELDS = {
+    setAccess = true,
+}
+
+function handleAddOwnership(client, doId, parent, zone, dc, dgi)
+    local userTable = client:userTable()
+    local accountId = userTable.accountId
+    local avatarId = userTable.avatarId
+    if doId == avatarId then
+        client:writeServerEvent("selected-avatar", "FairyClient", string.format("%d|%d", accountId, avatarId))
+        client:addSessionObject(doId)
+    end
+
+    local requiredFields = {}
+    local ownRequiredFields = {}
+    local dbFields = {}
+
+    local dcClass = dcFile:getClass(dc)
+    client:debug(string.format("Handling ownership generation for class \"%s\"", dcClass:getName()))
+
+    local numFields = dcClass:getNumFields()
+    for i = 0, numFields - 1, 1 do
+        local dcField = dcClass:getField(i)
+        if dcField:hasKeyword("required") then
+            table.insert(requiredFields, dcField)
+        end
+        if dcField:hasKeyword("ownrequired") then
+            table.insert(ownRequiredFields, dcField)
+        end
+        if dcField:hasKeyword("db") then
+            table.insert(dbFields, dcField:getName())
+        end
+    end
+
+    local packer = dcpacker:new()
+    local requiredField2Value = {}
+    local otherField2Value = {}
+
+    for _, requiredField in ipairs(requiredFields) do
+        local value = packer:unpackField(requiredField, dgi)
+        requiredField2Value[requiredField] = value
+    end
+
+    if dgi:getRemainingSize() > 0 then
+        local ok, numOtherFieldsIn = pcall(function() return dgi:readUint16() end)
+        if not ok then
+            client:debug(string.format("Handling ownership generation for class \"%s\": no other fields present despite getRemainingSize() > 0", dcClass:getName()))
+        else
+            for i = 1, numOtherFieldsIn, 1 do
+                local fieldOk, fieldId = pcall(function() return dgi:readUint16() end)
+                if not fieldOk then
+                    client:warn("handleAddOwnership: failed reading other-field id, stopping early")
+                    break
+                end
+                local dcField = dcFile:getFieldByIndex(fieldId)
+                local value = packer:unpackField(dcField, dgi)
+                otherField2Value[dcField:getName()] = value
+            end
+        end
+    end
+
+    client:getDatabaseValues(doId, dcClass:getName(), dbFields, function (_, success, databaseFields)
+        if not success or databaseFields == nil then
+            databaseFields = {}
+        end
+
+        -- Now, populate the ownrequired fields with data.
+        local generateData = datagram:new()
+        for _, ownRequiredField in ipairs(ownRequiredFields) do
+            local value = requiredField2Value[ownRequiredField]
+            local otherValue = otherField2Value[ownRequiredField:getName()]
+            if value ~= nil then
+                client:debug(string.format("Packing found ownrequired field \"%s\": %s", ownRequiredField:getName(), inspect(value)))
+                packer:packField(ownRequiredField, generateData, value)
+            elseif otherValue ~= nil then
+                client:debug(string.format("Packing found ownrequired field from OTHER \"%s\": %s", ownRequiredField:getName(), inspect(otherValue)))
+                packer:packField(ownRequiredField, generateData, otherValue)
+                otherField2Value[ownRequiredField:getName()] = nil
+            elseif databaseFields[ownRequiredField:getName()] ~= nil then
+                client:debug(string.format("Packing found ownrequired field from database \"%s\": %s", ownRequiredField:getName(), inspect(databaseFields[ownRequiredField:getName()])))
+                packer:packField(ownRequiredField, generateData, databaseFields[ownRequiredField:getName()])
+            else
+                -- TODO:  This might need fetching some stuff from the API server, because not
+                -- everything is set to "required", even though the owner generate message needs them.
+                client:warn(string.format("No value for ownrequired field \"%s\".  Adding default value", ownRequiredField:getName()))
+                generateData:addData(ownRequiredField:getDefaultValue())
+            end
+        end
+
+        -- Add leftover OTHER fields
+        local numOtherFields = 0
+        local otherData = datagram:new()
+        for fieldName, value in pairs(otherField2Value) do
+            if not OWNER_GENERATE_SKIP_FIELDS[fieldName] then
+                numOtherFields = numOtherFields + 1
+                local dcField = dcClass:getFieldByName(fieldName)
+                otherData:addUint16(dcField:getNumber())
+                packer:packField(dcField, otherData, value)
+            end
+        end
+
+        packer:delete()
+
+        local resp = datagram:new()
+        resp:addUint16(CLIENT_CREATE_OBJECT_REQUIRED_OTHER_OWNER_RESP)
+        resp:addUint16(dc) -- dclassId
+        resp:addUint32(doId) -- doId
+        resp:addUint32(parent) -- parentId
+        resp:addUint32(zone) -- zoneId
+        -- resp:addString(name) -- setName
+        resp:addDatagram(generateData)
+        resp:addUint16(numOtherFields)
+        if numOtherFields > 0 then
+            resp:addDatagram(otherData)
+        end
+        client:sendDatagram(resp)
+    end)
+end
+
+function writeChatViolationEvents(client, accountId, avatarId, chatType, message, badPhrases, badCombos)
+    if #badPhrases > 0 then
+        client:writeServerEvent("banned-phrase", "FairyClient", string.format("%d|%d|%s|%s|%s", accountId, avatarId, chatType, formatChatViolations(badPhrases), message))
+    end
+
+    if #badCombos > 0 then
+        client:writeServerEvent("banned-combo", "FairyClient", string.format("%d|%d|%s|%s|%s", accountId, avatarId, chatType, formatChatViolations(badCombos), message))
+    end
+end
+
+-- setTalk from client
+function handleClientDistributedFairyPlayer_setTalk(client, doId, fieldId, data)
+    -- The data is safe to use, as the ranges has already been
+    -- verified by the server prior to calling this function.
+
+    local userTable = client:userTable()
+    local accountId = userTable.accountId
+    local avatarId = userTable.avatarId
+    local avatarName = userTable.avatarName
+
+    -- All other data are blank values, except for chat.
+    local message = data[4] --chat
+
+    if isMuted(userTable) then
+        client:writeServerEvent("muted-chat", "FairyClient", string.format("%d|%d|%s", accountId, avatarId, message))
+        return
+    end
+
+    -- the client can't type this, a modified one might
+    if isSpeedChatOnly(userTable) and not isSpeedChatPhrase(message) then
+        client:writeServerEvent("speedchat-only-typed", "FairyClient", string.format("%d|%d|%s", accountId, avatarId, message))
+        return
+    end
+
+    -- Log it for moderation purposes.
+    local cleanMessage, _, badPhrases, badCombos = filterWhitelist(message, false)
+    client:writeServerEvent("chat-message", "FairyClient", string.format("%d|%d|%s|%s", accountId, avatarId, message, cleanMessage))
+    writeChatViolationEvents(client, accountId, avatarId, "open", message, badPhrases, badCombos)
+
+    if #badCombos > 0 then
+        return
+    end
+
+    local dg = datagram:new()
+    -- We set the sender field to the doId instead of our channel to make sure
+    -- we can receive the broadcast.
+    dg:addServerHeader(doId, doId, STATESERVER_OBJECT_UPDATE_FIELD)
+    dg:addUint32(doId)
+    client:packFieldToDatagram(dg, "DistributedFairyPlayer", "setTalk", {avatarId, accountId, avatarName, message, {}, 0}, true)
+    client:routeDatagram(dg)
+end
+
+-- setTalk from server
+function handleDistributedFairyPlayer_setTalk(client, doId, fieldId, data)
+    -- The data is safe to use, as the ranges has already been
+    -- verified by the server prior to calling this function.
+
+    local userTable = client:userTable()
+
+    local avatarId = data[1]
+    local accountId = data[2]
+    local avatarName = data[3]
+    local message = data[4]
+    -- The rest are intentionally left blank.
+    local modifications = {}
+
+    if isIgnoring(userTable, accountId) then
+        return
+    end
+
+    -- dropped, not blanked to *, an empty bubble still shows someone talking
+    if isSpeedChatOnly(userTable) and not isSpeedChatPhrase(message) then
+        return
+    end
+
+    local recipientIsStaff = userTable.accountType == "Moderator" or
+        userTable.accountType == "Administrator"
+
+    if not recipientIsStaff then
+        local filterOverride = true
+
+        -- sender, receiver
+        if (avatarSpeedChatPlusStates[avatarId] and userTable.speedChatPlus) then
+            filterOverride = false
+        end
+
+        message, modifications = filterWhitelist(message, filterOverride)
+    end
+
+    local dg = datagram:new()
+    dg:addUint16(CLIENT_OBJECT_UPDATE_FIELD)
+    dg:addUint32(doId)
+    client:packFieldToDatagram(dg, "DistributedFairyPlayer", "setTalk", {avatarId, accountId, avatarName, message, modifications, 0}, true)
+    client:sendDatagram(dg)
+end
+
+function handleClientDistributedFairyPlayer_setTalkWhisper(client, doId, fieldId, data)
+    -- The data is safe to use, as the ranges has already been
+    -- verified by the server prior to calling this function.
+
+    local userTable = client:userTable()
+    local accountId = userTable.accountId
+    local avatarId = userTable.avatarId
+    local avatarName = userTable.avatarName
+
+    -- All other data are blank values, except for chat.
+    local message = data[4] --chat
+
+    if message == "" then
+        return
+    end
+
+    if isMuted(userTable) then
+        client:writeServerEvent("muted-whisper", "FairyClient", string.format("%d|%d|%s", accountId, avatarId, message))
+        return
+    end
+
+    if isSpeedChatOnly(userTable) and not isSpeedChatPhrase(message) then
+        client:writeServerEvent("speedchat-only-typed", "FairyClient", string.format("%d|%d|%s", accountId, avatarId, message))
+        return
+    end
+
+    local cleanMessage, modifications, badPhrases, badCombos = filterWhitelist(message)
+
+    client:writeServerEvent("whisper-sent", "FairyClient", string.format("%d|%d|%d|%s|%s", accountId, avatarId, doId, message, cleanMessage))
+    writeChatViolationEvents(client, accountId, avatarId, "whisper", message, badPhrases, badCombos)
+
+    if #badCombos > 0 then
+        return
+    end
+
+    local dg = datagram:new()
+    -- We set the sender field to the doId instead of our channel to make sure
+    -- we can receive the broadcast.
+    dg:addServerHeader(doId, doId, STATESERVER_OBJECT_UPDATE_FIELD)
+    dg:addUint32(doId)
+    client:packFieldToDatagram(dg, "DistributedFairyPlayer", "setTalkWhisper", {avatarId, accountId, avatarName, cleanMessage, modifications, 0}, true)
+    client:routeDatagram(dg)
+
+    --- (Pirates and Fairies only) Send the sent message back to the sender
+    local sender = datagram:new()
+    sender:addUint16(CLIENT_OBJECT_UPDATE_FIELD)
+    sender:addUint32(doId)
+    client:packFieldToDatagram(sender, "DistributedFairyPlayer", "setTalkWhisper", {avatarId, accountId, avatarName, cleanMessage, modifications, 0}, true)
+    client:sendDatagram(sender)
+end
+
+function handleDistributedFairyPlayer_setTalkWhisper(client, doId, fieldId, data)
+    local userTable = client:userTable()
+    if isIgnoring(userTable, data[2]) then
+        return
+    end
+
+    if isSpeedChatOnly(userTable) and not isSpeedChatPhrase(data[4]) then
+        return
+    end
+
+    local dg = datagram:new()
+    dg:addUint16(CLIENT_OBJECT_UPDATE_FIELD)
+    dg:addUint32(doId)
+    client:packFieldToDatagram(dg, "DistributedFairyPlayer", "setTalkWhisper", data, true)
+    client:sendDatagram(dg)
+end
+
+function forwardToFriendsManager(client, fieldName, data)
+    local dg = datagram:new()
+    client:addServerHeader(dg, OTP_DO_ID_PLAYER_FRIENDS_MANAGER, STATESERVER_OBJECT_UPDATE_FIELD)
+    dg:addUint32(OTP_DO_ID_PLAYER_FRIENDS_MANAGER)
+    client:packFieldToDatagram(dg, "FMPlayerFriendsManager", fieldName, data, true)
+    client:routeDatagram(dg)
+end
+
+function sendFriendsManagerFieldToClient(client, fieldName, data)
+    local dg = datagram:new()
+    dg:addUint16(CLIENT_OBJECT_UPDATE_FIELD)
+    dg:addUint32(OTP_DO_ID_PLAYER_FRIENDS_MANAGER)
+    client:packFieldToDatagram(dg, "FMPlayerFriendsManager", fieldName, data, true)
+    client:sendDatagram(dg)
+end
+
+function handleClientFMPlayerFriendsManager_setTalkAccount(client, doId, fieldId, data)
+    local userTable = client:userTable()
+    if isMuted(userTable) then
+        client:writeServerEvent("muted-whisper-account", "FairyClient", string.format("%d|%s", userTable.accountId, tostring(data[4])))
+        return
+    end
+    forwardToFriendsManager(client, "setTalkAccount", data)
+end
+
+function handleClientFMPlayerFriendsManager_setTalkAccountGroup(client, doId, fieldId, data)
+    local userTable = client:userTable()
+    if isMuted(userTable) then
+        client:writeServerEvent("muted-whisper-group", "FairyClient", string.format("%d|%s", userTable.accountId, tostring(data[3])))
+        return
+    end
+    forwardToFriendsManager(client, "setTalkAccountGroup", data)
+end
+
+function handleFMPlayerFriendsManager_setTalkAccount(client, doId, fieldId, data)
+    local userTable = client:userTable()
+    local senderId = tonumber(data[2])
+    if senderId ~= userTable.accountId and isIgnoring(userTable, senderId) then
+        return
+    end
+
+    -- the sender's own echo is left alone
+    if senderId ~= userTable.accountId and isSpeedChatOnly(userTable) and not isSpeedChatPhrase(data[4]) then
+        return
+    end
+
+    sendFriendsManagerFieldToClient(client, "setTalkAccount", data)
+end
+
+function handleFMPlayerFriendsManager_invitationFrom(client, doId, fieldId, data)
+    local userTable = client:userTable()
+    if isIgnoring(userTable, data[1]) then
+        return
+    end
+    sendFriendsManagerFieldToClient(client, "invitationFrom", data)
+end
+
+-- Make sure these works for puppets as well.
+handleClientDistributedFairyGM_setTalk = handleClientDistributedFairyPlayer_setTalk
+handleDistributedFairyGM_setTalk = handleDistributedFairyPlayer_setTalk
+handleClientDistributedFairyGM_setTalkWhisper = handleClientDistributedFairyPlayer_setTalkWhisper
+handleDistributedFairyGM_setTalkWhisper = handleDistributedFairyPlayer_setTalkWhisper
+handleClientDistributedFamousFairyGM_setTalk = handleClientDistributedFairyPlayer_setTalk
+handleDistributedFamousFairyGM_setTalk = handleDistributedFairyPlayer_setTalk
+handleClientDistributedFamousFairyGM_setTalkWhisper = handleClientDistributedFairyPlayer_setTalkWhisper
+handleDistributedFamousFairyGM_setTalkWhisper = handleDistributedFairyPlayer_setTalkWhisper
+
+function getCategoryDescription(category)
+    if category == "MODERATION_FOUL_LANGUAGE" then
+        return "Foul Language"
+    elseif category == "MODERATION_PERSONAL_INFO" then
+        return "Personal Information"
+    elseif category == "MODERATION_RUDE_BEHAVIOR" then
+        return "Rude Behavior"
+    elseif category == "MODERATION_BAD_NAME" then
+        return "Bad Name"
+    end
+    return "Unknown Category"
+end
+
+-- sendMessage from client
+function handleClientCentralLogger_sendMessage(client, doId, fieldId, data)
+    -- The data is safe to use, as the ranges has already been
+    -- verified by the server prior to calling this function.
+    local category = data[1]
+    local eventString = data[2]
+    local targetDISLId = data[3]
+    local targetAvId = data[4]
+
+    local toLog = eventString .. "|" .. string.format("%d", targetDISLId) .. "|" .. string.format("%d", targetAvId)
+    client:writeServerEvent(category, "CentralLogger", toLog)
+
+    -- CentralLogger carries every client event -- teleports, playmode changes,
+    -- the lot. Only the MODERATION_ ones are somebody reporting somebody.
+    local isReport = string.sub(category, 1, 11) == "MODERATION_"
+
+    if isReport and targetDISLId > 0 then
+        local userTable = client:userTable()
+        if userTable.ignored == nil then
+            userTable.ignored = {}
+        end
+        userTable.ignored[targetDISLId] = true
+        client:userTable(userTable)
+        addIgnoreRemote(client, userTable.accountId, targetDISLId)
+    end
+
+    if not isReport then
+        return
+    end
+
+    -- Hand the report to the reporting service, which files it in the GM portal
+    -- and posts it to Discord if a webhook is configured. This is no longer
+    -- behind PRODUCTION_ENABLED: a report that is never stored is a report
+    -- nobody can act on, and the portal is where staff read them. Sent as a
+    -- datagram rather than posted from here because this runs in the client
+    -- agent's message loop, and an HTTP call would stall every other client
+    -- while it waited.
+    local userTable = client:userTable()
+
+    dg = datagram:new()
+    client:addServerHeader(dg, CENTRAL_LOGGER_REQUEST, CENTRAL_LOGGER_REQUEST)
+    dg:addString(REPORTS_WEBHOOK_URL) -- webhookUrl, blank to skip Discord
+    dg:addString(eventString) -- message
+    dg:addString(getCategoryDescription(category)) -- category, for people
+    dg:addString(category) -- category code, for the record
+    dg:addUint32(targetAvId) -- targetAvId
+    dg:addUint32(targetDISLId) -- targetDISLId
+    dg:addUint32(userTable.avatarId or 0) -- reporterAvId
+    dg:addUint32(userTable.accountId or 0) -- reporterDISLId
+    dg:addString(userTable.avatarName or "") -- reporterName
+    client:routeDatagram(dg)
+end
