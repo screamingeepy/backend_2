@@ -349,7 +349,7 @@ package
 
          this._controller.scaleX = scale;
          this._controller.scaleY = scale;
-         this._controller.cacheAsBitmap = true;
+         this._controller.cacheAsBitmap = false;
 
          var holder:Sprite = new Sprite();
          holder.addChild(this._controller as DisplayObject);

@@ -497,14 +497,14 @@ class QuestMgr:
 
     @staticmethod
     def isQuestLive(qdef: 'QuestDefinition', activeTags: Optional[Set[str]], gatedTags: Optional[Set[str]]) -> bool:
-        # event quests only show while one of their tags is live, tags no holiday knows don't gate
+        # tagged quests only show while one of their tags is active, unknown tags default to off
         if qdef.quest_id in ALWAYS_LIVE_QUEST_IDS:
             return True
-        if activeTags is None or gatedTags is None or not qdef.tags:
+        if activeTags is None or not qdef.tags:
             return True
 
-        eventTags = [t for t in re.split(r'[,\s]+', qdef.tags) if t in gatedTags]
-        return not eventTags or any(t in activeTags for t in eventTags)
+        tags = [t for t in re.split(r'[,\s]+', qdef.tags) if t]
+        return not tags or any(t in activeTags for t in tags)
 
     @staticmethod
     def arePrerequisitesMet(unlocked_by: List[Set[int]], completed: Set[int]) -> bool:
